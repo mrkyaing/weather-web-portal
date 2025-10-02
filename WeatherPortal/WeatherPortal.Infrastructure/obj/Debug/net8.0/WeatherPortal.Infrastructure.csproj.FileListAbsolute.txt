@@ -1,0 +1,11 @@
+C:\Users\Saw Yu Nandar\source\repos\WeatherPortal\WeatherPortal.Infrastructure\bin\Debug\net8.0\WeatherPortal.Infrastructure.deps.json
+C:\Users\Saw Yu Nandar\source\repos\WeatherPortal\WeatherPortal.Infrastructure\bin\Debug\net8.0\WeatherPortal.Infrastructure.dll
+C:\Users\Saw Yu Nandar\source\repos\WeatherPortal\WeatherPortal.Infrastructure\bin\Debug\net8.0\WeatherPortal.Infrastructure.pdb
+C:\Users\Saw Yu Nandar\source\repos\WeatherPortal\WeatherPortal.Infrastructure\obj\Debug\net8.0\WeatherPortal.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Saw Yu Nandar\source\repos\WeatherPortal\WeatherPortal.Infrastructure\obj\Debug\net8.0\WeatherPortal.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Saw Yu Nandar\source\repos\WeatherPortal\WeatherPortal.Infrastructure\obj\Debug\net8.0\WeatherPortal.Infrastructure.AssemblyInfo.cs
+C:\Users\Saw Yu Nandar\source\repos\WeatherPortal\WeatherPortal.Infrastructure\obj\Debug\net8.0\WeatherPortal.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Saw Yu Nandar\source\repos\WeatherPortal\WeatherPortal.Infrastructure\obj\Debug\net8.0\WeatherPortal.Infrastructure.dll
+C:\Users\Saw Yu Nandar\source\repos\WeatherPortal\WeatherPortal.Infrastructure\obj\Debug\net8.0\refint\WeatherPortal.Infrastructure.dll
+C:\Users\Saw Yu Nandar\source\repos\WeatherPortal\WeatherPortal.Infrastructure\obj\Debug\net8.0\WeatherPortal.Infrastructure.pdb
+C:\Users\Saw Yu Nandar\source\repos\WeatherPortal\WeatherPortal.Infrastructure\obj\Debug\net8.0\ref\WeatherPortal.Infrastructure.dll

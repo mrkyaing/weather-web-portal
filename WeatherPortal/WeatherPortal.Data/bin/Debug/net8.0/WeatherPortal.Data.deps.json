@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "WeatherPortal.Data/1.0.0": {
+        "runtime": {
+          "WeatherPortal.Data.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "WeatherPortal.Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
