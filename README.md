@@ -1,22 +1,22 @@
-🔐 Admin Panel Modules
+# 🔐 Admin Panel Modules
 
 - User & Role Management
 
 - Roles Management
 
-# Core Users Management
+# 🚀 Core Users Management
 
 - Role Menu Permission Management
 
 - Authentication & Authorization
 
-# Localization & Access
+# ✨Localization & Access
 
 - Localization (English / Myanmar)
 
 - SOP (Standard Operating Procedures)
 
-# Publication (for internal or public release)
+# 🌐 Publication (for internal or public release)
 
 - Geographic & Structural Setup
 
@@ -58,34 +58,33 @@
 
 🌐 Public Website Modules
 
-Weather Visualization
+- Weather Visualization
 
-Map showing Weather Status/Conditions
+- Map showing Weather Status/Conditions
 
-Satellite and Radar Management
+- Satellite and Radar Management
 
-Forecasting
+# Forecasting
 
-Daily, Weekly Weather Prediction
+- Daily, Weekly Weather Prediction
 
-Sea Weather Forecast
+# Sea Weather Forecast
 
-Storm Conditions (မုန်တိုင်း အခြေအနေ)
+- Storm Conditions (မုန်တိုင်း အခြေအနေ)
 
-Low Pressure Zones (လေဖိအားနည်းရပ်ဝန်းများ အခြေအနေ)
+- Low Pressure Zones (လေဖိအားနည်းရပ်ဝန်းများ အခြေအနေ)
 
-Localization
+# Localization
 
-Language toggle (English / Myanmar)
+- Language toggle (English / Myanmar)
 
-Public Notifications
+# Public Notifications
 
-Real-time alerts
+- Real-time alerts
 
-Emergency weather warnings
+- Emergency weather warnings
 
-Public Pages
+# Public Pages
 
 Defined functions (e.g., forecast, alerts, news, SOP)
-https://www.moezala.gov.mm/ 
-https://mausam.imd.gov.in/ 
+- https://mausam.imd.gov.in/ 
