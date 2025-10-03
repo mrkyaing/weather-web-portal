@@ -1,0 +1,63 @@
+@{
+    ViewData["Title"] = "Weather Map";
+}
+
+<div class="container my-4">
+    <h1>Weather Map</h1>
+    <p class="text-muted">Interactive map showing weather status/conditions.</p>
+
+    <div id="weather-map" style="height:600px;" class="card mt-3"></div>
+    <div id="map-legend" class="mt-2 small text-muted">Legend: <span style="color:#d9534f">■</span> Storm zone &nbsp; <span style="color:#f0ad4e">■</span> Low pressure</div>
+</div>
+
+@section Scripts {
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        (function(){
+            const map = L.map('weather-map').setView([20,0], 2);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+
+            // Sample markers with dummy weather conditions
+            const samples = [
+                { loc: [47.6062, -122.3321], label: 'Seattle', cond: 'Cloudy, 18°C' },
+                { loc: [51.5074, -0.1278], label: 'London', cond: 'Light Rain, 12°C' },
+                { loc: [35.6895, 139.6917], label: 'Tokyo', cond: 'Clear, 22°C' }
+            ];
+
+            samples.forEach(s => {
+                L.marker(s.loc).addTo(map).bindPopup(`<strong>${s.label}</strong><br/>${s.cond}`);
+            });
+
+            // Sample storm zones (polygons)
+            const stormZone1 = L.polygon([
+                [30, -90], [32, -88], [31, -85], [28, -86], [29, -89]
+            ], { color: '#d9534f', weight: 2, fillOpacity: 0.25 }).bindPopup('Storm Zone A');
+
+            const stormZone2 = L.polygon([
+                [10, 120], [12, 122], [14, 121], [13, 118]
+            ], { color: '#d9534f', weight: 2, fillOpacity: 0.25 }).bindPopup('Storm Zone B');
+
+            // Low pressure areas (circles)
+            const low1 = L.circle([40, -60], { radius: 400000, color: '#f0ad4e', fillOpacity: 0.15 }).bindPopup('Low Pressure 1');
+            const low2 = L.circle([55, 10], { radius: 300000, color: '#f0ad4e', fillOpacity: 0.15 }).bindPopup('Low Pressure 2');
+
+            const stormLayer = L.layerGroup([stormZone1, stormZone2]);
+            const lowLayer = L.layerGroup([low1, low2]);
+
+            stormLayer.addTo(map);
+            lowLayer.addTo(map);
+
+            // Layer control
+            const overlays = {
+                'Storm zones': stormLayer,
+                'Low pressure areas': lowLayer
+            };
+
+            L.control.layers(null, overlays, { collapsed: false }).addTo(map);
+        })();
+    </script>
+}

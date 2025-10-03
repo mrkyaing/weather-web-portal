@@ -36,6 +36,22 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/GITHUB/w-p-dev/weather-web-portal/WeatherPortal/WeatherPortal.Web/Views/Weather/Daily.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV2VhdGhlclxEYWlseS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/GITHUB/w-p-dev/weather-web-portal/WeatherPortal/WeatherPortal.Web/Views/Weather/Map.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV2VhdGhlclxNYXAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/GITHUB/w-p-dev/weather-web-portal/WeatherPortal/WeatherPortal.Web/Views/Weather/SeaForecast.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV2VhdGhlclxTZWFGb3JlY2FzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/GITHUB/w-p-dev/weather-web-portal/WeatherPortal/WeatherPortal.Web/Views/Weather/Weekly.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV2VhdGhlclxXZWVrbHkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/GITHUB/w-p-dev/weather-web-portal/WeatherPortal/WeatherPortal.Web/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

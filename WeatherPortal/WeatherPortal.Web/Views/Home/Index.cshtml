@@ -1,8 +1,88 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm weather-search-card">
+                <div class="card-body">
+                    <h2 class="card-title">Get the latest weather</h2>
+                    <p class="text-muted">Search by city name or ZIP code to see current conditions and a short forecast.</p>
+
+                    <form id="weather-search-form" onsubmit="return false;">
+                        <div class="input-group input-group-lg mb-3">
+                            <input id="search-input" type="text" class="form-control" placeholder="e.g. London or 90210" aria-label="City or ZIP">
+                            <button id="search-btn" class="btn btn-primary" type="button">Search</button>
+                        </div>
+                    </form>
+
+                    <div id="weather-result" class="mt-4 d-none">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div>
+                                <h3 id="result-location" class="mb-0">City, Country</h3>
+                                <small id="result-time" class="text-muted">Updated just now</small>
+                            </div>
+
+                            <div class="text-end">
+                                <div class="fs-1 fw-bold" id="result-temp">21°C</div>
+                                <div id="result-desc" class="text-muted">Clear sky</div>
+                            </div>
+                        </div>
+
+                        <hr />
+                        <div id="result-details" class="row text-center">
+                            <div class="col">
+                                <div class="small text-muted">Humidity</div>
+                                <div id="result-humidity">60%</div>
+                            </div>
+                            <div class="col">
+                                <div class="small text-muted">Wind</div>
+                                <div id="result-wind">5 km/h</div>
+                            </div>
+                            <div class="col">
+                                <div class="small text-muted">Pressure</div>
+                                <div id="result-pressure">1015 hPa</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+@section Scripts {
+    <script>
+        (function(){
+            const btn = document.getElementById('search-btn');
+            const input = document.getElementById('search-input');
+            const result = document.getElementById('weather-result');
+
+            function showDummy(){
+                // This is a placeholder for wiring to a real API later.
+                document.getElementById('result-location').textContent = 'Seattle, US';
+                document.getElementById('result-time').textContent = new Date().toLocaleString();
+                document.getElementById('result-temp').textContent = '18°C';
+                document.getElementById('result-desc').textContent = 'Partly cloudy';
+                document.getElementById('result-humidity').textContent = '72%';
+                document.getElementById('result-wind').textContent = '12 km/h';
+                document.getElementById('result-pressure').textContent = '1012 hPa';
+                result.classList.remove('d-none');
+            }
+
+            btn.addEventListener('click', ()=>{
+                const q = input.value.trim();
+                if(!q){
+                    input.classList.add('is-invalid');
+                    return;
+                }
+                input.classList.remove('is-invalid');
+                showDummy();
+            });
+
+            input.addEventListener('keydown', (e)=>{ if(e.key === 'Enter') btn.click(); });
+        })();
+    </script>
+}
