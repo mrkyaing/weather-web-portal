@@ -87,5 +87,4 @@
 # Public Pages
 
 Defined functions (e.g., forecast, alerts, news, SOP)
-- https://www.moezala.gov.mm/ 
 - https://mausam.imd.gov.in/ 
