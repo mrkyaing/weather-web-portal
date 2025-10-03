@@ -16,7 +16,7 @@
 
 - SOP (Standard Operating Procedures)
 
-# Publication (for internal or public release)
+# 🌐 Publication (for internal or public release)
 
 - Geographic & Structural Setup
 
