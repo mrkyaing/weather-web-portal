@@ -1,3 +1,5 @@
+name: MG-Schedule-Trigger
+
 on:
   schedule:
     - cron: '30 5 * * 1,3'
