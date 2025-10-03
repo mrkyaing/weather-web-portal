@@ -31,3 +31,36 @@ C:\Users\Saw Yu Nandar\source\repos\WeatherPortal\WeatherPortal.Web\obj\Debug\ne
 C:\Users\Saw Yu Nandar\source\repos\WeatherPortal\WeatherPortal.Web\obj\Debug\net8.0\WeatherPortal.Web.pdb
 C:\Users\Saw Yu Nandar\source\repos\WeatherPortal\WeatherPortal.Web\obj\Debug\net8.0\WeatherPortal.Web.genruntimeconfig.cache
 C:\Users\Saw Yu Nandar\source\repos\WeatherPortal\WeatherPortal.Web\obj\Debug\net8.0\ref\WeatherPortal.Web.dll
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\bin\Debug\net8.0\appsettings.Development.json
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\bin\Debug\net8.0\appsettings.json
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\bin\Debug\net8.0\WeatherPortal.Web.staticwebassets.endpoints.json
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\bin\Debug\net8.0\WeatherPortal.Web.staticwebassets.runtime.json
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\bin\Debug\net8.0\WeatherPortal.Web.exe
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\bin\Debug\net8.0\WeatherPortal.Web.deps.json
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\bin\Debug\net8.0\WeatherPortal.Web.runtimeconfig.json
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\bin\Debug\net8.0\WeatherPortal.Web.dll
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\bin\Debug\net8.0\WeatherPortal.Web.pdb
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\obj\Debug\net8.0\WeatherPortal.Web.GeneratedMSBuildEditorConfig.editorconfig
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\obj\Debug\net8.0\WeatherPortal.Web.AssemblyInfoInputs.cache
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\obj\Debug\net8.0\WeatherPortal.Web.AssemblyInfo.cs
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\obj\Debug\net8.0\WeatherPortal.Web.csproj.CoreCompileInputs.cache
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\obj\Debug\net8.0\WeatherPortal.Web.MvcApplicationPartsAssemblyInfo.cache
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\obj\Debug\net8.0\WeatherPortal.Web.RazorAssemblyInfo.cache
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\obj\Debug\net8.0\WeatherPortal.Web.RazorAssemblyInfo.cs
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\obj\Debug\net8.0\WeatherPortal.Web.sourcelink.json
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\obj\Debug\net8.0\rjimswa.dswa.cache.json
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\obj\Debug\net8.0\scopedcss\bundle\WeatherPortal.Web.styles.css
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\obj\Debug\net8.0\scopedcss\projectbundle\WeatherPortal.Web.bundle.scp.css
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\obj\Debug\net8.0\staticwebassets.build.json
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\obj\Debug\net8.0\staticwebassets.build.json.cache
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\obj\Debug\net8.0\staticwebassets.development.json
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\obj\Debug\net8.0\WeatherPortal.Web.dll
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\obj\Debug\net8.0\refint\WeatherPortal.Web.dll
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\obj\Debug\net8.0\WeatherPortal.Web.pdb
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\obj\Debug\net8.0\WeatherPortal.Web.genruntimeconfig.cache
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Web\obj\Debug\net8.0\ref\WeatherPortal.Web.dll

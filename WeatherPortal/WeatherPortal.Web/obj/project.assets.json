@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Saw Yu Nandar\\source\\repos\\WeatherPortal\\WeatherPortal.Web\\WeatherPortal.Web.csproj",
+      "projectUniqueName": "C:\\GITHUB\\w-p-dev\\weather-web-portal\\WeatherPortal\\WeatherPortal.Web\\WeatherPortal.Web.csproj",
       "projectName": "WeatherPortal.Web",
-      "projectPath": "C:\\Users\\Saw Yu Nandar\\source\\repos\\WeatherPortal\\WeatherPortal.Web\\WeatherPortal.Web.csproj",
+      "projectPath": "C:\\GITHUB\\w-p-dev\\weather-web-portal\\WeatherPortal\\WeatherPortal.Web\\WeatherPortal.Web.csproj",
       "packagesPath": "C:\\Users\\Saw Yu Nandar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Saw Yu Nandar\\source\\repos\\WeatherPortal\\WeatherPortal.Web\\obj\\",
+      "outputPath": "C:\\GITHUB\\w-p-dev\\weather-web-portal\\WeatherPortal\\WeatherPortal.Web\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
