@@ -1,34 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Saw Yu Nandar\\source\\repos\\WeatherPortal\\",
+  "WorkspaceRootPath": "C:\\GITHUB\\w-p-dev\\weather-web-portal\\WeatherPortal\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9B3F17DA-CAEE-4980-9944-D49BD1C53984}|WeatherPortal.Web\\WeatherPortal.Web.csproj|c:\\users\\saw yu nandar\\source\\repos\\weatherportal\\weatherportal.web\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9B3F17DA-CAEE-4980-9944-D49BD1C53984}|WeatherPortal.Web\\WeatherPortal.Web.csproj|solutionrelative:weatherportal.web\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A1C7A176-CA19-4411-BAA9-38842A4BD4BD}|WeatherPortal.Core\\WeatherPortal.DataModel.csproj|c:\\github\\w-p-dev\\weather-web-portal\\weatherportal\\weatherportal.core\\baseentities\\baseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1C7A176-CA19-4411-BAA9-38842A4BD4BD}|WeatherPortal.Core\\WeatherPortal.DataModel.csproj|solutionrelative:weatherportal.core\\baseentities\\baseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9B3F17DA-CAEE-4980-9944-D49BD1C53984}|WeatherPortal.Web\\WeatherPortal.Web.csproj|c:\\users\\saw yu nandar\\source\\repos\\weatherportal\\weatherportal.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9B3F17DA-CAEE-4980-9944-D49BD1C53984}|WeatherPortal.Web\\WeatherPortal.Web.csproj|solutionrelative:weatherportal.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F7FE2381-D26B-4331-931C-549ACE0D38BC}|WeatherPortal.Shared\\WeatherPortal.Shared.csproj|c:\\users\\saw yu nandar\\source\\repos\\weatherportal\\weatherportal.shared\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F7FE2381-D26B-4331-931C-549ACE0D38BC}|WeatherPortal.Shared\\WeatherPortal.Shared.csproj|solutionrelative:weatherportal.shared\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D73E73C6-AF31-4DCB-8CBC-4C7C7027C612}|WeatherPortal.Infrastructure\\WeatherPortal.Infrastructure.csproj|c:\\users\\saw yu nandar\\source\\repos\\weatherportal\\weatherportal.infrastructure\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D73E73C6-AF31-4DCB-8CBC-4C7C7027C612}|WeatherPortal.Infrastructure\\WeatherPortal.Infrastructure.csproj|solutionrelative:weatherportal.infrastructure\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{516D977D-3D0D-4B5D-BF75-F3BD967EEAD2}|WeatherPortal.Data\\WeatherPortal.Data.csproj|c:\\users\\saw yu nandar\\source\\repos\\weatherportal\\weatherportal.data\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{516D977D-3D0D-4B5D-BF75-F3BD967EEAD2}|WeatherPortal.Data\\WeatherPortal.Data.csproj|solutionrelative:weatherportal.data\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7DACF68C-C1DE-4AE0-92B8-56CF9B904A47}|WeatherPortal.Service\\WeatherPortal.Service.csproj|c:\\users\\saw yu nandar\\source\\repos\\weatherportal\\weatherportal.service\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7DACF68C-C1DE-4AE0-92B8-56CF9B904A47}|WeatherPortal.Service\\WeatherPortal.Service.csproj|solutionrelative:weatherportal.service\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A1C7A176-CA19-4411-BAA9-38842A4BD4BD}|WeatherPortal.Core\\WeatherPortal.Core.csproj|c:\\users\\saw yu nandar\\source\\repos\\weatherportal\\weatherportal.core\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A1C7A176-CA19-4411-BAA9-38842A4BD4BD}|WeatherPortal.Core\\WeatherPortal.Core.csproj|solutionrelative:weatherportal.core\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A1C7A176-CA19-4411-BAA9-38842A4BD4BD}|WeatherPortal.Core\\WeatherPortal.DataModel.csproj|c:\\github\\w-p-dev\\weather-web-portal\\weatherportal\\weatherportal.core\\domainentities\\cityentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A1C7A176-CA19-4411-BAA9-38842A4BD4BD}|WeatherPortal.Core\\WeatherPortal.DataModel.csproj|solutionrelative:weatherportal.core\\domainentities\\cityentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,97 +18,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\Users\\Saw Yu Nandar\\source\\repos\\WeatherPortal\\WeatherPortal.Web\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "WeatherPortal.Web\\Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Users\\Saw Yu Nandar\\source\\repos\\WeatherPortal\\WeatherPortal.Web\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "WeatherPortal.Web\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-02T11:19:52.851Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Saw Yu Nandar\\source\\repos\\WeatherPortal\\WeatherPortal.Web\\Program.cs",
-              "RelativeDocumentMoniker": "WeatherPortal.Web\\Program.cs",
-              "ToolTip": "C:\\Users\\Saw Yu Nandar\\source\\repos\\WeatherPortal\\WeatherPortal.Web\\Program.cs",
-              "RelativeToolTip": "WeatherPortal.Web\\Program.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-02T11:19:37.835Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Class1.cs",
-              "DocumentMoniker": "C:\\Users\\Saw Yu Nandar\\source\\repos\\WeatherPortal\\WeatherPortal.Shared\\Class1.cs",
-              "RelativeDocumentMoniker": "WeatherPortal.Shared\\Class1.cs",
-              "ToolTip": "C:\\Users\\Saw Yu Nandar\\source\\repos\\WeatherPortal\\WeatherPortal.Shared\\Class1.cs",
-              "RelativeToolTip": "WeatherPortal.Shared\\Class1.cs",
+              "Title": "CityEntity.cs",
+              "DocumentMoniker": "C:\\GITHUB\\w-p-dev\\weather-web-portal\\WeatherPortal\\WeatherPortal.Core\\DomainEntities\\CityEntity.cs",
+              "RelativeDocumentMoniker": "WeatherPortal.Core\\DomainEntities\\CityEntity.cs",
+              "ToolTip": "C:\\GITHUB\\w-p-dev\\weather-web-portal\\WeatherPortal\\WeatherPortal.Core\\DomainEntities\\CityEntity.cs",
+              "RelativeToolTip": "WeatherPortal.Core\\DomainEntities\\CityEntity.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-02T11:18:57.52Z",
+              "WhenOpened": "2025-10-04T13:05:47.67Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Class1.cs",
-              "DocumentMoniker": "C:\\Users\\Saw Yu Nandar\\source\\repos\\WeatherPortal\\WeatherPortal.Infrastructure\\Class1.cs",
-              "RelativeDocumentMoniker": "WeatherPortal.Infrastructure\\Class1.cs",
-              "ToolTip": "C:\\Users\\Saw Yu Nandar\\source\\repos\\WeatherPortal\\WeatherPortal.Infrastructure\\Class1.cs",
-              "RelativeToolTip": "WeatherPortal.Infrastructure\\Class1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "BaseEntity.cs",
+              "DocumentMoniker": "C:\\GITHUB\\w-p-dev\\weather-web-portal\\WeatherPortal\\WeatherPortal.Core\\BaseEntities\\BaseEntity.cs",
+              "RelativeDocumentMoniker": "WeatherPortal.Core\\BaseEntities\\BaseEntity.cs",
+              "ToolTip": "C:\\GITHUB\\w-p-dev\\weather-web-portal\\WeatherPortal\\WeatherPortal.Core\\BaseEntities\\BaseEntity.cs",
+              "RelativeToolTip": "WeatherPortal.Core\\BaseEntities\\BaseEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-02T11:18:41.565Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Class1.cs",
-              "DocumentMoniker": "C:\\Users\\Saw Yu Nandar\\source\\repos\\WeatherPortal\\WeatherPortal.Data\\Class1.cs",
-              "RelativeDocumentMoniker": "WeatherPortal.Data\\Class1.cs",
-              "ToolTip": "C:\\Users\\Saw Yu Nandar\\source\\repos\\WeatherPortal\\WeatherPortal.Data\\Class1.cs",
-              "RelativeToolTip": "WeatherPortal.Data\\Class1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-02T11:18:16.849Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Class1.cs",
-              "DocumentMoniker": "C:\\Users\\Saw Yu Nandar\\source\\repos\\WeatherPortal\\WeatherPortal.Service\\Class1.cs",
-              "RelativeDocumentMoniker": "WeatherPortal.Service\\Class1.cs",
-              "ToolTip": "C:\\Users\\Saw Yu Nandar\\source\\repos\\WeatherPortal\\WeatherPortal.Service\\Class1.cs",
-              "RelativeToolTip": "WeatherPortal.Service\\Class1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-02T11:17:58.415Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Class1.cs",
-              "DocumentMoniker": "C:\\Users\\Saw Yu Nandar\\source\\repos\\WeatherPortal\\WeatherPortal.Core\\Class1.cs",
-              "RelativeDocumentMoniker": "WeatherPortal.Core\\Class1.cs",
-              "ToolTip": "C:\\Users\\Saw Yu Nandar\\source\\repos\\WeatherPortal\\WeatherPortal.Core\\Class1.cs",
-              "RelativeToolTip": "WeatherPortal.Core\\Class1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-02T11:17:23.127Z",
+              "WhenOpened": "2025-10-04T13:02:50.078Z",
               "EditorCaption": ""
             }
           ]

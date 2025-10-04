@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\GITHUB\\w-p-dev\\weather-web-portal\\WeatherPortal\\WeatherPortal.Core\\WeatherPortal.Core.csproj",
-      "projectName": "WeatherPortal.Core",
-      "projectPath": "C:\\GITHUB\\w-p-dev\\weather-web-portal\\WeatherPortal\\WeatherPortal.Core\\WeatherPortal.Core.csproj",
+      "projectUniqueName": "C:\\GITHUB\\w-p-dev\\weather-web-portal\\WeatherPortal\\WeatherPortal.Core\\WeatherPortal.DataModel.csproj",
+      "projectName": "WeatherPortal.DataModel",
+      "projectPath": "C:\\GITHUB\\w-p-dev\\weather-web-portal\\WeatherPortal\\WeatherPortal.Core\\WeatherPortal.DataModel.csproj",
       "packagesPath": "C:\\Users\\Saw Yu Nandar\\.nuget\\packages\\",
       "outputPath": "C:\\GITHUB\\w-p-dev\\weather-web-portal\\WeatherPortal\\WeatherPortal.Core\\obj\\",
       "projectStyle": "PackageReference",
