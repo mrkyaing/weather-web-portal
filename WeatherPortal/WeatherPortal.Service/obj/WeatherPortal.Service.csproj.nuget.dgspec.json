@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Saw Yu Nandar\\source\\repos\\WeatherPortal\\WeatherPortal.Service\\WeatherPortal.Service.csproj": {}
+    "C:\\GITHUB\\w-p-dev\\weather-web-portal\\WeatherPortal\\WeatherPortal.Service\\WeatherPortal.Service.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Saw Yu Nandar\\source\\repos\\WeatherPortal\\WeatherPortal.Service\\WeatherPortal.Service.csproj": {
+    "C:\\GITHUB\\w-p-dev\\weather-web-portal\\WeatherPortal\\WeatherPortal.Service\\WeatherPortal.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Saw Yu Nandar\\source\\repos\\WeatherPortal\\WeatherPortal.Service\\WeatherPortal.Service.csproj",
+        "projectUniqueName": "C:\\GITHUB\\w-p-dev\\weather-web-portal\\WeatherPortal\\WeatherPortal.Service\\WeatherPortal.Service.csproj",
         "projectName": "WeatherPortal.Service",
-        "projectPath": "C:\\Users\\Saw Yu Nandar\\source\\repos\\WeatherPortal\\WeatherPortal.Service\\WeatherPortal.Service.csproj",
+        "projectPath": "C:\\GITHUB\\w-p-dev\\weather-web-portal\\WeatherPortal\\WeatherPortal.Service\\WeatherPortal.Service.csproj",
         "packagesPath": "C:\\Users\\Saw Yu Nandar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Saw Yu Nandar\\source\\repos\\WeatherPortal\\WeatherPortal.Service\\obj\\",
+        "outputPath": "C:\\GITHUB\\w-p-dev\\weather-web-portal\\WeatherPortal\\WeatherPortal.Service\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
