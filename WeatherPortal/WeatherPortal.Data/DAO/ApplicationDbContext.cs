@@ -1,11 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WeatherPortal.Core.DomainEntities;
-
+using WeatherPortal.DataModel.DomainEntities;
 namespace WeatherPortal.Data.Data
 {
     public class ApplicationDbContext:DbContext
     {
-
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         { }
         public DbSet<RegionEntity> Regions { get; set; }

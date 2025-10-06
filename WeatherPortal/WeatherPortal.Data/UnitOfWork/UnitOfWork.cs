@@ -15,7 +15,6 @@ namespace WeatherPortal.Data.UnitOfWork
             Regions = regionRepository;
         }
          
-
         public void Commit()
         {
             _dbContext.SaveChanges();

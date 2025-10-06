@@ -14,11 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WeatherPortal.Data")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-<<<<<<< HEAD
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2678dff2fb2b9760d54332a68f7d6dca53279a2f")]
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+50aa2ce845420d8bc626c2affb97ad92b859daa0")]
->>>>>>> Geographic_Structure_Setup_24
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+55a3e369e44a0cf868aee6ecca19c6da0fd77ffd")]
 [assembly: System.Reflection.AssemblyProductAttribute("WeatherPortal.Data")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WeatherPortal.Data")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

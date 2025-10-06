@@ -20,12 +20,10 @@
   </ItemGroup>
 
   <ItemGroup>
-	<ProjectReference Include="..\WeatherPortal.Core\WeatherPortal.Core.csproj" />
+	<ProjectReference Include="..\WeatherPortal.DataModel\WeatherPortal.DataModel.csproj" />
 	<ProjectReference Include="..\WeatherPortal.Data\WeatherPortal.Data.csproj" />
 	<ProjectReference Include="..\WeatherPortal.Dto\WeatherPortal.Dto.csproj" />
-	<ProjectReference Include="..\WeatherPortal.Infrastructure\WeatherPortal.Infrastructure.csproj" />
 	<ProjectReference Include="..\WeatherPortal.Service\WeatherPortal.Service.csproj" />
-	<ProjectReference Include="..\WeatherPortal.Shared\WeatherPortal.Shared.csproj" />
   </ItemGroup>
 
 </Project>

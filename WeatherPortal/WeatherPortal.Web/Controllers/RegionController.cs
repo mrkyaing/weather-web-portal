@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WeatherPortal.Core.DomainEntities;
+using WeatherPortal.DataModel.DomainEntities;
 using WeatherPortal.Service.Implements;
 using WeatherPortal.Service.Interfaces;
 using WeatherPortal.Dto;

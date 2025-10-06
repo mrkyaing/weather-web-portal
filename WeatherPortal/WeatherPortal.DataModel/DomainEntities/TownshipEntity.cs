@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using WeatherPortal.Core.BaseEntities;
-
-namespace WeatherPortal.Core.DomainEntities
+using WeatherPortal.DataModel.BaseEntities;
+namespace WeatherPortal.DataModel.DomainEntities
 {
     [Table("Townships")]
     public class TownshipEntity:BaseEntity

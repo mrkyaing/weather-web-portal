@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WeatherPortal.Core.BaseEntities;
-
-namespace WeatherPortal.Core.DomainEntities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using WeatherPortal.DataModel.BaseEntities;
+namespace WeatherPortal.DataModel.DomainEntities
 {
     [Table("Regions")]
     public class RegionEntity : BaseEntity

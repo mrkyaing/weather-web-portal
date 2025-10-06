@@ -19,8 +19,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\WeatherPortal.Data\WeatherPortal.Data.csproj" />
-  </ItemGroup>
-
 </Project>

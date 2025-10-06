@@ -5,6 +5,5 @@
         IRegionRepository Regions { get; }
         void Commit();
         void RollBack();
-       
     }
 }

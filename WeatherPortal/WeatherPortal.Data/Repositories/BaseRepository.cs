@@ -14,28 +14,23 @@ namespace WeatherPortal.Data.Repositories
         {
               _dbContext = dbContext;
               _dbSet = _dbContext.Set<T>();
-
         }
         public async Task Create(T entity)
         {
             await _dbContext.AddAsync<T>(entity);
         }
-
         public void Delete(T entity)
         {
             _dbContext.Remove<T>(entity);
         }
-
         public async Task<IEnumerable<T>> GetAll()
         {
             return await _dbSet.AsNoTracking().ToListAsync();
         }
-
         public async Task<IEnumerable<T>> GetBy(Expression<Func<T, bool>> expression)
         {
             return await _dbSet.AsNoTracking().Where(expression).ToListAsync();
         }
-
         public void Update(T entity)
         {
             _dbContext.Update<T>(entity);

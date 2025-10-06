@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\YeHtutSoe\\Source\\Repos\\weather-web-portal\\WeatherPortal\\WeatherPortal.Data\\WeatherPortal.Data.csproj": {}
+    "C:\\GITHUB\\w-p-dev\\weather-web-portal\\WeatherPortal\\WeatherPortal.Data\\WeatherPortal.Data.csproj": {}
   },
   "projects": {
-    "C:\\Users\\YeHtutSoe\\Source\\Repos\\weather-web-portal\\WeatherPortal\\WeatherPortal.Core\\WeatherPortal.Core.csproj": {
+    "C:\\GITHUB\\w-p-dev\\weather-web-portal\\WeatherPortal\\WeatherPortal.DataModel\\WeatherPortal.DataModel.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\YeHtutSoe\\Source\\Repos\\weather-web-portal\\WeatherPortal\\WeatherPortal.Core\\WeatherPortal.Core.csproj",
-        "projectName": "WeatherPortal.Core",
-        "projectPath": "C:\\Users\\YeHtutSoe\\Source\\Repos\\weather-web-portal\\WeatherPortal\\WeatherPortal.Core\\WeatherPortal.Core.csproj",
-        "packagesPath": "C:\\Users\\YeHtutSoe\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\YeHtutSoe\\Source\\Repos\\weather-web-portal\\WeatherPortal\\WeatherPortal.Core\\obj\\",
+        "projectUniqueName": "C:\\GITHUB\\w-p-dev\\weather-web-portal\\WeatherPortal\\WeatherPortal.DataModel\\WeatherPortal.DataModel.csproj",
+        "projectName": "WeatherPortal.DataModel",
+        "projectPath": "C:\\GITHUB\\w-p-dev\\weather-web-portal\\WeatherPortal\\WeatherPortal.DataModel\\WeatherPortal.DataModel.csproj",
+        "packagesPath": "C:\\Users\\Saw Yu Nandar\\.nuget\\packages\\",
+        "outputPath": "C:\\GITHUB\\w-p-dev\\weather-web-portal\\WeatherPortal\\WeatherPortal.DataModel\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\YeHtutSoe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Saw Yu Nandar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -25,8 +25,6 @@
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -50,28 +48,6 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "dependencies": {
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[9.0.9, )"
-            },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[9.0.9, )"
-            },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[9.0.9, )"
-            },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[9.0.9, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
@@ -83,20 +59,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.20, 8.0.20]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.20, 8.0.20]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.20, 8.0.20]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
@@ -106,20 +68,20 @@
         }
       }
     },
-    "C:\\Users\\YeHtutSoe\\Source\\Repos\\weather-web-portal\\WeatherPortal\\WeatherPortal.Data\\WeatherPortal.Data.csproj": {
+    "C:\\GITHUB\\w-p-dev\\weather-web-portal\\WeatherPortal\\WeatherPortal.Data\\WeatherPortal.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\YeHtutSoe\\Source\\Repos\\weather-web-portal\\WeatherPortal\\WeatherPortal.Data\\WeatherPortal.Data.csproj",
+        "projectUniqueName": "C:\\GITHUB\\w-p-dev\\weather-web-portal\\WeatherPortal\\WeatherPortal.Data\\WeatherPortal.Data.csproj",
         "projectName": "WeatherPortal.Data",
-        "projectPath": "C:\\Users\\YeHtutSoe\\Source\\Repos\\weather-web-portal\\WeatherPortal\\WeatherPortal.Data\\WeatherPortal.Data.csproj",
-        "packagesPath": "C:\\Users\\YeHtutSoe\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\YeHtutSoe\\Source\\Repos\\weather-web-portal\\WeatherPortal\\WeatherPortal.Data\\obj\\",
+        "projectPath": "C:\\GITHUB\\w-p-dev\\weather-web-portal\\WeatherPortal\\WeatherPortal.Data\\WeatherPortal.Data.csproj",
+        "packagesPath": "C:\\Users\\Saw Yu Nandar\\.nuget\\packages\\",
+        "outputPath": "C:\\GITHUB\\w-p-dev\\weather-web-portal\\WeatherPortal\\WeatherPortal.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\YeHtutSoe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Saw Yu Nandar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -127,16 +89,14 @@
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\YeHtutSoe\\Source\\Repos\\weather-web-portal\\WeatherPortal\\WeatherPortal.Core\\WeatherPortal.Core.csproj": {
-                "projectPath": "C:\\Users\\YeHtutSoe\\Source\\Repos\\weather-web-portal\\WeatherPortal\\WeatherPortal.Core\\WeatherPortal.Core.csproj"
+              "C:\\GITHUB\\w-p-dev\\weather-web-portal\\WeatherPortal\\WeatherPortal.DataModel\\WeatherPortal.DataModel.csproj": {
+                "projectPath": "C:\\GITHUB\\w-p-dev\\weather-web-portal\\WeatherPortal\\WeatherPortal.DataModel\\WeatherPortal.DataModel.csproj"
               }
             }
           }
@@ -189,20 +149,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.20, 8.0.20]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.20, 8.0.20]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.20, 8.0.20]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"

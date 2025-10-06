@@ -1,6 +1,4 @@
-﻿using WeatherPortal.Core.DomainEntities;
-
-
+﻿using WeatherPortal.DataModel.DomainEntities;
 namespace WeatherPortal.Service.Interfaces
 {
     public interface IRegionService

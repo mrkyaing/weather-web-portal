@@ -1,29 +1,20 @@
-C:\Users\Saw Yu Nandar\source\repos\WeatherPortal\WeatherPortal.Service\bin\Debug\net8.0\WeatherPortal.Service.deps.json
-C:\Users\Saw Yu Nandar\source\repos\WeatherPortal\WeatherPortal.Service\bin\Debug\net8.0\WeatherPortal.Service.dll
-C:\Users\Saw Yu Nandar\source\repos\WeatherPortal\WeatherPortal.Service\bin\Debug\net8.0\WeatherPortal.Service.pdb
-C:\Users\Saw Yu Nandar\source\repos\WeatherPortal\WeatherPortal.Service\obj\Debug\net8.0\WeatherPortal.Service.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Saw Yu Nandar\source\repos\WeatherPortal\WeatherPortal.Service\obj\Debug\net8.0\WeatherPortal.Service.AssemblyInfoInputs.cache
-C:\Users\Saw Yu Nandar\source\repos\WeatherPortal\WeatherPortal.Service\obj\Debug\net8.0\WeatherPortal.Service.AssemblyInfo.cs
-C:\Users\Saw Yu Nandar\source\repos\WeatherPortal\WeatherPortal.Service\obj\Debug\net8.0\WeatherPortal.Service.csproj.CoreCompileInputs.cache
-C:\Users\Saw Yu Nandar\source\repos\WeatherPortal\WeatherPortal.Service\obj\Debug\net8.0\WeatherPortal.Service.dll
-C:\Users\Saw Yu Nandar\source\repos\WeatherPortal\WeatherPortal.Service\obj\Debug\net8.0\refint\WeatherPortal.Service.dll
-C:\Users\Saw Yu Nandar\source\repos\WeatherPortal\WeatherPortal.Service\obj\Debug\net8.0\WeatherPortal.Service.pdb
-C:\Users\Saw Yu Nandar\source\repos\WeatherPortal\WeatherPortal.Service\obj\Debug\net8.0\ref\WeatherPortal.Service.dll
-C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Service\bin\Debug\net8.0\WeatherPortal.Service.deps.json
-C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Service\bin\Debug\net8.0\WeatherPortal.Service.dll
-C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Service\bin\Debug\net8.0\WeatherPortal.Service.pdb
-C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Service\bin\Debug\net8.0\WeatherPortal.Core.dll
-C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Service\bin\Debug\net8.0\WeatherPortal.Data.dll
-C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Service\bin\Debug\net8.0\WeatherPortal.Core.pdb
-C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Service\bin\Debug\net8.0\WeatherPortal.Data.pdb
-C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Service\obj\Debug\net8.0\WeatherPortal.Service.csproj.AssemblyReference.cache
-C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Service\obj\Debug\net8.0\WeatherPortal.Service.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Service\obj\Debug\net8.0\WeatherPortal.Service.AssemblyInfoInputs.cache
-C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Service\obj\Debug\net8.0\WeatherPortal.Service.AssemblyInfo.cs
-C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Service\obj\Debug\net8.0\WeatherPortal.Service.csproj.CoreCompileInputs.cache
-C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Service\obj\Debug\net8.0\WeatherPortal.Service.sourcelink.json
-C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Service\obj\Debug\net8.0\WeatherP.8BBF3D37.Up2Date
-C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Service\obj\Debug\net8.0\WeatherPortal.Service.dll
-C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Service\obj\Debug\net8.0\refint\WeatherPortal.Service.dll
-C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Service\obj\Debug\net8.0\WeatherPortal.Service.pdb
-C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Service\obj\Debug\net8.0\ref\WeatherPortal.Service.dll
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Service\obj\Debug\net8.0\WeatherPortal.Service.csproj.AssemblyReference.cache
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Service\obj\Debug\net8.0\WeatherPortal.Service.GeneratedMSBuildEditorConfig.editorconfig
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Service\obj\Debug\net8.0\WeatherPortal.Service.AssemblyInfoInputs.cache
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Service\obj\Debug\net8.0\WeatherPortal.Service.AssemblyInfo.cs
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Service\obj\Debug\net8.0\WeatherPortal.Service.csproj.CoreCompileInputs.cache
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Service\obj\Debug\net8.0\WeatherPortal.Service.sourcelink.json
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Service\bin\Debug\net8.0\WeatherPortal.Service.deps.json
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Service\bin\Debug\net8.0\WeatherPortal.Service.dll
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Service\bin\Debug\net8.0\WeatherPortal.Service.pdb
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Service\bin\Debug\net8.0\WeatherPortal.Data.dll
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Service\bin\Debug\net8.0\WeatherPortal.DataModel.dll
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Service\bin\Debug\net8.0\WeatherPortal.Dto.dll
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Service\bin\Debug\net8.0\WeatherPortal.DataModel.pdb
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Service\bin\Debug\net8.0\WeatherPortal.Data.pdb
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Service\bin\Debug\net8.0\WeatherPortal.Dto.pdb
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Service\obj\Debug\net8.0\WeatherP.8BBF3D37.Up2Date
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Service\obj\Debug\net8.0\WeatherPortal.Service.dll
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Service\obj\Debug\net8.0\refint\WeatherPortal.Service.dll
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Service\obj\Debug\net8.0\WeatherPortal.Service.pdb
+C:\GITHUB\w-p-dev\weather-web-portal\WeatherPortal\WeatherPortal.Service\obj\Debug\net8.0\ref\WeatherPortal.Service.dll

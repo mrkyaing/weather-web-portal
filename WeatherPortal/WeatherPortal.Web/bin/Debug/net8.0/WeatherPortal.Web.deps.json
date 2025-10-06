@@ -12,12 +12,10 @@
           "Microsoft.EntityFrameworkCore.Design": "9.0.9",
           "Microsoft.EntityFrameworkCore.SqlServer": "9.0.9",
           "Microsoft.EntityFrameworkCore.Tools": "9.0.9",
-          "WeatherPortal.Core": "1.0.0",
           "WeatherPortal.Data": "1.0.0",
+          "WeatherPortal.DataModel": "1.0.0",
           "WeatherPortal.Dto": "1.0.0",
-          "WeatherPortal.Infrastructure": "1.0.0",
-          "WeatherPortal.Service": "1.0.0",
-          "WeatherPortal.Shared": "1.0.0"
+          "WeatherPortal.Service": "1.0.0"
         },
         "runtime": {
           "WeatherPortal.Web.dll": {}
@@ -1045,26 +1043,22 @@
           }
         }
       },
-      "WeatherPortal.Core/1.0.0": {
+      "WeatherPortal.Data/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "9.0.9",
-          "Microsoft.EntityFrameworkCore.SqlServer": "9.0.9"
+          "Microsoft.EntityFrameworkCore.SqlServer": "9.0.9",
+          "WeatherPortal.DataModel": "1.0.0"
         },
         "runtime": {
-          "WeatherPortal.Core.dll": {
+          "WeatherPortal.Data.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
         }
       },
-      "WeatherPortal.Data/1.0.0": {
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore": "9.0.9",
-          "Microsoft.EntityFrameworkCore.SqlServer": "9.0.9",
-          "WeatherPortal.Core": "1.0.0"
-        },
+      "WeatherPortal.DataModel/1.0.0": {
         "runtime": {
-          "WeatherPortal.Data.dll": {
+          "WeatherPortal.DataModel.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -1078,39 +1072,15 @@
           }
         }
       },
-      "WeatherPortal.Infrastructure/1.0.0": {
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore": "9.0.9",
-          "Microsoft.EntityFrameworkCore.SqlServer": "9.0.9"
-        },
-        "runtime": {
-          "WeatherPortal.Infrastructure.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
       "WeatherPortal.Service/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "9.0.9",
-          "WeatherPortal.Core": "1.0.0",
-          "WeatherPortal.Data": "1.0.0"
+          "WeatherPortal.Data": "1.0.0",
+          "WeatherPortal.DataModel": "1.0.0",
+          "WeatherPortal.Dto": "1.0.0"
         },
         "runtime": {
           "WeatherPortal.Service.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "WeatherPortal.Shared/1.0.0": {
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore": "9.0.9",
-          "Microsoft.EntityFrameworkCore.SqlServer": "9.0.9",
-          "WeatherPortal.Data": "1.0.0"
-        },
-        "runtime": {
-          "WeatherPortal.Shared.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -1677,12 +1647,12 @@
       "path": "system.windows.extensions/6.0.0",
       "hashPath": "system.windows.extensions.6.0.0.nupkg.sha512"
     },
-    "WeatherPortal.Core/1.0.0": {
+    "WeatherPortal.Data/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "WeatherPortal.Data/1.0.0": {
+    "WeatherPortal.DataModel/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -1692,17 +1662,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "WeatherPortal.Infrastructure/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
     "WeatherPortal.Service/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "WeatherPortal.Shared/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

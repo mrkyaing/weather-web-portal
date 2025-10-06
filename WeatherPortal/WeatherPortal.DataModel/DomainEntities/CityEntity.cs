@@ -1,20 +1,7 @@
-<<<<<<< HEAD
-﻿using WeatherPortal.DataModel.BaseEntities;
+using WeatherPortal.DataModel.BaseEntities;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WeatherPortal.DataModel.DomainEntities
-{
-    public class CityEntity: BaseEntity
-    {
-=======
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WeatherPortal.Core.BaseEntities;
-
-namespace WeatherPortal.Core.DomainEntities
 {
     [Table("Cities")]
     public class CityEntity:BaseEntity
@@ -24,9 +11,6 @@ namespace WeatherPortal.Core.DomainEntities
         public string RegionId { get; set; }
         [ForeignKey("RegionId")]
         public RegionEntity Region { get; set; }
-
         public ICollection<TownshipEntity> Township { get; set; }
-
->>>>>>> Geographic_Structure_Setup_24
     }
 }
