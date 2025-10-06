@@ -4723,23 +4723,42 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\YeHtutSoe\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+=======
+    "C:\\Users\\kaung\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+>>>>>>> 70336098db4320af59e1e0ff7d74acdd7e6d2e05
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\YeHtutSoe\\Source\\Repos\\weather-web-portal\\WeatherPortal\\WeatherPortal.Infrastructure\\WeatherPortal.Infrastructure.csproj",
       "projectName": "WeatherPortal.Infrastructure",
       "projectPath": "C:\\Users\\YeHtutSoe\\Source\\Repos\\weather-web-portal\\WeatherPortal\\WeatherPortal.Infrastructure\\WeatherPortal.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\YeHtutSoe\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\YeHtutSoe\\Source\\Repos\\weather-web-portal\\WeatherPortal\\WeatherPortal.Infrastructure\\obj\\",
+=======
+      "projectUniqueName": "D:\\WeatherPortal\\weather-web-portal\\WeatherPortal\\WeatherPortal.Infrastructure\\WeatherPortal.Infrastructure.csproj",
+      "projectName": "WeatherPortal.Infrastructure",
+      "projectPath": "D:\\WeatherPortal\\weather-web-portal\\WeatherPortal\\WeatherPortal.Infrastructure\\WeatherPortal.Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\kaung\\.nuget\\packages\\",
+      "outputPath": "D:\\WeatherPortal\\weather-web-portal\\WeatherPortal\\WeatherPortal.Infrastructure\\obj\\",
+>>>>>>> 70336098db4320af59e1e0ff7d74acdd7e6d2e05
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
+<<<<<<< HEAD
         "C:\\Users\\YeHtutSoe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+        "C:\\Users\\kaung\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> 70336098db4320af59e1e0ff7d74acdd7e6d2e05
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -4748,7 +4767,10 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+<<<<<<< HEAD
         "C:\\Program Files\\dotnet\\library-packs": {},
+=======
+>>>>>>> 70336098db4320af59e1e0ff7d74acdd7e6d2e05
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -4824,7 +4846,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

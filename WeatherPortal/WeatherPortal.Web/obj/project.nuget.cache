@@ -1,5 +1,6 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "6S20JWIYCyc=",
   "success": true,
   "projectFilePath": "C:\\Users\\YeHtutSoe\\Source\\Repos\\weather-web-portal\\WeatherPortal\\WeatherPortal.Web\\WeatherPortal.Web.csproj",
@@ -88,5 +89,11 @@
     "C:\\Users\\YeHtutSoe\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.20\\microsoft.aspnetcore.app.ref.8.0.20.nupkg.sha512",
     "C:\\Users\\YeHtutSoe\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.20\\microsoft.netcore.app.host.win-x64.8.0.20.nupkg.sha512"
   ],
+=======
+  "dgSpecHash": "vxWGtPOYKno=",
+  "success": true,
+  "projectFilePath": "D:\\WeatherPortal\\weather-web-portal\\WeatherPortal\\WeatherPortal.Web\\WeatherPortal.Web.csproj",
+  "expectedPackageFiles": [],
+>>>>>>> 70336098db4320af59e1e0ff7d74acdd7e6d2e05
   "logs": []
 }

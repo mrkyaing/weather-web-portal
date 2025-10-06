@@ -1,9 +1,13 @@
 {
   "version": 2,
 <<<<<<< HEAD
+<<<<<<< HEAD
   "dgSpecHash": "aE14ViqkoRE=",
+=======
+  "dgSpecHash": "thmQ6eVw/U0=",
+>>>>>>> 70336098db4320af59e1e0ff7d74acdd7e6d2e05
   "success": true,
-  "projectFilePath": "C:\\GITHUB\\w-p-dev\\weather-web-portal\\WeatherPortal\\WeatherPortal.Core\\WeatherPortal.DataModel.csproj",
+  "projectFilePath": "D:\\WeatherPortal\\weather-web-portal\\WeatherPortal\\WeatherPortal.Core\\WeatherPortal.DataModel.csproj",
   "expectedPackageFiles": [],
 =======
   "dgSpecHash": "I/jZHCnPAsU=",

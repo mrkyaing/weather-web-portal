@@ -1,7 +1,11 @@
 {
   "Version": 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
   "WorkspaceRootPath": "C:\\GITHUB\\w-p-dev\\weather-web-portal\\WeatherPortal\\",
+=======
+  "WorkspaceRootPath": "D:\\WeatherPortal\\weather-web-portal\\WeatherPortal\\",
+>>>>>>> 70336098db4320af59e1e0ff7d74acdd7e6d2e05
   "Documents": [],
 =======
   "WorkspaceRootPath": "C:\\Users\\YeHtutSoe\\source\\repos\\weather-web-portal\\WeatherPortal\\",
@@ -100,6 +104,7 @@
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
+<<<<<<< HEAD
 <<<<<<< HEAD
       "DocumentGroups": []
 =======
@@ -397,11 +402,38 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-02T11:19:37.835Z"
+=======
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 1035,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+>>>>>>> 70336098db4320af59e1e0ff7d74acdd7e6d2e05
             }
           ]
         }
       ]
+<<<<<<< HEAD
 >>>>>>> Geographic_Structure_Setup_24
+=======
+>>>>>>> 70336098db4320af59e1e0ff7d74acdd7e6d2e05
     }
   ]
 }
