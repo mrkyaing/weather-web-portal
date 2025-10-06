@@ -1,4 +1,4 @@
-namespace WeatherPortal.Web.Models
+namespace WeatherPortal.Dto
 {
     public class ErrorViewModel
     {

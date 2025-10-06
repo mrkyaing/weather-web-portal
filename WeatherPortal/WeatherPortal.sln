@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherPortal.Infrastructur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherPortal.Shared", "WeatherPortal.Shared\WeatherPortal.Shared.csproj", "{F7FE2381-D26B-4331-931C-549ACE0D38BC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherPortal.Dto", "WeatherPortal.Dto\WeatherPortal.Dto.csproj", "{CB7D162C-E598-4BDD-ACDF-BD48684C33EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{F7FE2381-D26B-4331-931C-549ACE0D38BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7FE2381-D26B-4331-931C-549ACE0D38BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7FE2381-D26B-4331-931C-549ACE0D38BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB7D162C-E598-4BDD-ACDF-BD48684C33EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB7D162C-E598-4BDD-ACDF-BD48684C33EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB7D162C-E598-4BDD-ACDF-BD48684C33EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB7D162C-E598-4BDD-ACDF-BD48684C33EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

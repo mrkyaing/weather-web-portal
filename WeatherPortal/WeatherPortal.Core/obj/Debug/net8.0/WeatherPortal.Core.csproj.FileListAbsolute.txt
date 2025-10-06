@@ -9,3 +9,18 @@ C:\Users\Saw Yu Nandar\source\repos\WeatherPortal\WeatherPortal.Core\obj\Debug\n
 C:\Users\Saw Yu Nandar\source\repos\WeatherPortal\WeatherPortal.Core\obj\Debug\net8.0\refint\WeatherPortal.Core.dll
 C:\Users\Saw Yu Nandar\source\repos\WeatherPortal\WeatherPortal.Core\obj\Debug\net8.0\WeatherPortal.Core.pdb
 C:\Users\Saw Yu Nandar\source\repos\WeatherPortal\WeatherPortal.Core\obj\Debug\net8.0\ref\WeatherPortal.Core.dll
+C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Core\bin\Debug\net8.0\WeatherPortal.Core.deps.json
+C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Core\bin\Debug\net8.0\WeatherPortal.Core.runtimeconfig.json
+C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Core\bin\Debug\net8.0\WeatherPortal.Core.dll
+C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Core\bin\Debug\net8.0\WeatherPortal.Core.pdb
+C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Core\obj\Debug\net8.0\WeatherPortal.Core.csproj.AssemblyReference.cache
+C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Core\obj\Debug\net8.0\WeatherPortal.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Core\obj\Debug\net8.0\WeatherPortal.Core.AssemblyInfoInputs.cache
+C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Core\obj\Debug\net8.0\WeatherPortal.Core.AssemblyInfo.cs
+C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Core\obj\Debug\net8.0\WeatherPortal.Core.csproj.CoreCompileInputs.cache
+C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Core\obj\Debug\net8.0\WeatherPortal.Core.sourcelink.json
+C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Core\obj\Debug\net8.0\WeatherPortal.Core.dll
+C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Core\obj\Debug\net8.0\refint\WeatherPortal.Core.dll
+C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Core\obj\Debug\net8.0\WeatherPortal.Core.pdb
+C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Core\obj\Debug\net8.0\WeatherPortal.Core.genruntimeconfig.cache
+C:\Users\YeHtutSoe\Source\Repos\weather-web-portal\WeatherPortal\WeatherPortal.Core\obj\Debug\net8.0\ref\WeatherPortal.Core.dll

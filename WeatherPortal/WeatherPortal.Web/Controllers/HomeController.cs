@@ -1,6 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using WeatherPortal.Web.Models;
+using WeatherPortal.Dto;
 
 namespace WeatherPortal.Web.Controllers
 {
