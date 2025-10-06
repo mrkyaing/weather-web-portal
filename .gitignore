@@ -136,3 +136,8 @@ WeatherPortal/WeatherPortal.Infrastructure/obj/Debug/net8.0/WeatherPortal.Infras
 *.bin
 *.vs
 *.obj
+
+# Ignore app settings files
+appsettings.json
+appsettings.Development.json
+appsettings.Production.json
