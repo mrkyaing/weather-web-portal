@@ -131,3 +131,4 @@ $RECYCLE.BIN/
 .DS_Store
 
 _NCrunch*
+WeatherPortal/WeatherPortal.Infrastructure/obj/Debug/net8.0/WeatherPortal.Infrastructure.AssemblyInfoInputs.cache
