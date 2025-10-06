@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WeatherPortal.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b37aa5abfb8912a675b246b9e4733ea40e66e68b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5549b5de8db41b7a158fcc6ae89f0bb7626fcb3e")]
 [assembly: System.Reflection.AssemblyProductAttribute("WeatherPortal.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WeatherPortal.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
