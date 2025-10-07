@@ -2,7 +2,7 @@
 
 namespace WeatherPortal.Data.Interfaces
 {
-    public interface ICityRepository:IBaseRepository<CityEntity>
+    public interface ICityRepository : IBaseRepository<CityEntity>
     {
     }
 }

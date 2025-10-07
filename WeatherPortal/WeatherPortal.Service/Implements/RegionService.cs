@@ -14,31 +14,55 @@ namespace WeatherPortal.Service.Implements
         public async Task Create(RegionEntity entity)
         {
             await _unitOfWork.Regions.Create(entity);
+            _unitOfWork.Commit();
         }
 
-        public Task Delete(string regionId)
+        public async Task Delete(string regionId)
         {
-            throw new NotImplementedException();
+            var existingRegions = await _unitOfWork.Regions.GetBy(r => r.Id.Equals(regionId));
+            var existingRegion = existingRegions.FirstOrDefault();
+            if (existingRegion == null)
+            {
+                throw new Exception("Region not found");
+            }
+            _unitOfWork.Regions.Delete(existingRegion);
         }
 
-        public Task<IEnumerable<RegionEntity>> GetAllRegions()
+        public async Task<IEnumerable<RegionEntity>> GetAllRegions()
         {
-            throw new NotImplementedException();
+            return await _unitOfWork.Regions.GetAll();
         }
 
-        public Task<RegionEntity> GetRegionById(string regionId)
+        public async Task<RegionEntity> GetRegionById(string regionId)
         {
-            throw new NotImplementedException();
+            var regions = await _unitOfWork.Regions.GetBy(r => r.Id == regionId);
+            return regions.FirstOrDefault();
         }
 
-        public bool IsAlreadyExist(RegionEntity regionViewModel)
+        public bool IsAlreadyExist(string nameInEnglish, string nameInMyanmar, int code)
         {
-            throw new NotImplementedException();
+           var existingRegions =  _unitOfWork.Regions.GetBy(r => r.RegionNameInEnglish == nameInEnglish || 
+                                                                 r.RegionNameInMyanmar == nameInMyanmar ||
+                                                                 r.Code == code).Result;
+            return existingRegions.Any();
         }
 
-        public Task Update(RegionEntity regionViewModel)
+        public async Task Update(RegionEntity entity)
         {
-            throw new NotImplementedException();
+            var existingRegions = await _unitOfWork.Regions.GetBy(r => r.Id == entity.Id);
+            var existingRegion = existingRegions.FirstOrDefault();
+            if (existingRegion == null)
+            {
+                throw new Exception("Region not found");
+            }
+
+            existingRegion.RegionNameInEnglish = entity.RegionNameInEnglish;
+            existingRegion.RegionNameInMyanmar = entity.RegionNameInMyanmar;
+            existingRegion.RegionType = entity.RegionType;
+            existingRegion.Code = entity.Code;
+            existingRegion.UpdatedAt = DateTime.Now;
+            _unitOfWork.Regions.Update(existingRegion);
+            _unitOfWork.Commit();
         }
     }
 }

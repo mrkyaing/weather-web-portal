@@ -8,11 +8,15 @@ namespace WeatherPortal.Data.UnitOfWork
         private readonly ApplicationDbContext _dbContext;
 
         public IRegionRepository Regions { get; }
+        public ICityRepository Cities { get; }
 
-        public UnitOfWork(ApplicationDbContext dbContext,IRegionRepository regionRepository) 
+        public UnitOfWork(ApplicationDbContext dbContext,
+                          IRegionRepository regionRepository,
+                          ICityRepository cityRepository ) 
         {
             _dbContext = dbContext;
             Regions = regionRepository;
+            Cities = cityRepository;
         }
          
         public void Commit()
