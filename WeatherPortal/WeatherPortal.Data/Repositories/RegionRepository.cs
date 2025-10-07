@@ -12,14 +12,5 @@ namespace WeatherPortal.Data.Repositories
         {
             _dbContext = dbContext;
         }
-
-        // unique code and name
-        public bool IsAlreadyExist(int code, string NameInEnglish, string NameInMyanmar)
-        {
-            return _dbContext.Regions.Where(r => r.Code == code &&
-                                                 r.RegionNameInEnglish == NameInEnglish && 
-                                                 r.RegionNameInMyanmar == NameInMyanmar)
-                                     .Any();
-        }
     }
 }
