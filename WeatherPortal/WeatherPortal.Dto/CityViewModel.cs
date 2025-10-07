@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WeatherPortal.Dto
+﻿namespace WeatherPortal.Dto
 {
     public class CityViewModel
     {
         public string Id { get; set; }
-
     }
 }

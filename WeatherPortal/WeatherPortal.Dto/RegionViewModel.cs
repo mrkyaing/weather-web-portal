@@ -9,6 +9,5 @@
         public int Code { get; set; }
         public string CityInfo { get; set; }
         public DateTime UpdatedAt { get; set; }
-
     }
 }
