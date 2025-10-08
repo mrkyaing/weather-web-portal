@@ -17,8 +17,6 @@ namespace WeatherPortal.Service.Implements
 
         public async Task Create(CityViewModel cityViewModel)
         {
-            try
-            {
                 var entity = new CityEntity
                 {
                     Id = cityViewModel.Id,
@@ -29,8 +27,6 @@ namespace WeatherPortal.Service.Implements
                 await _unitOfWork.Cities.Create(entity);
                 _unitOfWork.Commit();
             }
-            catch (Exception e)
-            {
 
                 throw new Exception("Error Occour" + e.Message) ;
             }
