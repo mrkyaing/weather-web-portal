@@ -27,18 +27,6 @@ namespace WeatherPortal.Service.Implements
             }
             _unitOfWork.Regions.Delete(existingRegion);
         }
-
-        public async Task<IEnumerable<RegionEntity>> GetAllRegions()
-        {
-            return await _unitOfWork.Regions.GetAll();
-        }
-
-        public async Task<RegionEntity> GetRegionById(string regionId)
-        {
-            var regions = await _unitOfWork.Regions.GetBy(r => r.Id == regionId);
-            return regions.FirstOrDefault();
-        }
-
         public bool IsAlreadyExist(string nameInEnglish, string nameInMyanmar, int code)
         {
            var existingRegions =  _unitOfWork.Regions.GetBy(r => r.RegionNameInEnglish == nameInEnglish || 
