@@ -9,14 +9,16 @@ namespace WeatherPortal.Data.UnitOfWork
 
         public IRegionRepository Regions { get; }
         public ICityRepository Cities { get; }
-
+        public ITownshipRepository Townships { get; set; }
         public UnitOfWork(ApplicationDbContext dbContext,
                           IRegionRepository regionRepository,
-                          ICityRepository cityRepository ) 
+                          ICityRepository cityRepository ,
+                          ITownshipRepository townshipRepository) 
         {
             _dbContext = dbContext;
             Regions = regionRepository;
             Cities = cityRepository;
+            Townships = townshipRepository;
         }
          
         public void Commit()

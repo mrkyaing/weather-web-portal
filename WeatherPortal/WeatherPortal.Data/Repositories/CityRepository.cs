@@ -13,7 +13,7 @@ namespace WeatherPortal.Data.Repositories
             _dbContext = dbContext;
         }
 
-        public IEnumerable<CityEntity> GetRegionByCity(string regionId)
+        public IEnumerable<CityEntity> GetCityByRegion(string regionId)
         {
             return _dbContext.Cities.Where(c => c.RegionId == regionId)
                                     .Select(s => new CityEntity

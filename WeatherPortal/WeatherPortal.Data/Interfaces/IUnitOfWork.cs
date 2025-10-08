@@ -4,6 +4,7 @@
     {
         IRegionRepository Regions { get; }
         ICityRepository Cities { get; }
+        ITownshipRepository Townships {  get; }
         void Commit();
         void RollBack();
     }
