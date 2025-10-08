@@ -6,8 +6,27 @@ namespace WeatherPortal.Data.Repositories
 {
     public class CityRepository:BaseRepository<CityEntity>, ICityRepository
     {
+        private readonly ApplicationDbContext _dbContext;
+
         public CityRepository(ApplicationDbContext dbContext):base(dbContext)
         {
+            _dbContext = dbContext;
+        }
+
+        public IEnumerable<CityEntity> GetRegionByCity(string regionId)
+        {
+            return _dbContext.Cities.Where(c => c.RegionId == regionId)
+                                    .Select(s => new CityEntity
+                                    {
+                                        Id = s.Id,
+                                        CityNameInEnglish = s.CityNameInEnglish,
+                                        CityNameInMyanmar = s.CityNameInMyanmar,
+                                    }).ToList();
+        }
+
+        public bool IsAlradyExist(string nameInEnglish, string nameInMyanmar)
+        {
+            return _dbContext.Cities.Where(c => c.CityNameInEnglish == nameInEnglish && c.CityNameInMyanmar == nameInMyanmar).Any();
         }
     }
 }

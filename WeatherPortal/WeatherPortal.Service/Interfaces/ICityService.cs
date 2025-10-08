@@ -4,17 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WeatherPortal.DataModel.DomainEntities;
+using WeatherPortal.Dto;
 
 namespace WeatherPortal.Service.Interfaces
 {
     public interface ICityService
     {
-        Task Create(CityEntity entity);
-        Task<IEnumerable<CityEntity>> GetAll();
-        Task<CityEntity> GetById(int id);
+        Task Create(CityViewModel cityViewModel);
+        Task<IEnumerable<CityViewModel>> GetAll();
+        Task<CityViewModel> GetById(string id);
         Task Delete(string cityId);
-        Task Update(CityEntity entity);
-        bool IsAlradyExist(CityEntity entity);
+        Task Update(CityViewModel cityViewModel);
+        bool IsAlradyExist(CityViewModel cityVm);
 
     }
 }
