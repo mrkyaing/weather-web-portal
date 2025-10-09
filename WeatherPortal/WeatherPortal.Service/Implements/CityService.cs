@@ -1,4 +1,3 @@
-﻿
 using WeatherPortal.Data.Interfaces;
 using WeatherPortal.DataModel.DomainEntities;
 using WeatherPortal.Dto;
