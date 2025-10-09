@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WeatherPortal.DataModel.DomainEntities;
-using WeatherPortal.Service.Implements;
 using WeatherPortal.Service.Interfaces;
 using WeatherPortal.Dto;
 
@@ -16,18 +14,24 @@ namespace WeatherPortal.Web.Controllers
             _regionService = regionService;
         }
 
+        [HttpPost]
         public async Task<IActionResult> Entry(RegionViewModel vm)
         {
-            var regionEntity = new RegionEntity
+            try
             {
-                Id = Guid.NewGuid().ToString(),
-                RegionNameInEnglish = vm.RegionNameInEnglish,
-                RegionNameInMyanmar = vm.RegionNameInMyanmar,
-                Code = vm.Code,
-                RegionType = vm.RegionType, // Division(D) or State(S)
-            };
-            await _regionService.Create(regionEntity);
-            return RedirectToAction("List");
+                await _regionService.Create(vm);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+          return RedirectToAction("List");
+        }
+        public IActionResult List()
+        {
+            _regionService.GetAllRegions();
+            return View("List");
         }
     }
 }

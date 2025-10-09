@@ -1,13 +1,14 @@
 ﻿using WeatherPortal.DataModel.DomainEntities;
+using WeatherPortal.Dto;
 namespace WeatherPortal.Service.Interfaces
 {
     public interface IRegionService
     {
-        Task Create(RegionEntity entity);
-        Task<IEnumerable<RegionEntity>> GetAllRegions();
-        Task<RegionEntity> GetRegionById(string regionId);
+        Task Create(RegionViewModel regionVm);
+        Task<IEnumerable<RegionViewModel>> GetAllRegions();
+        Task<RegionViewModel> GetRegionById(string regionId);
         Task Delete(string regionId);
-        Task Update(RegionEntity regionViewModel);
-        bool IsAlreadyExist(RegionEntity regionViewModel);
+        Task Update(RegionViewModel regionVm);
+        bool IsAlreadyExist(string nameInEnglish,string nameInMyanmar,int code);
     }
 }
