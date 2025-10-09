@@ -9,6 +9,6 @@ namespace WeatherPortal.Service.Interfaces
         Task<RegionViewModel> GetRegionById(string regionId);
         Task Delete(string regionId);
         Task Update(RegionViewModel regionVm);
-        bool IsAlreadyExist(string nameInEnglish,string nameInMyanmar,int code);
+        Task<bool> IsAlreadyExist(string nameInEnglish,string nameInMyanmar,int code);
     }
 }

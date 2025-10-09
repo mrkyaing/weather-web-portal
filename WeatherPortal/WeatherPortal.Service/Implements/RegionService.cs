@@ -1,4 +1,5 @@
-﻿using WeatherPortal.Data.Interfaces;
+﻿using System.Threading.Tasks;
+using WeatherPortal.Data.Interfaces;
 using WeatherPortal.DataModel.DomainEntities;
 using WeatherPortal.Dto;
 using WeatherPortal.Service.Interfaces;
@@ -65,12 +66,9 @@ namespace WeatherPortal.Service.Implements
             }).FirstOrDefault();
         }
 
-        public bool IsAlreadyExist(string nameInEnglish, string nameInMyanmar, int code)
+        public async Task<bool> IsAlreadyExist(string nameInEnglish, string nameInMyanmar, int code)
         {
-           var existingRegions =  _unitOfWork.Regions.GetBy(r => r.RegionNameInEnglish == nameInEnglish || 
-                                                                 r.RegionNameInMyanmar == nameInMyanmar ||
-                                                                 r.Code == code).Result;
-            return existingRegions.Any();
+            return await _unitOfWork.Regions.IsAlreadyExist(nameInEnglish, nameInMyanmar, code);
         }
         public async Task Update(RegionViewModel regionVm)
         {
