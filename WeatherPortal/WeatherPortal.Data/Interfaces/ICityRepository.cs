@@ -6,5 +6,7 @@ namespace WeatherPortal.Data.Interfaces
     {
         IEnumerable<CityEntity> GetCityByRegion(string regionId);
         bool IsAlradyExist(string nameInEnglish, string nameInMyanmar);
+        Task<CityEntity> GetCityByTownshipId(string townshipId);
+
     }
 }

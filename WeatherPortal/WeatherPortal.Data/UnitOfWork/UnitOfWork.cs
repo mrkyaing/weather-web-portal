@@ -3,22 +3,27 @@ using WeatherPortal.Data.Data;
 
 namespace WeatherPortal.Data.UnitOfWork
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork :IUnitOfWork
     {
         private readonly ApplicationDbContext _dbContext;
 
         public IRegionRepository Regions { get; }
         public ICityRepository Cities { get; }
         public ITownshipRepository Townships { get; set; }
+
+        public IWeatherStationRepository WeatherStations {  get; set; }
+
         public UnitOfWork(ApplicationDbContext dbContext,
                           IRegionRepository regionRepository,
                           ICityRepository cityRepository ,
-                          ITownshipRepository townshipRepository) 
+                          ITownshipRepository townshipRepository,
+                          IWeatherStationRepository weatherStationRepository) 
         {
             _dbContext = dbContext;
             Regions = regionRepository;
             Cities = cityRepository;
             Townships = townshipRepository;
+            WeatherStations = weatherStationRepository;
         }
          
         public void Commit()

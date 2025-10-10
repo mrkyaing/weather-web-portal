@@ -91,6 +91,11 @@ namespace WeatherPortal.Service.Implements
             return result;
         }
 
+        public async Task<CityEntity> GetCityByTownship(string townshipId)
+        {
+            return await _unitOfWork.Cities.GetCityByTownshipId(townshipId);
+        }
+
         public bool IsAlradyExist(CityViewModel cityVm)
         {
             return _unitOfWork.Cities.IsAlradyExist(cityVm.CityNameInEnglish,cityVm.CityNameInMyanmar);
