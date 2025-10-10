@@ -16,7 +16,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(o => o.UseSqlServer(config.G
 builder.Services.AddScoped<IRegionRepository, RegionRepository>();
 builder.Services.AddScoped<ICityRepository, CityRepository>();
 builder.Services.AddScoped<ITownshipRepository, TownshipRepository>();
-builder.Services.AddScoped<IWeatherStationRepository, WeatherStationRepository>();
+//builder.Services.AddScoped<IWeatherStationRepository, WeatherStationRepository>();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddTransient<IRegionService, RegionService>();
