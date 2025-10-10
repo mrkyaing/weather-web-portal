@@ -20,7 +20,6 @@ namespace WeatherPortal.Data.UnitOfWork
             Cities = cityRepository;
             Townships = townshipRepository;
         }
-         
         public void Commit()
         {
             _dbContext.SaveChanges();

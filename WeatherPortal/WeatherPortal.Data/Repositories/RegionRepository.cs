@@ -17,9 +17,9 @@ namespace WeatherPortal.Data.Repositories
 
         public async Task<bool> IsAlreadyExist(string nameInEnglish, string nameInMyanmar, int code)
         {
-            return await _dbContext.Regions.Select(r => r.RegionNameInEnglish == nameInEnglish 
+            return await _dbContext.Regions.AnyAsync(r => r.RegionNameInEnglish == nameInEnglish 
                                             || r.RegionNameInMyanmar == nameInMyanmar 
-                                            || r.Code == code).AnyAsync();
+                                            || r.Code == code);
         }
     }
 }

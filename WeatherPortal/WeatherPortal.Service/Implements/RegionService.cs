@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using WeatherPortal.Data.Interfaces;
+﻿using WeatherPortal.Data.Interfaces;
 using WeatherPortal.DataModel.DomainEntities;
 using WeatherPortal.Dto;
 using WeatherPortal.Service.Interfaces;
@@ -21,6 +20,8 @@ namespace WeatherPortal.Service.Implements
                 RegionNameInEnglish = regionVm.RegionNameInEnglish,
                 RegionNameInMyanmar = regionVm.RegionNameInMyanmar,
                 RegionType = regionVm.RegionType,
+                IsActive = true,
+                CreatedAt = DateTime.Now,
                 Code = regionVm.Code,               
             };
             await _unitOfWork.Regions.Create(entity);

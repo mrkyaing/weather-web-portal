@@ -4,5 +4,5 @@ namespace WeatherPortal.DataModel.BaseEntities;
         public string Id { get; set; }
         public bool  IsActive { get; set; }=true;
         public DateTime CreatedAt { get; set; } = DateTime.Now;
-        public DateTime UpdatedAt { get; set; } 
+        public DateTime? UpdatedAt { get; set; } 
 }

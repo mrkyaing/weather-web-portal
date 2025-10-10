@@ -26,7 +26,7 @@ namespace WeatherPortal.Data.Repositories
 
         public bool IsAlradyExist(string nameInEnglish, string nameInMyanmar)
         {
-            return _dbContext.Cities.Where(c => c.CityNameInEnglish == nameInEnglish && c.CityNameInMyanmar == nameInMyanmar).Any();
+            return _dbContext.Cities.Where(c => c.CityNameInEnglish == nameInEnglish || c.CityNameInMyanmar == nameInMyanmar).Any();
         }
     }
 }
