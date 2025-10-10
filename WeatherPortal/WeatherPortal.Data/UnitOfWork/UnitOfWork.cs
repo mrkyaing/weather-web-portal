@@ -1,5 +1,6 @@
 ﻿using WeatherPortal.Data.Interfaces;
 using WeatherPortal.Data.Data;
+using WeatherPortal.Data.Repositories;
 
 namespace WeatherPortal.Data.UnitOfWork
 {
@@ -10,20 +11,28 @@ namespace WeatherPortal.Data.UnitOfWork
         public IRegionRepository Regions { get; }
         public ICityRepository Cities { get; }
         public ITownshipRepository Townships { get; set; }
-
-        public IWeatherStationRepository WeatherStations {  get; set; }
+        private IWeatherStationRepository _weatherStationRepository;
+        public IWeatherStationRepository WeatherStations
+        {
+            get
+            {
+                return _weatherStationRepository = _weatherStationRepository ?? new WeatherStationRepository(_dbContext);
+            }
+        }
 
         public UnitOfWork(ApplicationDbContext dbContext,
                           IRegionRepository regionRepository,
                           ICityRepository cityRepository ,
-                          ITownshipRepository townshipRepository,
-                          IWeatherStationRepository weatherStationRepository) 
+                          ITownshipRepository townshipRepository
+                          //IWeatherStationRepository weatherStationRepository
+            ) 
+       
         {
             _dbContext = dbContext;
             Regions = regionRepository;
             Cities = cityRepository;
             Townships = townshipRepository;
-            WeatherStations = weatherStationRepository;
+            //WeatherStations = weatherStationRepository;
         }
          
         public void Commit()

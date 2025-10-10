@@ -103,16 +103,14 @@ namespace WeatherPortal.Web.Controllers
 
             var result = townships.Select(t => new
             {
-                Id = t.Id,
-                CityId = t.CityId,
-                TownshipNameInEnglish = t.TownshipNameInEnglish,
-                TownshipNameInMyanmar = t.TownshipNameInMyanmar
+                    t.Id,
+                    t.CityId,
+                    t.TownshipNameInEnglish,
+                    t.TownshipNameInMyanmar
             }).ToList(); // ← important: materialize the result
 
             return Json(result); // now returns proper JSON
         }
-
-
 
         [HttpGet]
         public async Task<JsonResult> GetCityByTownship(string townshipId)
@@ -125,8 +123,8 @@ namespace WeatherPortal.Web.Controllers
             // Project to a new anonymous object with explicit property names
             var result = new
             {
-                Id = city.Id,
-                CityNameInEnglish = city.CityNameInEnglish
+                city.Id,
+                city.CityNameInEnglish
             };
 
             return Json(result); // now returns valid JSON
