@@ -67,40 +67,42 @@
 </head>
 <body class="min-h-screen bg-primary-blue">
 <div id="vanta-bg"></div>
+
     <!-- Main Navigation -->
-<nav class="bg-dark-blue/90 backdrop-blur-md shadow-sm sticky top-0 z-40 border-b border-accent-blue">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0 flex items-center">
-                        <i data-feather="cloud" class="text-blue-600 w-8 h-8"></i>
-                        <span class="ml-2 text-xl font-bold text-blue-400" data-translate="SkyPulse">SkyPulse</span>
-</div>
-                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-                        <a href="#" class="border-blue-500 text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-translate="Home">Home</a>
-                        <a href="#forecast" class="border-transparent text-gray-300 hover:border-gray-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-translate="Forecast">Forecast</a>
-                        <a href="#maps" class="border-transparent text-gray-300 hover:border-gray-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-translate="Maps">Maps</a>
-                        <a href="#alerts" class="border-transparent text-gray-300 hover:border-gray-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-translate="Alerts">Alerts</a>
-                        <a href="#marine" class="border-transparent text-gray-300 hover:border-gray-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-translate="Marine">Marine</a>
-</div>
-                </div>
-                <div class="hidden sm:flex sm:items-center sm:space-x-4">
-                    <!-- Language Toggle -->
-                    <button id="languageToggle" class="language-toggle bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-full flex items-center shadow-md transition-all">
-                        <i data-feather="globe" class="mr-2 w-4 h-4 text-blue-400"></i>
-                        <span id="currentLanguage" data-translate="English">English</span>
-</button>
-                    
-                    <!-- Subscribe Button -->
-                    <button class="bg-blue-700 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center">
-<i data-feather="bell" class="w-4 h-4 mr-2"></i>
-                        Subscribe
-                    </button>
+    <nav class="bg-dark-blue/90 backdrop-blur-md shadow-sm sticky top-0 z-40 border-b border-accent-blue">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 flex items-center">
+                            <i data-feather="cloud" class="text-blue-600 w-8 h-8"></i>
+                            <span class="ml-2 text-xl font-bold text-blue-400" data-translate="SkyPulse">SkyPulse</span>
+    </div>
+                        <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                            <a href="#" class="border-blue-500 text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-translate="Home">Home</a>
+                            <a href="#forecast" class="border-transparent text-gray-300 hover:border-gray-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-translate="Forecast">Forecast</a>
+                            <a href="#maps" class="border-transparent text-gray-300 hover:border-gray-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-translate="Maps">Maps</a>
+                            <a href="#alerts" class="border-transparent text-gray-300 hover:border-gray-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-translate="Alerts">Alerts</a>
+                            <a href="#marine" class="border-transparent text-gray-300 hover:border-gray-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-translate="Marine">Marine</a>
+    </div>
+                    </div>
+                    <div class="hidden sm:flex sm:items-center sm:space-x-4">
+                        <!-- Language Toggle -->
+                        <button id="languageToggle" class="language-toggle bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-full flex items-center shadow-md transition-all">
+                            <i data-feather="globe" class="mr-2 w-4 h-4 text-blue-400"></i>
+                            <span id="currentLanguage" data-translate="English">English</span>
+    </button>
+                        
+                        <!-- Subscribe Button -->
+                        <button class="bg-blue-700 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center">
+    <i data-feather="bell" class="w-4 h-4 mr-2"></i>
+                            Subscribe
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
     </nav>
-<!-- Emergency Alert Banner -->
+
+    <!-- Emergency Alert Banner -->
     <div id="emergencyAlert" class="alert-banner hidden bg-red-600 text-white p-4 text-center">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <div class="flex items-center">
@@ -599,7 +601,7 @@ View Current Forecast
     </section>
 
     <!-- Footer -->
-<footer class="bg-primary-blue text-text-on-blue py-12">
+    <footer class="bg-primary-blue text-text-on-blue py-12">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>

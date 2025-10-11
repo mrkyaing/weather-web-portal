@@ -1,0 +1,301 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyPulse | Weather Portal</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
+    <style>
+        #weather-map {
+            height: 400px;
+        }
+
+        #vanta-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .blur-bg {
+            backdrop-filter: blur(10px);
+        }
+
+        .language-toggle {
+            transition: all 0.3s ease;
+        }
+
+        .alert-banner {
+            animation: pulse 2s infinite;
+        }
+
+        /* Blue Theme Colors */
+        :root {
+            --primary-blue: #1e3a8a;
+            --secondary-blue: #3b82f6;
+            --light-blue: #93c5fd;
+            --dark-blue: #1e40af;
+            --text-on-blue: #f8fafc;
+            --text-secondary: #e2e8f0;
+            --accent-blue: #2563eb;
+        }
+
+        body {
+            background-color: var(--primary-blue);
+            color: var(--text-on-blue);
+        }
+
+        .bg-gray-800 {
+            background-color: var(--dark-blue);
+        }
+
+        .bg-gray-700 {
+            background-color: var(--primary-blue);
+        }
+
+        .text-gray-300 {
+            color: var(--text-secondary);
+        }
+
+        .text-white {
+            color: var(--text-on-blue);
+        }
+
+        .bg-blue-700 {
+            background-color: var(--accent-blue);
+        }
+
+        .bg-blue-600:hover {
+            background-color: var(--secondary-blue);
+        }
+
+        @@keyframes pulse {
+            0%
+        {
+            box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+        }
+
+        70% {
+            box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+        }
+
+        100% {
+            box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+        }
+
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-primary-blue">
+    <div id="vanta-bg"></div>
+    <!-- Main Navigation -->
+    <nav class="bg-dark-blue/90 backdrop-blur-md shadow-sm sticky top-0 z-40 border-b border-accent-blue">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i data-feather="cloud" class="text-blue-600 w-8 h-8"></i>
+                        <a href="/home/index">  <span class="ml-2 text-xl font-bold text-blue-400" data-translate="MNMD">MNMD</span></a>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="#" class="border-blue-500 text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-translate="Home">Home</a>
+                        <a href="#forecast" class="border-transparent text-gray-300 hover:border-gray-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-translate="Forecast">Forecast</a>
+                        <a href="#maps" class="border-transparent text-gray-300 hover:border-gray-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-translate="Maps">Maps</a>
+                        <a href="#alerts" class="border-transparent text-gray-300 hover:border-gray-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-translate="Alerts">Alerts</a>
+                        <a href="#marine" class="border-transparent text-gray-300 hover:border-gray-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-translate="Sea">Sea </a>
+                    </div>
+                </div>
+                <div class="hidden sm:flex sm:items-center sm:space-x-4">
+                    <!-- Language Toggle -->
+                    <button id="languageToggle" class="language-toggle bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-full flex items-center shadow-md transition-all">
+                        <i data-feather="globe" class="mr-2 w-4 h-4 text-blue-400"></i>
+                        <span id="currentLanguage" data-translate="English">English</span>
+                    </button>
+
+                    <!-- Subscribe Button -->
+                    <button class="bg-blue-700 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center">
+                        <i data-feather="bell" class="w-4 h-4 mr-2"></i>
+                        Subscribe
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+            <main role="main">
+                @RenderBody()
+            </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary-blue text-text-on-blue py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">SkyPulse Weather</h3>
+                    <p class="text-sm text-gray-300">Providing accurate and timely weather information for Myanmar and surrounding regions.</p>
+                    <div class="mt-4 flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <i data-feather="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <i data-feather="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                            <i data-feather="instagram" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="text-gray-300 hover:text-white">Home</a></li>
+                        <li><a href="#forecast" class="text-gray-300 hover:text-white">Forecast</a></li>
+                        <li><a href="#maps" class="text-gray-300 hover:text-white">Maps</a></li>
+                        <li><a href="#alerts" class="text-gray-300 hover:text-white">Alerts</a></li>
+                        <li><a href="#marine" class="text-gray-300 hover:text-white">Marine</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Resources</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="text-gray-300 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Glossary</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">SOP Documents</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Historical Data</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Subscribe</h3>
+                    <p class="text-sm text-gray-300 mb-4">Get weather alerts directly to your email or phone.</p>
+                    <button class="bg-blue-700 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center transition-colors">
+                        <i data-feather="bell" class="w-4 h-4 mr-2"></i>
+                        Subscribe Now
+                    </button>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-gray-700 text-sm text-gray-400">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div>© 2023 SkyPulse Weather Portal. All rights reserved.</div>
+                    <div class="mt-4 md:mt-0">
+                        <a href="#" class="hover:text-white">Privacy Policy</a>
+                        <span class="mx-2">•</span>
+                        <a href="#" class="hover:text-white">Terms of Service</a>
+                        <span class="mx-2">•</span>
+                        <a href="#" class="hover:text-white">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+                // Initialize Vanta.js background with blue theme
+                VANTA.GLOBE({
+                    el: "#vanta-bg",
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: false,
+                    minHeight: 200.00,
+                    minWidth: 200.00,
+                    scale: 1.00,
+                    scaleMobile: 1.00,
+                    color: 0x1e40af,
+                    backgroundColor: 0x1e3a8a,
+                    size: 0.8
+                });
+        // Initialize Mapbox map
+                mapboxgl.accessToken = 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+                const map = new mapboxgl.Map({
+                    container: 'weather-map',
+                    style: 'mapbox://styles/mapbox/streets-v11',
+                    center: [96.1, 19.7], // Myanmar coordinates
+                    zoom: 5
+                });
+
+                // Add weather overlay controls
+                map.on('load', () => {
+                    // This is where you would add weather layers if using Mapbox with weather data
+                    console.log('Map loaded - ready to add weather layers');
+                });
+                // Language toggle functionality with full page translation
+                const languageToggle = document.getElementById('languageToggle');
+                const currentLanguage = document.getElementById('currentLanguage');
+                let isEnglish = true;
+
+                // Translation dictionary
+                const translations = {
+                    'en': {
+                        'MNMD': 'MNMD Live',
+                        'Home': 'Home',
+                        'Forecast': 'Forecast',
+                        'Maps': 'Maps',
+                        'Alerts': 'Alerts',
+                        'Sea': 'Sea/Strom',
+                        'Current Weather': 'Current Weather',
+                        'Storm Conditions': 'Storm Conditions',
+                        'Low Pressure Zones': 'Low Pressure Zones',
+                        'Interactive Weather Map': 'Interactive Weather Map',
+                        'Weather Forecast': 'Weather Forecast',
+                        'Marine Weather Forecast': 'Marine Weather Forecast',
+                        'Public Notifications': 'Public Notifications',
+                        'Subscribe': 'Subscribe',
+                        'English': 'English'
+                    },
+                    'mm': {
+                        'MNMD': 'မိုးလေဝသ',
+                        'Home': 'မူလစာမျက်နှာ',
+                        'Forecast': 'ရာသီဥတုခန့်မှန်းချက်',
+                        'Maps': 'မြေပုံများ',
+                        'Alerts': 'သတိပေးချက်များ',
+                        'Sea': 'ပင်လယ်ရေပြင်',
+                        'Current Weather': 'လက်ရှိရာသီဥတု',
+                        'Storm Conditions': 'မုန်တိုင်းအခြေအနေ',
+                        'Low Pressure Zones': 'ဖိအားနည်းရပ်ဝန်း',
+                        'Interactive Weather Map': 'အပြန်အလှန်ရာသီဥတုမြေပုံ',
+                        'Weather Forecast': 'ရာသီဥတုခန့်မှန်းချက်',
+                        'Marine Weather Forecast': 'ပင်လယ်ရေပြင်ခန့်မှန်းချက်',
+                        'Public Notifications': 'အများပြည်သူသတိပေးချက်များ',
+                        'Subscribe': 'စာရင်းသွင်းရန်',
+                        'English': 'မြန်မာ'
+                    }
+                };
+
+                function translatePage(lang) {
+                    document.querySelectorAll('[data-translate]').forEach(el => {
+                        const key = el.getAttribute('data-translate');
+                        if (translations[lang][key]) {
+                            el.textContent = translations[lang][key];
+                        }
+                    });
+                }
+
+                languageToggle.addEventListener('click', () => {
+                    isEnglish = !isEnglish;
+                    const lang = isEnglish ? 'en' : 'mm';
+                    currentLanguage.textContent = isEnglish ? 'English' : 'မြန်မာ';
+                    translatePage(lang);
+                });
+                // Initialize with English
+                translatePage('en');
+                // Simulate emergency alert for demo
+                setTimeout(() => {
+                    document.getElementById('emergencyAlert').classList.remove('hidden');
+                }, 5000);
+                function dismissAlert() {
+                    document.getElementById('emergencyAlert').classList.add('hidden');
+                }
+                // Initialize feather icons
+                feather.replace();
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
