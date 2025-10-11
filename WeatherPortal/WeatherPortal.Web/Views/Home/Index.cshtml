@@ -3,6 +3,10 @@
 }
 @if (User.IsInRole("Admin"))
 {
+    <!-- Admin users are redirected to the admin dashboard for a tailored experience -->
+    <script>
+        window.location.href = '/Admin/Dashboard';
+    </script>
 }
 else
 {
