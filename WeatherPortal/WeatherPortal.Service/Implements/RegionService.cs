@@ -48,9 +48,6 @@ namespace WeatherPortal.Service.Implements
                 Id = entity.Id,
                 RegionNameInEnglish = entity.RegionNameInEnglish,
                 RegionNameInMyanmar = entity.RegionNameInMyanmar,
-                RegionType = entity.RegionType,
-                Code = entity.Code
-
             }).ToList();
         }
 
