@@ -48,9 +48,10 @@ namespace WeatherPortal.Service.Implements
                 Id = entity.Id,
                 RegionNameInEnglish = entity.RegionNameInEnglish,
                 RegionNameInMyanmar = entity.RegionNameInMyanmar,
-                RegionType = entity.RegionType,
+                RegionType = entity.RegionType == "D" ? "Division" :
+                             entity.RegionType == "S" ? "State" : entity.RegionType,
                 OrderCode = entity.OrderCode
-            }).ToList();
+            }).OrderBy(o=> o.OrderCode).ToList();
         }
 
         public async Task<RegionViewModel> GetRegionById(string regionId)

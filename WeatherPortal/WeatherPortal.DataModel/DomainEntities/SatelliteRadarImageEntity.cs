@@ -1,7 +1,9 @@
-﻿using WeatherPortal.DataModel.BaseEntities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using WeatherPortal.DataModel.BaseEntities;
 
 namespace WeatherPortal.DataModel.DomainEntities
 {
+    [Table("SatelliteRadarImages")]
     public class SatelliteRadarImageEntity:BaseEntity
     {
         public string ImageType { get; set; }
