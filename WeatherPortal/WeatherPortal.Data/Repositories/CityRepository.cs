@@ -1,10 +1,11 @@
-﻿using WeatherPortal.Data.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using WeatherPortal.Data.Data;
 using WeatherPortal.Data.Interfaces;
 using WeatherPortal.DataModel.DomainEntities;
 
 namespace WeatherPortal.Data.Repositories
 {
-    public class CityRepository:BaseRepository<CityEntity>, ICityRepository
+    public class CityRepository:BaseRepository<CityEntity>,ICityRepository
     {
         private readonly ApplicationDbContext _dbContext;
 
@@ -22,6 +23,15 @@ namespace WeatherPortal.Data.Repositories
                                         CityNameInEnglish = s.CityNameInEnglish,
                                         CityNameInMyanmar = s.CityNameInMyanmar,
                                     }).ToList();
+        }
+
+        public async Task<CityEntity> GetCityByTownshipId(string townshipId)
+        {
+                return await _dbContext.Cities
+           .FirstOrDefaultAsync(c => c.Id == _dbContext.Townships
+               .Where(t => t.Id == townshipId)
+               .Select(t => t.CityId)
+               .FirstOrDefault());
         }
 
         public bool IsAlradyExist(string nameInEnglish, string nameInMyanmar)

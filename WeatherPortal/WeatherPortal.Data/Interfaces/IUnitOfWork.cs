@@ -5,6 +5,7 @@
         IRegionRepository Regions { get; }
         ICityRepository Cities { get; }
         ITownshipRepository Townships {  get; }
+        IWeatherStationRepository WeatherStations { get; }
         void Commit();
         void RollBack();
     }

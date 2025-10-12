@@ -1,0 +1,145 @@
+﻿@{
+    ViewData["Title"] = "Station";
+}
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="card shadow-lg p-4" style="width: 450px;">
+        <div class="card-body">
+            <h3 class="card-title text-center mb-4">Create New Weather Station</h3>
+
+            @if (ViewData["info"] != null)
+            {
+                if (Convert.ToBoolean(ViewData["status"]))
+                {
+                    <div class="alert alert-success" role="alert">
+                        @ViewData["info"]
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @ViewData["info"]
+                    </div>
+                }
+            }
+
+            <form asp-controller="WeatherStation" asp-action="Entry" method="post">
+
+                <div class="mb-3">
+                    <label class="form-label">Weather Station</label>
+                    <input type="text" class="form-control" placeholder="Fill the station name" name="StationName" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">City</label>
+                    <select class="form-select" id="cityselect" name="CityId">
+                        <option value="">Select the City</option>
+                        @foreach (var city in ViewBag.City)
+                        {
+                            <option value="@city.Id">@city.CityNameInEnglish</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Township</label>
+                    <select class="form-select" id="townshipselect" name="TownshipId">
+                        <option value="">Select the Township</option>
+                        @foreach (var township in ViewBag.Township)
+                        {
+                            <option value="@township.Id">@township.TownshipNameInEnglish</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Latitude</label>
+                    <input type="number" class="form-control" name="Latitude" step="0.000001" placeholder="e.g. 16.87" >
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Longitude</label>
+                    <input type="number" class="form-control" name="Longitude" step="0.000001" placeholder="e.g. 96.17" >
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-warning w-45">Add Station</button>
+                    <a asp-controller="WeatherStation" asp-action="List" class="btn btn-secondary w-45">Go to List</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            // -------- City -> Township --------
+            $('#cityselect').change(function () {
+                var cityId = $(this).val();
+                var townshipSelect = $('#townshipselect');
+
+                townshipSelect.empty();
+                townshipSelect.append('<option value="">Select Township</option>');
+
+                if (cityId) {
+                    $.ajax({
+                        url: '@Url.Action("GetTownshipsByCity", "WeatherStation")',
+                        type: 'GET',
+                        data: { cityId: cityId },
+                        success: function (data) {
+                            console.log("Townships loaded:", data);
+                            $.each(data, function (i, township) {
+                                townshipSelect.append('<option value="' + township.id + '">' + township.townshipNameInEnglish + '</option>');
+                            });
+                        },
+                        error: function () {
+                            alert('Error loading townships.');
+                        }
+                    });
+                }
+            });
+
+            // -------- Township -> City --------
+            $('#townshipselect').change(function () {
+                var townshipId = $(this).val();
+                var citySelect = $('#cityselect');
+
+                console.log("Selected Township ID:", townshipId);
+
+                if (townshipId) {
+                    $.ajax({
+                        url: '@Url.Action("GetCityByTownship", "WeatherStation")',
+                        type: 'GET',
+                        data: { townshipId: townshipId },
+                        success: function (data) {
+                            console.log("City API response:", data);
+
+                            if (data) {
+                                citySelect.val(data.id); 
+                                console.log("City dropdown value set to:", data.id);
+                            } else {
+                                citySelect.val('');
+                                console.log("No city returned from API");
+                            }
+                        },
+                        error: function () {
+                            alert('Error loading city.');
+                        }
+                    });
+                } else {
+                    citySelect.val('');
+                    console.log("No township selected, city reset");
+                }
+            });
+
+        });
+    </script>
+}
+
+
+

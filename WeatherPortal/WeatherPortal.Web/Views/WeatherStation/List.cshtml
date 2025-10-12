@@ -1,0 +1,83 @@
+﻿@model IEnumerable<WeatherPortal.Dto.WeatherStationViewModel>
+@{
+    ViewData["Title"] = "Weather Station List";
+}
+
+
+<h3 class="text-white mb-4">Weather Station List</h3>
+
+@{
+    var info = TempData["Info"];
+}
+
+@if (info != null)
+{
+    if (Convert.ToBoolean(TempData["Status"]))
+    {
+        <div class="alert alert-success" role="alert">@info</div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">@info</div>
+    }
+}
+
+<div class="table-responsive">
+    <table id="weatherStation" class="table table-hover table-dark align-middle text-center">
+        <thead class="bg-primary text-white">
+            <tr>
+                <th scope="col">NO.</th>
+                <th scope="col">Station Name</th>
+                <th scope="col">City</th>
+                <th scope="col">Township</th>
+                <th scope="col">Latitude</th>
+                <th scope="col">Longitude</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                int i = 1;
+                foreach (var station in Model)
+                {
+                    <tr>
+                        <th>@i</th>
+                        <td>@station.StationName</td>
+                        <td>@station.CityNameInEnglish</td>
+                        <td>@station.TownshipNameInEnglish</td>
+                        <td>@station.Latitude</td>
+                        <td>@station.Longitude</td>
+                        <td>
+                            <a asp-controller="WeatherStation" asp-action="Edit" asp-route-Id="@station.Id"
+                               class="btn btn-sm btn-success me-1" title="Edit">
+                                <i class="fas fa-pen"></i>
+                            </a>
+                            <a asp-controller="WeatherStation" asp-action="Delete" asp-route-Id="@station.Id"
+                               class="btn btn-sm btn-danger" title="Delete"
+                               onclick="return confirm('Are you sure you want to delete?');">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    i++;
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="7" class="text-center text-warning">There is no weather station data available!</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<a asp-controller="WeatherStation" asp-action="Entry" class="btn btn-warning mt-3">Add New Station</a>
+
+<script>
+    $(document).ready(function () {
+        $('#weatherStation').DataTable();
+    });
+</script>
+

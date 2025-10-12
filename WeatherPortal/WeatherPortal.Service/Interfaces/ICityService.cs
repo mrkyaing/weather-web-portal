@@ -1,4 +1,5 @@
-﻿using WeatherPortal.Dto;
+﻿using WeatherPortal.DataModel.DomainEntities;
+using WeatherPortal.Dto;
 
 namespace WeatherPortal.Service.Interfaces
 {
@@ -11,6 +12,7 @@ namespace WeatherPortal.Service.Interfaces
         Task Update(CityViewModel cityViewModel);
         bool IsAlradyExist(CityViewModel cityVm);
         Task<IEnumerable<CityViewModel>> GetCityByRegion(string regionId);
+        Task<CityEntity> GetCityByTownship(string townshipId);
 
     }
 }
