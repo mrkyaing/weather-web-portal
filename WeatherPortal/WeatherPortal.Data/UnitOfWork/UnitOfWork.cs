@@ -38,7 +38,6 @@ namespace WeatherPortal.Data.UnitOfWork
             SatelliteRadarImages = satelliteRadarImageRepository;
             //WeatherStations = weatherStationRepository;
         }
-         
         public void Commit()
         {
             _dbContext.SaveChanges();

@@ -1,5 +1,4 @@
-﻿
-using WeatherPortal.Data.Interfaces;
+﻿using WeatherPortal.Data.Interfaces;
 using WeatherPortal.DataModel.DomainEntities;
 using WeatherPortal.Dto;
 using WeatherPortal.Service.Interfaces;
@@ -29,15 +28,15 @@ namespace WeatherPortal.Service.Implements
                 _unitOfWork.Commit();
         }
 
-        public void Delete(string cityId)
+        public async Task Delete(string cityId)
         {
             try
             {
-                var existingCity =  _unitOfWork.Cities.GetBy(c => c.Id == cityId).Result.FirstOrDefault();
-                
-                if (existingCity != null)
+                var existingCity = await _unitOfWork.Cities.GetBy(c => c.Id == cityId);
+                var existingCityResult = existingCity.SingleOrDefault();
+                if (existingCityResult != null)
                 {
-                    _unitOfWork.Cities.Delete(existingCity);
+                    _unitOfWork.Cities.Delete(existingCityResult);
                     _unitOfWork.Commit();
                 }
             }
@@ -59,6 +58,8 @@ namespace WeatherPortal.Service.Implements
                               RegionId = r.Id,
                               CityNameInEnglish = c.CityNameInEnglish,
                               CityNameInMyanmar = c.CityNameInMyanmar,
+                              RegionNameInEnglish = r.RegionNameInEnglish,
+                              RegionNameInMyanmar = r.RegionNameInMyanmar
                               
                           }).ToList();
             return cities;
@@ -102,19 +103,20 @@ namespace WeatherPortal.Service.Implements
 
         }
 
-        public void Update(CityViewModel cityViewModel)
+        public async Task Update(CityViewModel cityViewModel)
         {
-            var existingCities = _unitOfWork.Cities.GetBy(c => c.Id == cityViewModel.Id).Result.FirstOrDefault();
-            if (existingCities == null)
+            var existingCities = await _unitOfWork.Cities.GetBy(c => c.Id == cityViewModel.Id);
+            var existingCity = existingCities.FirstOrDefault();
+            if (existingCity == null)
             {
                 throw new Exception("City not found to update");
             }
-            existingCities.CityNameInEnglish = cityViewModel.CityNameInEnglish;
-            existingCities.CityNameInMyanmar = cityViewModel.CityNameInMyanmar;
-            existingCities.RegionId = cityViewModel.RegionId;
-            existingCities.IsActive = true;
-            existingCities.UpdatedAt = DateTime.Now;
-            _unitOfWork.Cities.Update(existingCities);
+            existingCity.CityNameInEnglish = cityViewModel.CityNameInEnglish;
+            existingCity.CityNameInMyanmar = cityViewModel.CityNameInMyanmar;
+            existingCity.RegionId = cityViewModel.RegionId;
+            existingCity.IsActive = true;
+            existingCity.UpdatedAt = DateTime.Now;
+            _unitOfWork.Cities.Update(existingCity);
             _unitOfWork.Commit();
         }
     }

@@ -4,7 +4,23 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Weather Portal</title>
+    <!-- Bootstrap & Custom Styles -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <!--  OFFLINE DataTables CSS -->
+    <link rel="stylesheet" href="~/css/dataTables.dataTables.css" />
+
+    <!--  OFFLINE Font Awesome -->
+    <link rel="stylesheet" href="~/css/all.min.css" />
+
+    <link rel="stylesheet" href="~/css/weather-portal.css" asp-append-version="true" />
+
+    <!--  OFFLINE SweetAlert (must download separately if not yet) -->
+    <script src="~/js/sweetalert2.min.js"></script> <!-- you need to download this one manually -->
+    <!--  OFFLINE jQuery -->
+    <script src="~/js/jquery-3.6.0.min.js"></script>
+    
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/weather-portal.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -38,6 +54,27 @@
                                 <li><a class="dropdown-item" href="/Weather/Map">Maps</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="regionDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Region</a>
+                            <ul class="dropdown-menu" aria-labelledby="regionDropdown">
+                                <li><a class="dropdown-item" href="/Region/Entry">Entry</a></li>
+                                <li><a class="dropdown-item" href="/Region/List">List</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="cityDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">City</a>
+                            <ul class="dropdown-menu" aria-labelledby="cityDropdown">
+                                <li><a class="dropdown-item" href="/city/Entry">Entry</a></li>
+                                <li><a class="dropdown-item" href="/city/List">List</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="cityDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Township</a>
+                            <ul class="dropdown-menu" aria-labelledby="cityDropdown">
+                                <li><a class="dropdown-item" href="/township/Entry">Entry</a></li>
+                                <li><a class="dropdown-item" href="/township/List">List</a></li>
+                            </ul>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/Home/Privacy">Privacy</a>
                         </li>
@@ -68,13 +105,14 @@
         </div>
 
         <footer class="border-top footer text-muted mt-auto">
-        <div class="container">
-            &copy; 2025 - Weather Portal- <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+            <div class="container">
+                &copy; 2025 - Weather Portal- <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/dataTables.min.js"></script>
+        @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

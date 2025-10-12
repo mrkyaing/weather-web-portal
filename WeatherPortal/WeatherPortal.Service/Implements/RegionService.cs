@@ -20,7 +20,9 @@ namespace WeatherPortal.Service.Implements
                 RegionNameInEnglish = regionVm.RegionNameInEnglish,
                 RegionNameInMyanmar = regionVm.RegionNameInMyanmar,
                 RegionType = regionVm.RegionType,
-                Code = regionVm.Code,               
+                IsActive = true,
+                CreatedAt = DateTime.Now,
+                OrderCode = regionVm.OrderCode,               
             };
             await _unitOfWork.Regions.Create(entity);
             _unitOfWork.Commit();
@@ -38,7 +40,7 @@ namespace WeatherPortal.Service.Implements
             _unitOfWork.Commit();
         }
 
-        public async Task<IEnumerable<RegionViewModel>> GetAllRegions()
+        public async Task<IEnumerable<RegionViewModel>> GetAll()
         {
             var regionEntities = await _unitOfWork.Regions.GetAll();
             return regionEntities.Select(entity => new RegionViewModel
@@ -47,8 +49,7 @@ namespace WeatherPortal.Service.Implements
                 RegionNameInEnglish = entity.RegionNameInEnglish,
                 RegionNameInMyanmar = entity.RegionNameInMyanmar,
                 RegionType = entity.RegionType,
-                Code = entity.Code
-
+                OrderCode = entity.OrderCode
             }).ToList();
         }
 
@@ -61,16 +62,13 @@ namespace WeatherPortal.Service.Implements
                 RegionNameInEnglish = s.RegionNameInEnglish,
                 RegionNameInMyanmar = s.RegionNameInMyanmar,
                 RegionType = s.RegionType,
-                Code = s.Code
+                OrderCode = s.OrderCode
             }).FirstOrDefault();
         }
 
-        public bool IsAlreadyExist(string nameInEnglish, string nameInMyanmar, int code)
+        public async Task<bool> IsAlreadyExist(string nameInEnglish, string nameInMyanmar, int code)
         {
-           var existingRegions =  _unitOfWork.Regions.GetBy(r => r.RegionNameInEnglish == nameInEnglish || 
-                                                                 r.RegionNameInMyanmar == nameInMyanmar ||
-                                                                 r.Code == code).Result;
-            return existingRegions.Any();
+            return await _unitOfWork.Regions.IsAlreadyExist(nameInEnglish, nameInMyanmar, code);
         }
         public async Task Update(RegionViewModel regionVm)
         {
@@ -84,7 +82,7 @@ namespace WeatherPortal.Service.Implements
             existingRegion.RegionNameInEnglish = regionVm.RegionNameInEnglish;
             existingRegion.RegionNameInMyanmar = regionVm.RegionNameInMyanmar;
             existingRegion.RegionType = regionVm.RegionType;
-            existingRegion.Code = regionVm.Code;
+            existingRegion.OrderCode = regionVm.OrderCode;
             existingRegion.UpdatedAt = DateTime.Now;
             _unitOfWork.Regions.Update(existingRegion);
             _unitOfWork.Commit();
