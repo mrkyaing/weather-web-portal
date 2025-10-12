@@ -11,18 +11,20 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 var config = builder.Configuration;
-builder.Services.AddDbContext<ApplicationDbContext>(o => o.UseSqlServer(config.GetConnectionString("WeatherPortalConnectionString")));
+builder.Services.AddDbContext<ApplicationDbContext>(o => o.UseSqlServer(config.GetConnectionString("Weatherprotal")));
 builder.Services.AddRazorPages();
 builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddScoped<IRegionRepository, RegionRepository>();
 builder.Services.AddScoped<ICityRepository, CityRepository>();
 builder.Services.AddScoped<ITownshipRepository, TownshipRepository>();
+builder.Services.AddScoped<ISatelliteRadarImageRepository, SatelliteRadarImageRepository>();
 //builder.Services.AddScoped<IWeatherStationRepository, WeatherStationRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddTransient<IRegionService, RegionService>();
 builder.Services.AddTransient<ICityService, CityService>();
 builder.Services.AddTransient<ITownshipService, TownshipService>();
 builder.Services.AddTransient<IWeatherStationService, WeatherStationService>();
+builder.Services.AddTransient<ISatelliteRadarImageService, SatelliteRadarImageService>();   
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

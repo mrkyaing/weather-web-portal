@@ -11,6 +11,8 @@ namespace WeatherPortal.Data.UnitOfWork
         public IRegionRepository Regions { get; }
         public ICityRepository Cities { get; }
         public ITownshipRepository Townships { get; set; }
+        public ISatelliteRadarImageRepository SatelliteRadarImages { get; set; }
+
         private IWeatherStationRepository _weatherStationRepository;
         public IWeatherStationRepository WeatherStations
         {
@@ -23,8 +25,9 @@ namespace WeatherPortal.Data.UnitOfWork
         public UnitOfWork(ApplicationDbContext dbContext,
                           IRegionRepository regionRepository,
                           ICityRepository cityRepository ,
-                          ITownshipRepository townshipRepository
-                          //IWeatherStationRepository weatherStationRepository
+                          ITownshipRepository townshipRepository,
+                          ISatelliteRadarImageRepository satelliteRadarImageRepository
+            //IWeatherStationRepository weatherStationRepository
             ) 
        
         {
@@ -32,6 +35,7 @@ namespace WeatherPortal.Data.UnitOfWork
             Regions = regionRepository;
             Cities = cityRepository;
             Townships = townshipRepository;
+            SatelliteRadarImages = satelliteRadarImageRepository;
             //WeatherStations = weatherStationRepository;
         }
         public void Commit()

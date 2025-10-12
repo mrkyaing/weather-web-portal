@@ -12,5 +12,6 @@ namespace WeatherPortal.Data.Data
         public DbSet<CityEntity> Cities { get; set; }
         public DbSet<TownshipEntity> Townships { get; set; }
         public DbSet<WeatherStationEntity> WeatherStations { get; set; }
+        public DbSet<SatelliteRadarImageEntity> SatelliteRadarImages { get; set; }
     }
 }
