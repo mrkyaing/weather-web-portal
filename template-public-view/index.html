@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyPulse | Weather Portal</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
+    <style>
+        #weather-map { height: 400px; }
+        #vanta-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        .blur-bg { backdrop-filter: blur(10px); }
+        .language-toggle { transition: all 0.3s ease; }
+        .alert-banner { animation: pulse 2s infinite; }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div id="vanta-bg"></div>
+    <!-- Main Navigation -->
+    <nav class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i data-feather="cloud" class="text-blue-600 w-8 h-8"></i>
+                        <span class="ml-2 text-xl font-bold text-blue-900" data-translate="SkyPulse">SkyPulse</span>
+</div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="#" class="border-blue-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-translate="Home">Home</a>
+                        <a href="#forecast" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-translate="Forecast">Forecast</a>
+                        <a href="#maps" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-translate="Maps">Maps</a>
+                        <a href="#alerts" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-translate="Alerts">Alerts</a>
+                        <a href="#marine" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-translate="Marine">Marine</a>
+</div>
+                </div>
+                <div class="hidden sm:flex sm:items-center sm:space-x-4">
+                    <!-- Language Toggle -->
+                    <button id="languageToggle" class="language-toggle bg-white/80 hover:bg-white text-blue-800 font-bold py-2 px-4 rounded-full flex items-center shadow-md transition-all">
+                        <i data-feather="globe" class="mr-2 w-4 h-4"></i>
+                        <span id="currentLanguage" data-translate="English">English</span>
+</button>
+                    
+                    <!-- Subscribe Button -->
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center">
+                        <i data-feather="bell" class="w-4 h-4 mr-2"></i>
+                        Subscribe
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+<!-- Emergency Alert Banner -->
+    <div id="emergencyAlert" class="alert-banner hidden bg-red-600 text-white p-4 text-center">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center">
+                <i data-feather="alert-triangle" class="w-5 h-5 mr-2"></i>
+                <span class="font-bold">EMERGENCY ALERT:</span>
+                <span id="alertMessage" class="ml-2">Storm warning in Yangon region. Seek shelter immediately.</span>
+            </div>
+            <button onclick="dismissAlert()" class="ml-4">
+                <i data-feather="x" class="w-4 h-4"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="relative overflow-hidden">
+        <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
+                    <span class="block text-blue-600">Real-time</span>
+                    <span class="block">Weather Intelligence</span>
+                </h1>
+                <p class="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+                    Accurate forecasts, storm tracking, and emergency alerts for Myanmar and surrounding regions.
+                </p>
+                <div class="mt-8 flex justify-center">
+                    <div class="inline-flex rounded-md shadow">
+                        <a href="#forecast" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700">
+                            View Current Forecast
+                        </a>
+                    </div>
+                    <div class="ml-3 inline-flex">
+                        <a href="#maps" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200">
+                            <i data-feather="map" class="w-4 h-4 mr-2"></i>
+                            Interactive Map
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Current Weather Widget -->
+    <section id="current-weather" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-900" data-translate="Current Weather">Current Weather</h2>
+<div class="flex items-center text-sm text-gray-500">
+                        <i data-feather="clock" class="w-4 h-4 mr-1"></i>
+                        <span id="lastUpdated">Last updated: Just now</span>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Main Weather Card -->
+                    <div class="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg p-6 text-white shadow-md">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-semibold">Yangon</h3>
+                                <p class="text-sm opacity-80">Myanmar</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm opacity-80">July 12, 2023</p>
+                                <p class="text-sm opacity-80">3:45 PM</p>
+                            </div>
+                        </div>
+                        <div class="mt-6 flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="text-5xl font-bold">28°C</div>
+                                <div class="ml-4">
+                                    <div class="text-sm">Partly Cloudy</div>
+                                    <div class="text-xs opacity-80 mt-1">Feels like 30°C</div>
+                                </div>
+                            </div>
+                            <div class="text-6xl">
+                                <i data-feather="cloud" class="w-16 h-16"></i>
+                            </div>
+                        </div>
+                        <div class="mt-6 grid grid-cols-3 gap-2 text-xs">
+                            <div class="bg-white/10 p-2 rounded">
+                                <div class="font-medium">Humidity</div>
+                                <div>78%</div>
+                            </div>
+                            <div class="bg-white/10 p-2 rounded">
+                                <div class="font-medium">Wind</div>
+                                <div>12 km/h</div>
+                            </div>
+                            <div class="bg-white/10 p-2 rounded">
+                                <div class="font-medium">Rain</div>
+                                <div>10%</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Storm Conditions -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+                            <h3 class="text-lg font-semibold text-gray-900 flex items-center" data-translate="Storm Conditions">
+<i data-feather="wind" class="text-red-500 w-5 h-5 mr-2"></i>
+                            Storm Conditions
+                        </h3>
+                        <div class="mt-4">
+                            <div class="flex items-center justify-between text-sm py-2 border-b border-gray-100">
+                                <span class="font-medium">Active Storms</span>
+                                <span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">2</span>
+                            </div>
+                            <div class="mt-3">
+                                <div class="flex items-center justify-between text-sm py-2">
+                                    <span class="font-medium">Bay of Bengal</span>
+                                    <span class="text-red-600">Category 1</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm py-2">
+                                    <span class="font-medium">Andaman Sea</span>
+                                    <span class="text-yellow-600">Tropical Depression</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Low Pressure Zones -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+                            <h3 class="text-lg font-semibold text-gray-900 flex items-center" data-translate="Low Pressure Zones">
+<i data-feather="compass" class="text-purple-500 w-5 h-5 mr-2"></i>
+                            Low Pressure Zones
+                        </h3>
+                        <div class="mt-4">
+                            <div class="flex items-center justify-between text-sm py-2 border-b border-gray-100">
+                                <span class="font-medium">Active Zones</span>
+                                <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">3</span>
+                            </div>
+                            <div class="mt-3">
+                                <div class="flex items-center justify-between text-sm py-2">
+                                    <span>Central Myanmar</span>
+                                    <span class="text-purple-600">1008 hPa</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm py-2">
+                                    <span>Northern Thailand</span>
+                                    <span class="text-purple-600">1010 hPa</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Weather Map -->
+    <section id="maps" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="p-6 pb-0">
+                <h2 class="text-2xl font-bold text-gray-900" data-translate="Interactive Weather Map">Interactive Weather Map</h2>
+<p class="mt-1 text-sm text-gray-500">Real-time satellite and radar data for Myanmar region</p>
+            </div>
+            <div class="relative">
+                <div id="weather-map" class="w-full h-96 rounded-b-xl"></div>
+                <div class="absolute top-4 right-4 z-10 bg-white rounded-md shadow-md p-2">
+                    <div class="flex space-x-2">
+                        <button class="px-3 py-1 bg-blue-600 text-white rounded text-sm">Satellite</button>
+                        <button class="px-3 py-1 bg-gray-200 text-gray-700 rounded text-sm">Radar</button>
+                        <button class="px-3 py-1 bg-gray-200 text-gray-700 rounded text-sm">Temperature</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Forecast Section -->
+    <section id="forecast" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="p-6">
+                <h2 class="text-2xl font-bold text-gray-900" data-translate="Weather Forecast">Weather Forecast</h2>
+<p class="mt-1 text-sm text-gray-500">Daily and weekly weather predictions for your location</p>
+                
+                <!-- Daily Forecast -->
+                <div class="mt-8">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Daily Forecast</h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-4">
+                        <!-- Day 1 -->
+                        <div class="bg-blue-50 rounded-lg p-4 text-center">
+                            <div class="text-sm font-medium">Today</div>
+                            <div class="my-3">
+                                <i data-feather="cloud" class="w-8 h-8 mx-auto text-blue-500"></i>
+                            </div>
+                            <div class="flex justify-center space-x-2">
+                                <span class="font-medium">28°</span>
+                                <span class="text-gray-500">25°</span>
+                            </div>
+                        </div>
+                        <!-- Day 2 -->
+                        <div class="bg-blue-50 rounded-lg p-4 text-center">
+                            <div class="text-sm font-medium">Wed</div>
+                            <div class="my-3">
+                                <i data-feather="cloud-rain" class="w-8 h-8 mx-auto text-blue-500"></i>
+                            </div>
+                            <div class="flex justify-center space-x-2">
+                                <span class="font-medium">27°</span>
+                                <span class="text-gray-500">24°</span>
+                            </div>
+                        </div>
+                        <!-- Day 3 -->
+                        <div class="bg-blue-50 rounded-lg p-4 text-center">
+                            <div class="text-sm font-medium">Thu</div>
+                            <div class="my-3">
+                                <i data-feather="cloud-rain" class="w-8 h-8 mx-auto text-blue-500"></i>
+                            </div>
+                            <div class="flex justify-center space-x-2">
+                                <span class="font-medium">26°</span>
+                                <span class="text-gray-500">24°</span>
+                            </div>
+                        </div>
+                        <!-- Day 4 -->
+                        <div class="bg-blue-50 rounded-lg p-4 text-center">
+                            <div class="text-sm font-medium">Fri</div>
+                            <div class="my-3">
+                                <i data-feather="sun" class="w-8 h-8 mx-auto text-yellow-500"></i>
+                            </div>
+                            <div class="flex justify-center space-x-2">
+                                <span class="font-medium">30°</span>
+                                <span class="text-gray-500">26°</span>
+                            </div>
+                        </div>
+                        <!-- Day 5 -->
+                        <div class="bg-blue-50 rounded-lg p-4 text-center">
+                            <div class="text-sm font-medium">Sat</div>
+                            <div class="my-3">
+                                <i data-feather="sun" class="w-8 h-8 mx-auto text-yellow-500"></i>
+                            </div>
+                            <div class="flex justify-center space-x-2">
+                                <span class="font-medium">31°</span>
+                                <span class="text-gray-500">27°</span>
+                            </div>
+                        </div>
+                        <!-- Day 6 -->
+                        <div class="bg-blue-50 rounded-lg p-4 text-center">
+                            <div class="text-sm font-medium">Sun</div>
+                            <div class="my-3">
+                                <i data-feather="cloud" class="w-8 h-8 mx-auto text-blue-500"></i>
+                            </div>
+                            <div class="flex justify-center space-x-2">
+                                <span class="font-medium">29°</span>
+                                <span class="text-gray-500">26°</span>
+                            </div>
+                        </div>
+                        <!-- Day 7 -->
+                        <div class="bg-blue-50 rounded-lg p-4 text-center">
+                            <div class="text-sm font-medium">Mon</div>
+                            <div class="my-3">
+                                <i data-feather="cloud-lightning" class="w-8 h-8 mx-auto text-purple-500"></i>
+                            </div>
+                            <div class="flex justify-center space-x-2">
+                                <span class="font-medium">27°</span>
+                                <span class="text-gray-500">24°</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hourly Forecast -->
+                <div class="mt-12">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Hourly Forecast</h3>
+                    <div class="overflow-x-auto">
+                        <div class="flex space-x-4 pb-4">
+                            <!-- Hour 1 -->
+                            <div class="bg-blue-50 rounded-lg p-4 text-center min-w-[80px]">
+                                <div class="text-sm font-medium">Now</div>
+                                <div class="my-3">
+                                    <i data-feather="cloud" class="w-6 h-6 mx-auto text-blue-500"></i>
+                                </div>
+                                <div class="font-medium">28°</div>
+                            </div>
+                            <!-- Hour 2 -->
+                            <div class="bg-blue-50 rounded-lg p-4 text-center min-w-[80px]">
+                                <div class="text-sm font-medium">4 PM</div>
+                                <div class="my-3">
+                                    <i data-feather="cloud" class="w-6 h-6 mx-auto text-blue-500"></i>
+                                </div>
+                                <div class="font-medium">29°</div>
+                            </div>
+                            <!-- Hour 3 -->
+                            <div class="bg-blue-50 rounded-lg p-4 text-center min-w-[80px]">
+                                <div class="text-sm font-medium">5 PM</div>
+                                <div class="my-3">
+                                    <i data-feather="cloud-drizzle" class="w-6 h-6 mx-auto text-blue-500"></i>
+                                </div>
+                                <div class="font-medium">28°</div>
+                            </div>
+                            <!-- Hour 4 -->
+                            <div class="bg-blue-50 rounded-lg p-4 text-center min-w-[80px]">
+                                <div class="text-sm font-medium">6 PM</div>
+                                <div class="my-3">
+                                    <i data-feather="cloud-rain" class="w-6 h-6 mx-auto text-blue-500"></i>
+                                </div>
+                                <div class="font-medium">27°</div>
+                            </div>
+                            <!-- Hour 5 -->
+                            <div class="bg-blue-50 rounded-lg p-4 text-center min-w-[80px]">
+                                <div class="text-sm font-medium">7 PM</div>
+                                <div class="my-3">
+                                    <i data-feather="cloud-rain" class="w-6 h-6 mx-auto text-blue-500"></i>
+                                </div>
+                                <div class="font-medium">26°</div>
+                            </div>
+                            <!-- Hour 6 -->
+                            <div class="bg-blue-50 rounded-lg p-4 text-center min-w-[80px]">
+                                <div class="text-sm font-medium">8 PM</div>
+                                <div class="my-3">
+                                    <i data-feather="cloud-rain" class="w-6 h-6 mx-auto text-blue-500"></i>
+                                </div>
+                                <div class="font-medium">26°</div>
+                            </div>
+                            <!-- Hour 7 -->
+                            <div class="bg-blue-50 rounded-lg p-4 text-center min-w-[80px]">
+                                <div class="text-sm font-medium">9 PM</div>
+                                <div class="my-3">
+                                    <i data-feather="cloud" class="w-6 h-6 mx-auto text-blue-500"></i>
+                                </div>
+                                <div class="font-medium">25°</div>
+                            </div>
+                            <!-- Hour 8 -->
+                            <div class="bg-blue-50 rounded-lg p-4 text-center min-w-[80px]">
+                                <div class="text-sm font-medium">10 PM</div>
+                                <div class="my-3">
+                                    <i data-feather="cloud" class="w-6 h-6 mx-auto text-blue-500"></i>
+                                </div>
+                                <div class="font-medium">25°</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marine Forecast -->
+    <section id="marine" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="p-6">
+                <h2 class="text-2xl font-bold text-gray-900" data-translate="Marine Weather Forecast">Marine Weather Forecast</h2>
+<p class="mt-1 text-sm text-gray-500">Sea conditions and warnings for Myanmar coastal waters</p>
+                
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Sea Conditions -->
+                    <div class="bg-blue-50 rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 flex items-center">
+                            <i data-feather="navigation" class="text-blue-500 w-5 h-5 mr-2"></i>
+                            Sea Conditions
+                        </h3>
+                        <div class="mt-4 space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium">Wave Height</span>
+                                <span class="text-blue-600">1.5 - 2.5 meters</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium">Wind Speed</span>
+                                <span class="text-blue-600">15 - 25 knots</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium">Visibility</span>
+                                <span class="text-blue-600">Good (10+ km)</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="font-medium">Water Temp</span>
+                                <span class="text-blue-600">29°C</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Storm Warnings -->
+                    <div class="bg-red-50 rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 flex items-center">
+                            <i data-feather="alert-octagon" class="text-red-500 w-5 h-5 mr-2"></i>
+                            Storm Warnings
+                        </h3>
+                        <div class="mt-4 space-y-4">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <i data-feather="alert-triangle" class="text-red-500 w-4 h-4 mt-1 mr-2"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium">Tropical Storm "MAWAR" currently located at 12.5°N, 94.0°E</p>
+                                    <p class="text-xs text-gray-600 mt-1">Moving NW at 15 km/h with maximum winds of 85 km/h</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <i data-feather="alert-triangle" class="text-red-500 w-4 h-4 mt-1 mr-2"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium">Gale warnings for Bay of Bengal and Andaman Sea</p>
+                                    <p class="text-xs text-gray-600 mt-1">Small craft advised not to venture out to sea</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Public Notifications -->
+    <section id="alerts" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="p-6">
+                <h2 class="text-2xl font-bold text-gray-900" data-translate="Public Notifications">Public Notifications</h2>
+<p class="mt-1 text-sm text-gray-500">Real-time alerts and emergency weather warnings</p>
+                
+                <div class="mt-8 space-y-4">
+                    <!-- Alert 1 -->
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <i data-feather="alert-circle" class="text-yellow-500 w-5 h-5"></i>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-yellow-800">Heavy Rain Warning</p>
+                                <p class="text-sm text-yellow-700 mt-1">Issued for Yangon, Bago, and Ayeyarwady regions until 18:00 today.</p>
+                                <p class="text-xs text-yellow-600 mt-2">Issued: July 12, 2023 13:00</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Alert 2 -->
+                    <div class="bg-orange-50 border-l-4 border-orange-400 p-4">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <i data-feather="alert-octagon" class="text-orange-500 w-5 h-5"></i>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-orange-800">Flood Advisory</p>
+                                <p class="text-sm text-orange-700 mt-1">Low-lying areas in Mon State may experience flooding due to high tides and heavy rainfall.</p>
+                                <p class="text-xs text-orange-600 mt-2">Issued: July 12, 2023 10:30</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Alert 3 -->
+                    <div class="bg-red-50 border-l-4 border-red-400 p-4">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <i data-feather="alert-triangle" class="text-red-500 w-5 h-5"></i>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-red-800">Emergency Storm Warning</p>
+                                <p class="text-sm text-red-700 mt-1">Tropical Storm approaching Rakhine Coast. Evacuation orders for coastal towns.</p>
+                                <p class="text-xs text-red-600 mt-2">Issued: July 12, 2023 08:15</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Standard Operating Procedures</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-blue-50 rounded-lg p-6">
+                            <h4 class="font-medium text-blue-800 flex items-center">
+                                <i data-feather="wind" class="text-blue-500 w-4 h-4 mr-2"></i>
+                                During Storms
+                            </h4>
+                            <ul class="mt-3 text-sm text-gray-700 space-y-2">
+                                <li class="flex items-start">
+                                    <i data-feather="check" class="text-green-500 w-4 h-4 mr-2 mt-0.5"></i>
+                                    <span>Seek shelter in a sturdy building</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-feather="check" class="text-green-500 w-4 h-4 mr-2 mt-0.5"></i>
+                                    <span>Stay away from windows and glass doors</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-feather="check" class="text-green-500 w-4 h-4 mr-2 mt-0.5"></i>
+                                    <span>Have emergency supplies ready</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-blue-50 rounded-lg p-6">
+                            <h4 class="font-medium text-blue-800 flex items-center">
+                                <i data-feather="droplet" class="text-blue-500 w-4 h-4 mr-2"></i>
+                                During Floods
+                            </h4>
+                            <ul class="mt-3 text-sm text-gray-700 space-y-2">
+                                <li class="flex items-start">
+                                    <i data-feather="check" class="text-green-500 w-4 h-4 mr-2 mt-0.5"></i>
+                                    <span>Move to higher ground immediately</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-feather="check" class="text-green-500 w-4 h-4 mr-2 mt-0.5"></i>
+                                    <span>Do not walk or drive through flood waters</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-feather="check" class="text-green-500 w-4 h-4 mr-2 mt-0.5"></i>
+                                    <span>Turn off utilities at main switches if instructed</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">SkyPulse Weather</h3>
+                    <p class="text-sm text-gray-300">Providing accurate and timely weather information for Myanmar and surrounding regions.</p>
+                    <div class="mt-4 flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-white">
+                            <i data-feather="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white">
+                            <i data-feather="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white">
+                            <i data-feather="instagram" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="text-gray-300 hover:text-white">Home</a></li>
+                        <li><a href="#forecast" class="text-gray-300 hover:text-white">Forecast</a></li>
+                        <li><a href="#maps" class="text-gray-300 hover:text-white">Maps</a></li>
+                        <li><a href="#alerts" class="text-gray-300 hover:text-white">Alerts</a></li>
+                        <li><a href="#marine" class="text-gray-300 hover:text-white">Marine</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Resources</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="text-gray-300 hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Glossary</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">SOP Documents</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">Historical Data</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Subscribe</h3>
+                    <p class="text-sm text-gray-300 mb-4">Get weather alerts directly to your email or phone.</p>
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center">
+                        <i data-feather="bell" class="w-4 h-4 mr-2"></i>
+                        Subscribe Now
+                    </button>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-gray-700 text-sm text-gray-400">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div>© 2023 SkyPulse Weather Portal. All rights reserved.</div>
+                    <div class="mt-4 md:mt-0">
+                        <a href="#" class="hover:text-white">Privacy Policy</a>
+                        <span class="mx-2">•</span>
+                        <a href="#" class="hover:text-white">Terms of Service</a>
+                        <span class="mx-2">•</span>
+                        <a href="#" class="hover:text-white">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Vanta.js background
+        VANTA.GLOBE({
+            el: "#vanta-bg",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0x3b82f6,
+            backgroundColor: 0xf8fafc,
+            size: 0.8
+        });
+
+        // Initialize Mapbox map
+        mapboxgl.accessToken = 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+        const map = new mapboxgl.Map({
+            container: 'weather-map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [96.1, 19.7], // Myanmar coordinates
+            zoom: 5
+        });
+
+        // Add weather overlay controls
+        map.on('load', () => {
+            // This is where you would add weather layers if using Mapbox with weather data
+            console.log('Map loaded - ready to add weather layers');
+        });
+        // Language toggle functionality with full page translation
+        const languageToggle = document.getElementById('languageToggle');
+        const currentLanguage = document.getElementById('currentLanguage');
+        let isEnglish = true;
+
+        // Translation dictionary
+        const translations = {
+            'en': {
+                'SkyPulse': 'SkyPulse',
+                'Home': 'Home',
+                'Forecast': 'Forecast',
+                'Maps': 'Maps',
+                'Alerts': 'Alerts',
+                'Marine': 'Marine',
+                'Current Weather': 'Current Weather',
+                'Storm Conditions': 'Storm Conditions',
+                'Low Pressure Zones': 'Low Pressure Zones',
+                'Interactive Weather Map': 'Interactive Weather Map',
+                'Weather Forecast': 'Weather Forecast',
+                'Marine Weather Forecast': 'Marine Weather Forecast',
+                'Public Notifications': 'Public Notifications',
+                'Subscribe': 'Subscribe',
+                'English': 'English'
+            },
+            'mm': {
+                'SkyPulse': 'မိုးလေဝသ',
+                'Home': 'မူလစာမျက်နှာ',
+                'Forecast': 'ရာသီဥတုခန့်မှန်းချက်',
+                'Maps': 'မြေပုံများ',
+                'Alerts': 'သတိပေးချက်များ',
+                'Marine': 'ပင်လယ်ရေပြင်',
+                'Current Weather': 'လက်ရှိရာသီဥတု',
+                'Storm Conditions': 'မုန်တိုင်းအခြေအနေ',
+                'Low Pressure Zones': 'ဖိအားနည်းရပ်ဝန်း',
+                'Interactive Weather Map': 'အပြန်အလှန်ရာသီဥတုမြေပုံ',
+                'Weather Forecast': 'ရာသီဥတုခန့်မှန်းချက်',
+                'Marine Weather Forecast': 'ပင်လယ်ရေပြင်ခန့်မှန်းချက်',
+                'Public Notifications': 'အများပြည်သူသတိပေးချက်များ',
+                'Subscribe': 'စာရင်းသွင်းရန်',
+                'English': 'မြန်မာ'
+            }
+        };
+
+        function translatePage(lang) {
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+        }
+
+        languageToggle.addEventListener('click', () => {
+            isEnglish = !isEnglish;
+            const lang = isEnglish ? 'en' : 'mm';
+            currentLanguage.textContent = isEnglish ? 'English' : 'မြန်မာ';
+            translatePage(lang);
+        });
+
+        // Initialize with English
+        translatePage('en');
+// Simulate emergency alert for demo
+        setTimeout(() => {
+            document.getElementById('emergencyAlert').classList.remove('hidden');
+        }, 5000);
+
+        function dismissAlert() {
+            document.getElementById('emergencyAlert').classList.add('hidden');
+        }
+
+        // Initialize feather icons
+        feather.replace();
+    </script>
+</body>
+</html>
