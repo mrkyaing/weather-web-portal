@@ -100,12 +100,13 @@
     <!-- Main Navigation -->
     <nav class="bg-dark-blue/90 backdrop-blur-md shadow-sm sticky top-0 z-40 border-b border-accent-blue">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
+            <div class="flex justify-between h-16 items-center">
                 <div class="flex items-center">
                     <div class="flex-shrink-0 flex items-center">
                         <i data-feather="cloud" class="text-blue-600 w-8 h-8"></i>
                         <a href="/home/index">  <span class="ml-2 text-xl font-bold text-blue-400" data-translate="MNMD">MNMD</span></a>
                     </div>
+                    <!-- Desktop Links -->
                     <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
                         <a href="#" class="border-blue-500 text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-translate="Home">Home</a>
                         <a href="#forecast" class="border-transparent text-gray-300 hover:border-gray-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-translate="Forecast">Forecast</a>
@@ -114,17 +115,53 @@
                         <a href="#marine" class="border-transparent text-gray-300 hover:border-gray-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-translate="Sea">Sea </a>
                     </div>
                 </div>
-                <div class="hidden sm:flex sm:items-center sm:space-x-4">
-                    <!-- Language Toggle -->
-                    <button id="languageToggle" class="language-toggle bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-full flex items-center shadow-md transition-all">
-                        <i data-feather="globe" class="mr-2 w-4 h-4 text-blue-400"></i>
-                        <span id="currentLanguage" data-translate="English">English</span>
-                    </button>
 
-                    <!-- Subscribe Button -->
-                    <button class="bg-blue-700 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center">
+                <!-- Right side (desktop) and Mobile menu button -->
+                <div class="flex items-center">
+                    <div class="hidden sm:flex sm:items-center sm:space-x-4">
+                        <!-- Language Toggle -->
+                        <button id="languageToggle" class="language-toggle bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-full flex items-center shadow-md transition-all">
+                            <i data-feather="globe" class="mr-2 w-4 h-4 text-blue-400"></i>
+                            <span id="currentLanguage" data-translate="English">English</span>
+                        </button>
+
+                        <!-- Subscribe Button -->
+                        <button class="bg-blue-700 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium flex items-center">
+                            <i data-feather="bell" class="w-4 h-4 mr-2"></i>
+                            Subscribe
+                        </button>
+                    </div>
+
+                    <!-- Mobile menu button -->
+                    <div class="sm:hidden ml-3">
+                        <button id="mobileMenuButton" aria-expanded="false" aria-controls="mobileMenu" class="inline-flex items-center justify-center p-2 rounded-md text-gray-200 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-dark-blue focus:ring-white">
+                            <!-- Menu icon -->
+                            <i data-feather="menu" id="menuIcon" class="w-6 h-6"></i>
+                            <!-- Close icon (hidden by default) -->
+                            <i data-feather="x" id="closeIcon" class="w-6 h-6 hidden"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (small screens) -->
+        <div id="mobileMenu" class="sm:hidden hidden bg-dark-blue/95 border-t border-accent-blue">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white" data-translate="Home">Home</a>
+                <a href="#forecast" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white" data-translate="Forecast">Forecast</a>
+                <a href="#maps" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white" data-translate="Maps">Maps</a>
+                <a href="#alerts" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white" data-translate="Alerts">Alerts</a>
+                <a href="#marine" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white" data-translate="Sea">Sea</a>
+
+                <div class="border-t border-gray-700 mt-2 pt-2">
+                    <button id="mobileLanguageToggle" class="w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-200 hover:bg-gray-800 flex items-center">
+                        <i data-feather="globe" class="mr-2 w-5 h-5 text-blue-400"></i>
+                        <span data-translate="English">English</span>
+                    </button>
+                    <button id="mobileSubscribeBtn" class="w-full mt-2 bg-blue-700 hover:bg-blue-600 text-white px-3 py-2 rounded-md text-base font-medium flex items-center">
                         <i data-feather="bell" class="w-4 h-4 mr-2"></i>
-                        Subscribe
+                        <span data-translate="Subscribe">Subscribe</span>
                     </button>
                 </div>
             </div>
@@ -293,7 +330,72 @@
                 function dismissAlert() {
                     document.getElementById('emergencyAlert').classList.add('hidden');
                 }
-                // Initialize feather icons
+                // Mobile menu toggle
+                const mobileMenuButton = document.getElementById('mobileMenuButton');
+                const mobileMenu = document.getElementById('mobileMenu');
+
+                function openMobileMenu() {
+                    mobileMenu.classList.remove('hidden');
+                    mobileMenuButton.setAttribute('aria-expanded', 'true');
+                    // query icons fresh because feather.replace() may replace elements
+                    const menuIconNow = document.getElementById('menuIcon');
+                    const closeIconNow = document.getElementById('closeIcon');
+                    if (menuIconNow) menuIconNow.classList.add('hidden');
+                    if (closeIconNow) closeIconNow.classList.remove('hidden');
+                }
+
+                function closeMobileMenu() {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuButton.setAttribute('aria-expanded', 'false');
+                    const menuIconNow = document.getElementById('menuIcon');
+                    const closeIconNow = document.getElementById('closeIcon');
+                    if (menuIconNow) menuIconNow.classList.remove('hidden');
+                    if (closeIconNow) closeIconNow.classList.add('hidden');
+                }
+
+                if (mobileMenuButton) {
+                    mobileMenuButton.addEventListener('click', () => {
+                        const isOpen = mobileMenu && !mobileMenu.classList.contains('hidden');
+                        if (isOpen) {
+                            closeMobileMenu();
+                        } else {
+                            openMobileMenu();
+                        }
+                    });
+                }
+
+                // Close mobile menu when selecting any mobile nav link
+                document.querySelectorAll('#mobileMenu a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        // close the menu so user sees destination
+                        closeMobileMenu();
+                    });
+                });
+
+                // Close mobile menu when clicking subscribe (mobile)
+                const mobileSubscribeBtn = document.getElementById('mobileSubscribeBtn');
+                if (mobileSubscribeBtn) {
+                    mobileSubscribeBtn.addEventListener('click', () => {
+                        // perform subscribe action (if any) and close menu
+                        closeMobileMenu();
+                    });
+                }
+
+                // Mobile language toggle should use the same translation dictionary
+                const mobileLanguageToggle = document.getElementById('mobileLanguageToggle');
+                if (mobileLanguageToggle) {
+                    mobileLanguageToggle.addEventListener('click', () => {
+                        // toggle language state and apply
+                        isEnglish = !isEnglish;
+                        const lang = isEnglish ? 'en' : 'mm';
+                        if (currentLanguage) currentLanguage.textContent = isEnglish ? 'English' : 'မြန်မာ';
+                        translatePage(lang);
+                        // close mobile menu so user sees translated content
+                        closeMobileMenu();
+                    });
+                }
+
+                // Initialize feather icons once
                 feather.replace();
     </script>
     @await RenderSectionAsync("Scripts", required: false)
