@@ -1,0 +1,56 @@
+﻿@model SatelliteRadarImageViewModel
+
+@{
+    ViewData["Title"] = "Satellite/Radar";
+}
+@{
+    var info = ViewData["Info"];
+
+}
+@if (info != null)
+{
+    if (Convert.ToBoolean(ViewData["Status"]))
+    {
+        <div class="alert alert-success" role="alert">
+            @info
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            @info
+        </div>
+    }
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <form action="/satelliteRadarImage/entry" method="post" enctype="multipart/form-data">
+            <div class="card p-3">
+                <h1>Satellite Image Upload Form</h1>
+                <div class="mb-3">
+                    <label class="form-label"> Image Type</label>
+                    <input type="text" class="form-control" name="ImageType" placeholder="Enter Type" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">When Read At</label>
+                    <input type="datetime class="form-control" name="WhenReadAt" placeholder="Choose Date" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <textarea type="number" class="form-control" name="Description" placeholder="Enter Description" rows="3"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label"> Image Upload</label>
+                    <input type="file" class="form-control" name="ImageFile" placeholder="Choose Image" />
+                </div>
+
+                <button class="btn btn-success mb-3" type="submit"> Save </button>
+                <a href="/region/list" class="btn btn-success"> Satellite Image List </a>
+            </div>
+        </form>
+    </div>
+</div>
