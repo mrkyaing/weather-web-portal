@@ -110,6 +110,7 @@
                         <i data-feather="cloud" class="text-blue-600 w-8 h-8"></i>
                         <a href="/home/index">  <span class="ml-2 text-xl font-bold text-blue-400" data-translate="MNMD">MNMD</span></a>
                     </div>
+                   
                     <!-- Desktop Links -->
                     <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
                         <a href="#" class="border-blue-500 text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" data-translate="Home">Home</a>
@@ -134,6 +135,11 @@
                             <i data-feather="bell" class="w-4 h-4 mr-2"></i>
                             Subscribe
                         </button>
+                        <!--login-->
+                        <div class="flex-shrink-0 flex items-center">
+                            <i data-feather="user" class="text-blue-600 w-8 h-8"></i>
+                            <a href="/identity/account/login">  <span class="ml-2 text-xl font-bold text-blue-400" data-translate="Login">Login</span></a>
+                        </div>
                     </div>
 
                     <!-- Mobile menu button -->
@@ -167,15 +173,20 @@
                         <i data-feather="bell" class="w-4 h-4 mr-2"></i>
                         <span data-translate="Subscribe">Subscribe</span>
                     </button>
+                    <!--login-->
+                    <div class="flex-shrink-0 flex items-center">
+                        <i data-feather="user" class="text-blue-600 w-8 h-8"></i>
+                        <a href="/identity/account/login">  <span class="ml-2 text-xl font-bold text-blue-400" data-translate="Login">Login</span></a>
+                    </div>
                 </div>
             </div>
         </div>
     </nav>
 
+    <!--main content-->
             <main role="main">
                 @RenderBody()
             </main>
-
     <!-- Footer -->
     <footer class="bg-primary-blue text-text-on-blue py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -253,7 +264,7 @@
                     backgroundColor: 0x1e3a8a,
                     size: 0.8
                 });
-        // Initialize Mapbox map
+                 // Initialize Mapbox map
                 mapboxgl.accessToken = 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
                 const map = new mapboxgl.Map({
                     container: 'weather-map',
@@ -289,7 +300,8 @@
                         'Marine Weather Forecast': 'Marine Weather Forecast',
                         'Public Notifications': 'Public Notifications',
                         'Subscribe': 'Subscribe',
-                        'English': 'English'
+                        'English': 'English',
+                       'Login':'Login'
                     },
                     'mm': {
                         'MNMD': 'မိုးလေဝသ',
@@ -306,7 +318,8 @@
                         'Marine Weather Forecast': 'ပင်လယ်ရေပြင်ခန့်မှန်းချက်',
                         'Public Notifications': 'အများပြည်သူသတိပေးချက်များ',
                         'Subscribe': 'စာရင်းသွင်းရန်',
-                        'English': 'မြန်မာ'
+                        'English': 'မြန်မာ',
+                       'Login':'လော့အင်'
                     }
                 };
 
@@ -325,8 +338,10 @@
                     currentLanguage.textContent = isEnglish ? 'English' : 'မြန်မာ';
                     translatePage(lang);
                 });
+
                 // Initialize with English
                 translatePage('en');
+
                 // Simulate emergency alert for demo
                 setTimeout(() => {
                     document.getElementById('emergencyAlert').classList.remove('hidden');
