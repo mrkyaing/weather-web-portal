@@ -34,7 +34,7 @@ namespace WeatherPortal.Web.Controllers
             //};
             try
             {
-                var isExist = await _regionService.IsAlreadyExist(vm.RegionNameInEnglish, vm.RegionNameInMyanmar, vm.Code);
+                var isExist = await _regionService.IsAlreadyExist(vm.RegionNameInEnglish, vm.RegionNameInMyanmar, vm.OrderCode);
                 if (isExist)
                 {
                     ViewData["Info"] = "Region already exists.";
@@ -54,7 +54,7 @@ namespace WeatherPortal.Web.Controllers
         }
         public async Task<IActionResult> List()
         {
-            return View(await _regionService.GetAllRegions());
+            return View(await _regionService.GetAll());
         }
 
         public async Task<IActionResult> Edit(string id)

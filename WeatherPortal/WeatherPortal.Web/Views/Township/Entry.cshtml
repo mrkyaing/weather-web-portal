@@ -1,0 +1,68 @@
+﻿@model TownshipViewModel
+
+@{
+    ViewData["Title"] = "Township";
+}
+@{
+    var info = ViewData["Info"];
+
+}
+@if (info != null)
+{
+    if (Convert.ToBoolean(ViewData["Status"]))
+    {
+        <div class="alert alert-success" role="alert">
+            @info
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            @info
+        </div>
+    }
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <form action="/township/entry" method="post">
+            <div class="card p-3">
+                <h1>Township Entry Form </h1>
+                <div class="mb-3">
+                    <label class="form-label"> Township Name(English)</label>
+                    <input type="text" class="form-control" name="TownshipNameInEnglish" placeholder="Enter City Name(English)" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Twonship Name (Myanmar)  </label>
+                    <input type="text" class="form-control" name="TownshipNameInMyanmar" placeholder="Enter City Name (Myanmar)" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">City (English)</label>
+                    <select class="form-select" id="CitySelect" name="CityId">
+                        <option value="">[ Select One ]</option>
+                        @foreach (var city in ViewBag.Cities)
+                        {
+                            <option value="@city.Id" data-myanmar="@city.CityNameInEnglish">@city.CityNameInEnglish</option>
+                        }
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">City (Myanmar)</label>
+                    <input type="text" class="form-control" id="CityMyanmar" name="CityNameInMyanmar" readonly />
+                </div>
+                <button class="btn btn-success mb-3" type="submit"> Save </button>
+                <a href="/township/list" class="btn btn-success"> Township Information List </a>
+            </div>
+        </form>
+    </div>
+    @section Scripts {
+        <script>
+            document.getElementById("CitySelect").addEventListener("change", function () {
+                var selectedOption = this.options[this.selectedIndex];
+                var myanmarName = selectedOption.getAttribute("data-myanmar");
+                document.getElementById("CityMyanmar").value = myanmarName || "";
+            });
+        </script>
+    }
+

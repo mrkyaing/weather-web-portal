@@ -1,0 +1,88 @@
+﻿@model CityViewModel
+
+@{
+    ViewData["Title"] = "City";
+}
+@{
+    var info = ViewData["Info"];
+
+}
+@if (info != null)
+{
+    if (Convert.ToBoolean(ViewData["Status"]))
+    {
+        <div class="ူalert alert-success" role="alert">
+            @info
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            @info
+        </div>
+    }
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <form action="/city/update" method="post">
+            <div class="card p-3">
+                <h1>City Update Form</h1>
+                <input type="text" value="@Model.Id" name="Id" hidden />
+                <div class="mb-3">
+                    <label class="form-label"> City Name In English </label>
+                    <input type="text" class="form-control" name="CityNameInEnglish" value="@Model.CityNameInEnglish" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">City Name Myanmar  </label>
+                    <input type="text" class="form-control" name="CityNameInMyanmar" value="@Model.CityNameInMyanmar" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Region (English)</label>
+                    <select class="form-select" id="RegionSelect" name="RegionId">
+                        @foreach (var region in ViewBag.Region)
+                        {
+                            <option value="@region.Id" data-myanmar="@region.RegionNameInMyanmar"
+                                   selected="@(region.Id == Model.RegionId ? "selected" : "" )">
+                                @region.RegionNameInEnglish
+                            </option>
+                        }
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Region (Myanmar)</label>
+                    <input type="text" class="form-control" id="RegionMyanmar" name="RegionNameInMyanmar" readonly />
+                </div>
+                <button class="btn btn-success mb-3" type="submit"> Update </button>
+                <a href="/city/Entry" class="btn btn-success"> Entry </a>
+            </div>
+        </form>
+    </div>
+    <script>
+        var regionSelect = document.getElementById("RegionSelect");
+        var regionMyanmarInput = document.getElementById("RegionMyanmar");
+
+        // page load default Myanmar value
+        var selectedOption = regionSelect.options[regionSelect.selectedIndex];
+        regionMyanmarInput.value = selectedOption.getAttribute("data-myanmar") || "";
+
+        regionSelect.addEventListener("change", function () {
+            var selectedOption = this.options[this.selectedIndex];
+            regionMyanmarInput.value = selectedOption.getAttribute("data-myanmar") || "";
+        });
+    </script>
+    <script>
+        var regionSelect = document.getElementById("RegionSelect");
+        var regionMyanmarInput = document.getElementById("RegionMyanmar");
+
+        // page load default Myanmar value
+        var selectedOption = regionSelect.options[regionSelect.selectedIndex];
+        regionMyanmarInput.value = selectedOption.getAttribute("data-myanmar") || "";
+
+        regionSelect.addEventListener("change", function () {
+            var selectedOption = this.options[this.selectedIndex];
+            regionMyanmarInput.value = selectedOption.getAttribute("data-myanmar") || "";
+        });
+    </script>
+

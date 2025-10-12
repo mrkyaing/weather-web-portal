@@ -19,7 +19,7 @@ namespace WeatherPortal.Data.Repositories
         {
             return await _dbContext.Regions.AnyAsync(r => r.RegionNameInEnglish == nameInEnglish 
                                             || r.RegionNameInMyanmar == nameInMyanmar 
-                                            || r.Code == code);
+                                            || r.OrderCode == code);
         }
     }
 }

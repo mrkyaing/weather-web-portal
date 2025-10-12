@@ -8,7 +8,7 @@ namespace WeatherPortal.DataModel.DomainEntities
         public string RegionNameInMyanmar { get; set; }
         public string RegionNameInEnglish { get; set; }
         public string RegionType { get; set; }
-        public int Code { get; set; }
+        public int OrderCode { get; set; }
         public ICollection<CityEntity> Cities { get; set; }
     }
 }

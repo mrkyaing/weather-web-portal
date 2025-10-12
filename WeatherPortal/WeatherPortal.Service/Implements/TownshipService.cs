@@ -48,7 +48,9 @@ namespace WeatherPortal.Service.Implements
                                 Id = t.Id,
                                 CityId = c.Id,
                                 TownshipNameInEnglish = t.TownshipNameInEnglish,
-                                TownshipNameInMyanmar = t.TownshipNameInMyanmar
+                                TownshipNameInMyanmar = t.TownshipNameInMyanmar,
+                                CityNameInEnglish = c.CityNameInEnglish,
+                                CityNameInMyanmar = c.CityNameInMyanmar
                             }).ToList();
             return township;
         }

@@ -22,7 +22,7 @@ namespace WeatherPortal.Service.Implements
                 RegionType = regionVm.RegionType,
                 IsActive = true,
                 CreatedAt = DateTime.Now,
-                Code = regionVm.Code,               
+                OrderCode = regionVm.OrderCode,               
             };
             await _unitOfWork.Regions.Create(entity);
             _unitOfWork.Commit();
@@ -40,7 +40,7 @@ namespace WeatherPortal.Service.Implements
             _unitOfWork.Commit();
         }
 
-        public async Task<IEnumerable<RegionViewModel>> GetAllRegions()
+        public async Task<IEnumerable<RegionViewModel>> GetAll()
         {
             var regionEntities = await _unitOfWork.Regions.GetAll();
             return regionEntities.Select(entity => new RegionViewModel
@@ -48,6 +48,8 @@ namespace WeatherPortal.Service.Implements
                 Id = entity.Id,
                 RegionNameInEnglish = entity.RegionNameInEnglish,
                 RegionNameInMyanmar = entity.RegionNameInMyanmar,
+                RegionType = entity.RegionType,
+                OrderCode = entity.OrderCode
             }).ToList();
         }
 
@@ -60,7 +62,7 @@ namespace WeatherPortal.Service.Implements
                 RegionNameInEnglish = s.RegionNameInEnglish,
                 RegionNameInMyanmar = s.RegionNameInMyanmar,
                 RegionType = s.RegionType,
-                Code = s.Code
+                OrderCode = s.OrderCode
             }).FirstOrDefault();
         }
 
@@ -80,7 +82,7 @@ namespace WeatherPortal.Service.Implements
             existingRegion.RegionNameInEnglish = regionVm.RegionNameInEnglish;
             existingRegion.RegionNameInMyanmar = regionVm.RegionNameInMyanmar;
             existingRegion.RegionType = regionVm.RegionType;
-            existingRegion.Code = regionVm.Code;
+            existingRegion.OrderCode = regionVm.OrderCode;
             existingRegion.UpdatedAt = DateTime.Now;
             _unitOfWork.Regions.Update(existingRegion);
             _unitOfWork.Commit();

@@ -1,9 +1,9 @@
-﻿@model IEnumerable<RegionViewModel>
+﻿@model IEnumerable<TownshipViewModel>
 
 <div class="col-md-8">
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h1 class="m-0">Region List</h1>
-        <a href="/region/entry" class="btn btn-success">Entry</a>
+        <h1 class="m-0">Township List View</h1>
+        <a href="/township/entry" class="btn btn-success">Entry</a>
     </div>
     <div class="card p-3">
         <table class="table table-bordered">
@@ -12,8 +12,8 @@
                     <th>No</th>
                     <th>English Name</th>
                     <th>Myanmar Name</th>
-                    <th>Code</th>
-                    <th>Type</th>
+                    <th>City (English)</th>
+                    <th>City (မြန်မာ)</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -22,17 +22,17 @@
                     int i = 1;
                 }
 
-                @foreach (var region in Model)
+                @foreach (var township in Model)
                 {
                     <tr>
                         <td>@i</td>
-                        <td>@region.RegionNameInEnglish</td>
-                        <td>@region.RegionNameInMyanmar</td>
-                        <td>@region.OrderCode</td>
-                        <td>@region.RegionType</td>
+                        <td>@township.TownshipNameInEnglish</td>
+                        <td>@township.TownshipNameInMyanmar</td>
+                        <td>@township.CityNameInEnglish.</td>
+                        <td>@township.CityNameInMyanmar</td>
                         <td>
-                            <a href="/region/edit/@region.Id" class="btn btn-sm btn-primary">Edit</a>
-                            <a href="/region/delete/@region.Id" class="btn btn-sm btn-danger">Delete</a>
+                            <a href="/township/edit/@township.Id" class="btn btn-sm btn-primary">Edit</a>
+                            <a href="/township/delete/@township.Id" class="btn btn-sm btn-danger">Delete</a>
                         </td>
                     </tr>
                     i++;

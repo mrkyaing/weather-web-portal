@@ -1,0 +1,88 @@
+﻿@model TownshipViewModel
+
+@{
+    ViewData["Title"] = "Township Edit";
+    var info = TempData["Info"];
+    var status = TempData["Status"];
+}
+
+@if (info != null)
+{
+    if (status != null && Convert.ToBoolean(status))
+    {
+        <div class="alert alert-success" role="alert">
+            @info
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            @info
+        </div>
+    }
+}
+
+
+<div class="row">
+    <div class="col-md-6">
+        <form action="/township/update" method="post">
+            <div class="card p-3">
+                <h1>City Update Form</h1>
+                <input type="text" value="@Model.Id" name="Id" hidden />
+                <div class="mb-3">
+                    <label class="form-label"> Township Name(English) </label>
+                    <input type="text" class="form-control" name="TownshipNameInEnglish" value="@Model.TownshipNameInEnglish" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Township Name(Myanmar)  </label>
+                    <input type="text" class="form-control" name="TownshipNameInMyanmar" value="@Model.TownshipNameInMyanmar" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">City (English)</label>
+                    <select class="form-select" id="CitySelect" name="CityId">
+                        @foreach (var city in ViewBag.Cities)
+                        {
+                            <option value="@city.Id" data-myanmar="@city.CityNameInEnglish"
+                                    selected="@(city.Id == Model.CityId ? "selected" : "" )">
+                                @city.CityNameInEnglish
+                            </option>
+                        }
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">City (Myanmar)</label>
+                    <input type="text" class="form-control" id="CityMyanmar" name="CityNameInMyanmar" readonly />
+                </div>
+                <button class="btn btn-success mb-3" type="submit"> Update </button>
+                <a href="/township/Entry" class="btn btn-success"> Entry </a>
+            </div>
+        </form>
+    </div>
+    <script>
+        var citySelect = document.getElementById("CitySelect");
+        var regionMyanmarInput = document.getElementById("CityMyanmar");
+
+        // page load default Myanmar value
+        var selectedOption = citySelect.options[citySelect.selectedIndex];
+        regionMyanmarInput.value = selectedOption.getAttribute("data-myanmar") || "";
+
+        citySelect.addEventListener("change", function () {
+            var selectedOption = this.options[this.selectedIndex];
+            regionMyanmarInput.value = selectedOption.getAttribute("data-myanmar") || "";
+        });
+    </script>
+    <script>
+        var citySelect = document.getElementById("CitySelect");
+        var cityMyanmarInput = document.getElementById("CityMyanmar");
+
+        // page load default Myanmar value
+        var selectedOption = citySelect.options[citySelect.selectedIndex];
+        regionMyanmarInput.value = selectedOption.getAttribute("data-myanmar") || "";
+
+        citySelect.addEventListener("change", function () {
+            var selectedOption = this.options[this.selectedIndex];
+            cityMyanmarInput.value = selectedOption.getAttribute("data-myanmar") || "";
+        });
+    </script>
+
