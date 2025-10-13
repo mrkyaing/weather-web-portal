@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using WeatherPortal.Dto;
 
 namespace WeatherPortal.Service.Interfaces
 {
     public interface INewsService
     {
+        Task Create(NewsViewModel newsViewModel);
+        Task<IEnumerable<NewsViewModel>> GetAll();
+        Task<NewsViewModel> GetById(string id);
+        Task Delete(string id);
+        Task Update(NewsViewModel newsViewModel);
+        Task<IEnumerable<NewsViewModel>> GetNewsByWeatherStation(string weatherSatationId);
+
     }
 }

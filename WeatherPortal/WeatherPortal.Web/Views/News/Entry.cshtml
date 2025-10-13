@@ -1,0 +1,345 @@
+﻿@model NewsViewModel
+
+@{
+    ViewData["Title"] = "Create News";
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h3 class="card-title mb-0">
+                    <i class="fas fa-newspaper"></i> Create New News
+                </h3>
+            </div>
+            <div class="card-body">
+                <!-- Validation Summary -->
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                @if (TempData["Info"] != null)
+                {
+                    if (TempData["Status"] != null && Convert.ToBoolean(TempData["Status"]))
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <i class="fas fa-check-circle"></i> @TempData["Info"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <i class="fas fa-exclamation-circle"></i> @TempData["Info"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+                }
+
+                <form asp-action="Entry" method="post" id="newsForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" asp-for="Type">News Type <span class="text-danger">*</span></label>
+                                <select class="form-select" asp-for="Type" required>
+                                    <option value="">Select News Type</option>
+                                    <!-- Use shorter type names to fit VARCHAR(10) -->
+                                    <option value="Alert">Alert</option>
+                                    <option value="General">General</option>
+                                    <option value="Update">Update</option>
+                                    <option value="Maint">Maintenance</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <span asp-validation-for="Type" class="text-danger"></span>
+                                <div class="form-text">
+                                    Maximum 10 characters allowed
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" asp-for="WeatherStationId">Weather Station <span class="text-danger">*</span></label>
+                                <select class="form-select" asp-for="WeatherStationId" required>
+                                    <option value="">Select Weather Station</option>
+                                    @if (ViewBag.WeatherStation != null)
+                                    {
+                                        foreach (var station in ViewBag.WeatherStation)
+                                        {
+                                            <option value="@station.Id">@station.StationName</option>
+                                        }
+                                    }
+                                </select>
+                                <span asp-validation-for="WeatherStationId" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="Title">Title <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" asp-for="Title" placeholder="Enter news title" required maxlength="200" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                        <div class="form-text">
+                            <span id="titleCounter">@(Model.Title?.Length ?? 0)</span>/200 characters
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="Content">Content <span class="text-danger">*</span></label>
+                        <textarea class="form-control" asp-for="Content" placeholder="Enter news content" rows="8" required maxlength="2000"></textarea>
+                        <span asp-validation-for="Content" class="text-danger"></span>
+                        <div class="form-text">
+                            <span id="contentCounter">@(Model.Content?.Length ?? 0)</span>/2000 characters
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" asp-for="PublishedAt">Publish Date & Time</label>
+                                <input type="datetime-local" class="form-control" asp-for="PublishedAt" />
+                                <span asp-validation-for="PublishedAt" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Publication Status</label>
+                                <div class="form-check mt-2">
+                                    <input class="form-check-input" type="checkbox" asp-for="IsPublic" checked />
+                                    <label class="form-check-label" asp-for="IsPublic">
+                                        Make this news public
+                                    </label>
+                                </div>
+                                <div class="form-text">
+                                    Uncheck to save as draft
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-2 mt-4">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-save"></i> Create News
+                        </button>
+                        <button type="reset" class="btn btn-outline-secondary" onclick="resetForm()">
+                            <i class="fas fa-undo"></i> Reset
+                        </button>
+                        <a href="/news/list" class="btn btn-outline-info">
+                            <i class="fas fa-list"></i> View All News
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <!-- Preview Section -->
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0"><i class="fas fa-eye"></i> Live Preview</h5>
+            </div>
+            <div class="card-body">
+                <div id="newsPreview" class="news-preview">
+                    <h5 id="previewTitle" class="text-muted">@(string.IsNullOrEmpty(Model.Title) ? "News Title will appear here" : Model.Title)</h5>
+                    <hr>
+                    <div class="mb-2">
+                        <small class="text-muted">
+                            Type: <span id="previewType" class="badge bg-primary">@(string.IsNullOrEmpty(Model.Type) ? "Not selected" : Model.Type)</span>
+                        </small>
+                    </div>
+                    <div class="mb-2">
+                        <small class="text-muted">
+                            Station: <span id="previewStation">Not selected</span>
+                        </small>
+                    </div>
+                    <div class="mb-3">
+                        <small class="text-muted">
+                            Publish: <span id="previewDate">@(Model.PublishedAt == default ? "Not set" : Model.PublishedAt.ToString("yyyy-MM-dd HH:mm"))</span>
+                        </small>
+                    </div>
+                    <p id="previewContent" class="text-muted">
+                        @(string.IsNullOrEmpty(Model.Content) ? "News content will appear here as you type..." : Model.Content)
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Instructions Section -->
+        <div class="card mt-3">
+            <div class="card-header bg-warning text-dark">
+                <h5 class="mb-0"><i class="fas fa-lightbulb"></i> Writing Tips</h5>
+            </div>
+            <div class="card-body">
+                <ul class="small mb-0">
+                    <li>Use clear and descriptive titles</li>
+                    <li>Keep content concise and informative</li>
+                    <li>Include relevant weather station information</li>
+                    <li>Set appropriate publish date and time</li>
+                    <li>Review before publishing</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            initializeForm();
+        });
+
+        function initializeForm() {
+            const titleInput = document.getElementById('Title');
+            const contentInput = document.getElementById('Content');
+            const typeInput = document.getElementById('Type');
+            const titleCounter = document.getElementById('titleCounter');
+            const contentCounter = document.getElementById('contentCounter');
+
+            updateCounter(titleInput, titleCounter);
+            updateCounter(contentInput, contentCounter);
+
+            titleInput.addEventListener('input', function () {
+                updateCounter(this, titleCounter);
+                updatePreview();
+            });
+
+            contentInput.addEventListener('input', function () {
+                updateCounter(this, contentCounter);
+                updatePreview();
+            });
+
+            typeInput.addEventListener('input', function () {
+                // Limit type input to 10 characters
+                if (this.value.length > 10) {
+                    this.value = this.value.substring(0, 10);
+                }
+                updatePreview();
+            });
+
+            document.getElementById('Type').addEventListener('change', updatePreview);
+            document.getElementById('WeatherStationId').addEventListener('change', updatePreview);
+            document.getElementById('PublishedAt').addEventListener('change', updatePreview);
+            document.getElementById('IsPublic').addEventListener('change', updatePreview);
+
+            // Set default publish date to current datetime if not set
+            const publishedAtInput = document.getElementById('PublishedAt');
+            if (!publishedAtInput.value) {
+                const now = new Date();
+                now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+                publishedAtInput.value = now.toISOString().slice(0, 16);
+            }
+
+            updatePreview();
+        }
+
+        function updateCounter(input, counter) {
+            const maxLength = input.getAttribute('maxlength');
+            const currentLength = input.value.length;
+            counter.textContent = currentLength;
+
+            if (currentLength > maxLength * 0.8) {
+                counter.className = 'text-warning';
+            } else {
+                counter.className = 'text-muted';
+            }
+
+            if (currentLength >= maxLength) {
+                counter.className = 'text-danger';
+            }
+        }
+
+        function updatePreview() {
+            const title = document.getElementById('Title').value || 'News Title will appear here';
+            document.getElementById('previewTitle').textContent = title;
+
+            const type = document.getElementById('Type').value;
+            const typeBadge = document.getElementById('previewType');
+            if (type) {
+                typeBadge.textContent = type;
+                typeBadge.className = 'badge bg-primary';
+            } else {
+                typeBadge.textContent = 'Not selected';
+                typeBadge.className = 'badge bg-secondary';
+            }
+
+            const stationSelect = document.getElementById('WeatherStationId');
+            const selectedStation = stationSelect.options[stationSelect.selectedIndex];
+            const stationName = selectedStation.text !== 'Select Weather Station' ? selectedStation.text : 'Not selected';
+            document.getElementById('previewStation').textContent = stationName;
+
+            const publishDate = document.getElementById('PublishedAt').value;
+            if (publishDate) {
+                const date = new Date(publishDate);
+                document.getElementById('previewDate').textContent = date.toLocaleString();
+            } else {
+                document.getElementById('previewDate').textContent = 'Not set';
+            }
+
+            const content = document.getElementById('Content').value || 'News content will appear here as you type...';
+            document.getElementById('previewContent').textContent = content;
+
+            const isPublic = document.getElementById('IsPublic').checked;
+            const previewElement = document.getElementById('newsPreview');
+            if (isPublic) {
+                previewElement.style.opacity = '1';
+            } else {
+                previewElement.style.opacity = '0.6';
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('previewTitle').textContent = 'News Title will appear here';
+            document.getElementById('previewType').textContent = 'Not selected';
+            document.getElementById('previewType').className = 'badge bg-secondary';
+            document.getElementById('previewStation').textContent = 'Not selected';
+
+            // Reset to current date/time
+            const now = new Date();
+            now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+            document.getElementById('PublishedAt').value = now.toISOString().slice(0, 16);
+            document.getElementById('previewDate').textContent = 'Not set';
+
+            document.getElementById('previewContent').textContent = 'News content will appear here as you type...';
+            document.getElementById('newsPreview').style.opacity = '1';
+
+            document.getElementById('titleCounter').textContent = '0';
+            document.getElementById('contentCounter').textContent = '0';
+        }
+
+        document.getElementById('newsForm').addEventListener('submit', function (e) {
+            const requiredFields = [
+                { id: 'Title', name: 'Title' },
+                { id: 'Content', name: 'Content' },
+                { id: 'Type', name: 'News Type' },
+                { id: 'WeatherStationId', name: 'Weather Station' }
+            ];
+
+            let missingFields = [];
+
+            requiredFields.forEach(field => {
+                const element = document.getElementById(field.id);
+                if (!element.value.trim()) {
+                    missingFields.push(field.name);
+                }
+            });
+
+            if (missingFields.length > 0) {
+                e.preventDefault();
+                alert('Please fill in the following required fields:\n• ' + missingFields.join('\n• '));
+                return false;
+            }
+
+            // Validate type length
+            const typeValue = document.getElementById('Type').value;
+            if (typeValue.length > 10) {
+                e.preventDefault();
+                alert('News type cannot exceed 10 characters.');
+                return false;
+            }
+
+            const submitBtn = this.querySelector('button[type="submit"]');
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating...';
+            submitBtn.disabled = true;
+        });
+    </script>
+}

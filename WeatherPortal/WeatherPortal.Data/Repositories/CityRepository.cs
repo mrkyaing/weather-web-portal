@@ -14,15 +14,10 @@ namespace WeatherPortal.Data.Repositories
             _dbContext = dbContext;
         }
 
-        public IEnumerable<CityEntity> GetCityByRegion(string regionId)
+        public async Task<IEnumerable<CityEntity>> GetCityByRegion(string regionId)
         {
-            return _dbContext.Cities.Where(c => c.RegionId == regionId)
-                                    .Select(s => new CityEntity
-                                    {
-                                        Id = s.Id,
-                                        CityNameInEnglish = s.CityNameInEnglish,
-                                        CityNameInMyanmar = s.CityNameInMyanmar,
-                                    }).ToList();
+            return await _dbContext.Cities.Where(c => c.RegionId == regionId).ToListAsync();
+                                                                        
         }
 
         public async Task<CityEntity> GetCityByTownshipId(string townshipId)

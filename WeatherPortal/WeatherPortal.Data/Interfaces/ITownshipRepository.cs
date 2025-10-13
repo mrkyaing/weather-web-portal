@@ -6,6 +6,6 @@ namespace WeatherPortal.Data.Interfaces
     {
         IEnumerable<TownshipEntity> GetTownships();
         bool IsExistingTownship(string townshipNameInEnglish,string townshipNameInMyanmar);
-        IEnumerable<TownshipEntity> GetTownshipByCity(string cityId);
+        Task<IEnumerable<TownshipEntity>> GetTownshipByCity(string cityId);
     }
 }

@@ -49,8 +49,8 @@ namespace WeatherPortal.Service.Implements
 
         public async Task<IEnumerable<CityViewModel>> GetAll()
         {
-            var cities = (from c in _unitOfWork.Cities.GetAll().Result.ToList()
-                          join r in _unitOfWork.Regions.GetAll().Result.ToList()
+            var cities = (from c in await _unitOfWork.Cities.GetAll()
+                          join r in await _unitOfWork.Regions.GetAll()
                           on c.RegionId equals r.Id
                           select new CityViewModel
                           {
@@ -81,8 +81,8 @@ namespace WeatherPortal.Service.Implements
 
         public async Task<IEnumerable<CityViewModel>> GetCityByRegion(string regionId)
         {
-            var city = await Task.Run(() => _unitOfWork.Cities.GetCityByRegion(regionId)); // run background in Repository
-            var result = city.Select(s => new CityViewModel  // change entity to viewModel
+            var city = await _unitOfWork.Cities.GetCityByRegion(regionId); 
+            var result = city.Select(s => new CityViewModel  
                                         {
                                             Id = s.Id,
                                             RegionId = s.RegionId,

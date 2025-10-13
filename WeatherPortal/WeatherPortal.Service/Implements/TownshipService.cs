@@ -68,7 +68,7 @@ namespace WeatherPortal.Service.Implements
         }
         public async Task<IEnumerable<TownshipViewModel>> GetTwonshipByCity(string cityId)
         {
-           var townships = await Task.Run(()=> _unitOfWork.Townships.GetTownshipByCity(cityId)); // run background the repository
+            var townships = await _unitOfWork.Townships.GetTownshipByCity(cityId); 
             var result = townships.Select(t => new TownshipViewModel
                                             {
                                                 Id = t.Id,

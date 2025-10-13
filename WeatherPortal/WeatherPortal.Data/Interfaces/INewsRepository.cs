@@ -4,5 +4,6 @@ namespace WeatherPortal.Data.Interfaces
 {
     public interface INewsRepository:IBaseRepository<NewsEntity>
     {
+        Task<IEnumerable<NewsEntity>> GetNewsByWeatherStation(string weatherStationId);
     }
 }
