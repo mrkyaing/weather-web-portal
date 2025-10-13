@@ -7,6 +7,7 @@
         ITownshipRepository Townships {  get; }
         IWeatherStationRepository WeatherStations { get; }
         ISatelliteRadarImageRepository SatelliteRadarImages { get; }
+        INewsRepository News { get; }
         void Commit();
         void RollBack();
     }
