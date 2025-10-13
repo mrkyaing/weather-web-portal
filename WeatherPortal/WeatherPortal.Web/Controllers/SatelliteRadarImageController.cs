@@ -47,7 +47,6 @@ namespace WeatherPortal.Web.Controllers
                 ViewData["Info"] = "Error has satellite image creating : " + e.Message;
                 ViewData["Status"] = false;
             }
-            return View(vm);
         }
 
         public IActionResult Edit(string id)
@@ -84,10 +83,6 @@ namespace WeatherPortal.Web.Controllers
             var data = _satelliteRadarImageService.GetAll();
             return View(data);
         }
-        public IActionResult Delete(string id)
-        {
-            _satelliteRadarImageService.Delete(id);
-            return RedirectToAction("List");
         }
     }
 }
