@@ -16,7 +16,13 @@ namespace WeatherPortal.Data.Repositories
 
         public bool IsAlradyExist(string StationName)
         {
-            return _dbContext.WeatherStations.Any(x => x.StationName == StationName);
+            if (string.IsNullOrWhiteSpace(StationName))
+                return false;
+
+            string normalizedName = StationName.Replace(" ", "").ToLower();
+
+            return _dbContext.WeatherStations
+                .Any(x => x.StationName.Replace(" ", "").ToLower() == normalizedName);
         }
     }
 }
