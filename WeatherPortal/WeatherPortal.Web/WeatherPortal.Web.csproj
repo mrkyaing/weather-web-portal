@@ -26,4 +26,8 @@
 	<ProjectReference Include="..\WeatherPortal.Service\WeatherPortal.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\uploads\" />
+  </ItemGroup>
+
 </Project>

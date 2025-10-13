@@ -3,8 +3,7 @@
     ViewData["Title"] = "Weather Station List";
 }
 
-
-<h3 class="text-white mb-4">Weather Station List</h3>
+<h3 class="text-dark mb-4">Weather Station List</h3>
 
 @{
     var info = TempData["Info"];
@@ -23,8 +22,8 @@
 }
 
 <div class="table-responsive">
-    <table id="weatherStation" class="table table-hover table-dark align-middle text-center">
-        <thead class="bg-primary text-white">
+    <table id="weatherStation" class="table table-bordered table-striped">
+        <thead>
             <tr>
                 <th scope="col">NO.</th>
                 <th scope="col">Station Name</th>
@@ -75,9 +74,17 @@
 
 <a asp-controller="WeatherStation" asp-action="Entry" class="btn btn-warning mt-3">Add New Station</a>
 
-<script>
-    $(document).ready(function () {
-        $('#weatherStation').DataTable();
-    });
-</script>
+@section Scripts {
+    <script>
+        
+        const table = document.querySelector("#weatherStation");
+        const dataTable = new simpleDatatables.DataTable(table, {
+            searchable: true,
+            fixedHeight: false,
+            perPage: 10,
+            sortable: true
+       
+        });
+    </script>
+}
 
