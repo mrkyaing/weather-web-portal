@@ -56,7 +56,7 @@
                            onchange="previewImage(this)" />
                     <span class="text-danger">@Html.ValidationMessage("ImageFile")</span>
                     <div class="form-text">
-                        Supported formats: JPG, JPEG, PNG, GIF. Max file size: 5MB
+                        Supported formats: JPG, JPEG, PNG, GIF. Max file size: 50MB
                     </div>
                 </div>
 
@@ -82,7 +82,7 @@
                 <div class="mb-3">
                     <h6><i class="fas fa-image text-primary"></i> Image Requirements:</h6>
                     <ul class="small">
-                        <li>File size: Maximum 5MB</li>
+                        <li>File size: Maximum 50MB</li>
                         <li>Formats: JPG, PNG, GIF, BMP</li>
                         <li>Recommended resolution: 800x600 or higher</li>
                     </ul>
@@ -134,9 +134,9 @@
                     return;
                 }
 
-                // Validate file size (5MB)
-                if (file.size > 5 * 1024 * 1024) {
-                    alert('Error: File size must be less than 5MB');
+                // Validate file size (50MB)
+                if (file.size > 50 * 1024 * 1024) {
+                    alert('Error: File size must be less than 50MB');
                     input.value = '';
                     return;
                 }
@@ -205,9 +205,9 @@
             }
 
             // Validate file size again on submission
-            if (imageFile.size > 5 * 1024 * 1024) {
+            if (imageFile.size > 50 * 1024 * 1024) {
                 e.preventDefault();
-                alert('Error: File size must be less than 5MB');
+                alert('Error: File size must be less than 50MB');
                 return false;
             }
 
