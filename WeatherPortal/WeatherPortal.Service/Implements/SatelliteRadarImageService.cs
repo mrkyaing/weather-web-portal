@@ -21,6 +21,7 @@ namespace WeatherPortal.Service.Implements
                 ImageType = vm.ImageType,
                 WhenReadAt = vm.WhenReadAt,
                 Description = vm.Description,
+                ImageUrl = vm.ImageUrl ?? "/uploads/default-image.jpg", // Default value
                 IsActive = true
             };
             await _unitOfWork.SatelliteRadarImages.Create(entity);
