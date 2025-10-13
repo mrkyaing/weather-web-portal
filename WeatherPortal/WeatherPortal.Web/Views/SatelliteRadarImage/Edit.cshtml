@@ -1,0 +1,196 @@
+﻿@model SatelliteRadarImageViewModel
+
+@{
+    ViewData["Title"] = "Edit Satellite/Radar Image";
+}
+
+<h2>Edit Satellite/Radar Image</h2>
+
+@if (TempData["error"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @TempData["error"]
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Update" method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="ImageUrl" />
+            <input type="hidden" asp-for="CreatedAt" />
+
+            <div class="card p-4">
+                <h4 class="mb-4">Edit Image Information</h4>
+
+                <!-- Current Image Preview -->
+                <div class="mb-4 text-center">
+                    <label class="form-label fw-bold">Current Image</label>
+                    <div>
+                        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                        {
+                            <img src="@Model.ImageUrl" class="img-thumbnail" style="max-height: 300px; max-width: 100%;" alt="Current Image" />
+                            <div class="mt-2">
+                                <small class="text-muted">@Model.ImageUrl</small>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="alert alert-warning">
+                                No image currently uploaded
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Image Type</label>
+                    <input type="text" class="form-control" asp-for="ImageType" placeholder="Enter image type (e.g., Satellite, Radar)" />
+                    <span asp-validation-for="ImageType" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">When Read At</label>
+                    <input type="date" class="form-control" asp-for="WhenReadAt" />
+                    <span asp-validation-for="WhenReadAt" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-control" asp-for="Description" placeholder="Enter description" rows="4"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label">Update Image (Optional)</label>
+                    <input type="file" class="form-control" name="ImageFile"
+                           accept="image/*"
+                           onchange="previewImage(this)" />
+                    <div class="form-text">
+                        Leave empty to keep the current image. Only select a new file if you want to replace the existing image.
+                    </div>
+                </div>
+
+                <!-- New Image Preview -->
+                <div class="mb-3" id="newImagePreview" style="display: none;">
+                    <label class="form-label fw-bold">New Image Preview</label>
+                    <div class="text-center">
+                        <img id="imagePreview" class="img-thumbnail" style="max-height: 200px; max-width: 100%;" />
+                    </div>
+                </div>
+
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" asp-for="IsActive" />
+                    <label class="form-check-label" asp-for="IsActive">Active</label>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Update Image
+                    </button>
+                    <a asp-action="List" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Back to List
+                    </a>
+                    <a asp-action="Entry" class="btn btn-success">
+                        <i class="fas fa-plus"></i> Add New
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Sidebar Information -->
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">Image Information</h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <strong>Created At:</strong><br />
+                    <span class="text-muted">@Model.CreatedAt.ToString("yyyy-MM-dd")</span>
+                </div>
+                <div class="mb-3">
+                    <strong>Last Updated:</strong><br />
+                    <span class="text-muted">@Model.UpdatedAt.ToString("yyyy-MM-dd")</span>
+                </div>
+                <div class="mb-3">
+                    <strong>Status:</strong><br />
+                    @if (Model.IsActive)
+                    {
+                        <span class="badge bg-success">Active</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger">Inactive</span>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-3">
+            <div class="card-header bg-warning text-dark">
+                <h5 class="mb-0">Instructions</h5>
+            </div>
+            <div class="card-body">
+                <small>
+                    <ul class="list-unstyled">
+                        <li>✓ Fill in all required fields</li>
+                        <li>✓ Upload new image only if needed</li>
+                        <li>✓ Image will be resized automatically</li>
+                        <li>✓ Supported formats: JPG, PNG, GIF</li>
+                    </ul>
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        function previewImage(input) {
+            const preview = document.getElementById('imagePreview');
+            const previewContainer = document.getElementById('newImagePreview');
+
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    previewContainer.style.display = 'block';
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                previewContainer.style.display = 'none';
+                preview.src = '';
+            }
+        }
+
+        // Form validation
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const imageType = document.getElementById('ImageType').value;
+            const whenReadAt = document.getElementById('WhenReadAt').value;
+
+            if (!imageType.trim()) {
+                e.preventDefault();
+                alert('Please enter image type');
+                return false;
+            }
+
+            if (!whenReadAt) {
+                e.preventDefault();
+                alert('Please select date');
+                return false;
+            }
+        });
+
+        // Set max date to today
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('WhenReadAt').max = today;
+        });
+    </script>
+}

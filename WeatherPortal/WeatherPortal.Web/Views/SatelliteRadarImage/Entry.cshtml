@@ -1,55 +1,295 @@
 ﻿@model SatelliteRadarImageViewModel
 
 @{
-    ViewData["Title"] = "Satellite/Radar";
+    ViewData["Title"] = "Satellite Radar Image Form";
 }
-@{
-    var info = ViewData["Info"];
-
-}
-@if (info != null)
+@if (TempData["success"] != null)
 {
-    if (Convert.ToBoolean(ViewData["Status"]))
-    {
-        <div class="alert alert-success" role="alert">
-            @info
-        </div>
-    }
-    else
-    {
-        <div class="alert alert-danger" role="alert">
-            @info
-        </div>
-    }
+    <div class="alert alert-success">@TempData["success"]</div>
+}
+@if (TempData["error"] != null)
+{
+    <div class="alert alert-danger">@TempData["error"]</div>
+}
 
 <div class="row">
     <div class="col-md-6">
-        <form action="/satelliteRadarImage/entry" method="post" enctype="multipart/form-data">
+        <form asp-action="Entry" method="post" enctype="multipart/form-data">
             <div class="card p-3">
-                <h1>Satellite Image Upload Form</h1>
+                <h3>Satellite Image Upload Form</h3>
+
+                <!-- Image Preview Section -->
+                <div class="mb-3" id="imagePreviewSection" style="display: none;">
+                    <label class="form-label fw-bold">Image Preview</label>
+                    <div class="text-center border rounded p-3 bg-light">
+                        <img id="imagePreview" class="img-fluid rounded" style="max-height: 300px; object-fit: contain;" />
+                        <div class="mt-2">
+                            <small class="text-muted" id="fileInfo"></small>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-outline-danger mt-2" onclick="removeImage()">
+                            <i class="fas fa-times"></i> Remove Image
+                        </button>
+                    </div>
+                </div>
+
                 <div class="mb-3">
-                    <label class="form-label"> Image Type</label>
-                    <input type="text" class="form-control" name="ImageType" placeholder="Enter Type" />
+                    <label class="form-label">Image Type</label>
+                    <input type="text" class="form-control" asp-for="ImageType" placeholder="Enter Type (e.g., Satellite, Radar)" />
+                    <span asp-validation-for="ImageType" class="text-danger"></span>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">When Read At</label>
-                    <input type="datetime class="form-control" name="WhenReadAt" placeholder="Choose Date" />
+                    <input type="date" class="form-control" asp-for="WhenReadAt" placeholder="Choose Date" />
+                    <span asp-validation-for="WhenReadAt" class="text-danger"></span>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Description</label>
-                    <textarea type="number" class="form-control" name="Description" placeholder="Enter Description" rows="3"></textarea>
+                    <textarea class="form-control" asp-for="Description" placeholder="Enter Description" rows="3"></textarea>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label"> Image Upload</label>
-                    <input type="file" class="form-control" name="ImageFile" placeholder="Choose Image" />
+                    <label class="form-label">Image Upload</label>
+                    <input type="file" class="form-control" id="imageFileInput" name="ImageFile"
+                           accept="image/*" placeholder="Choose Image" required
+                           onchange="previewImage(this)" />
+                    <span class="text-danger">@Html.ValidationMessage("ImageFile")</span>
+                    <div class="form-text">
+                        Supported formats: JPG, JPEG, PNG, GIF. Max file size: 5MB
+                    </div>
                 </div>
 
-                <button class="btn btn-success mb-3" type="submit"> Save </button>
-                <a href="/region/list" class="btn btn-success"> Satellite Image List </a>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-success mb-3" type="submit">
+                        <i class="fas fa-save"></i> Save
+                    </button>
+                    <a href="/satelliteradarimage/list" class="btn btn-outline-secondary mb-3">
+                        <i class="fas fa-list"></i> Satellite Image List
+                    </a>
+                </div>
             </div>
         </form>
     </div>
+
+    <!-- Instructions Section -->
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="fas fa-info-circle"></i> Instructions</h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <h6><i class="fas fa-image text-primary"></i> Image Requirements:</h6>
+                    <ul class="small">
+                        <li>File size: Maximum 5MB</li>
+                        <li>Formats: JPG, PNG, GIF, BMP</li>
+                        <li>Recommended resolution: 800x600 or higher</li>
+                    </ul>
+                </div>
+                <div class="mb-3">
+                    <h6><i class="fas fa-check-circle text-success"></i> Best Practices:</h6>
+                    <ul class="small">
+                        <li>Use descriptive image types (e.g., "Weather Satellite", "Radar Map")</li>
+                        <li>Select the correct date when the image was captured</li>
+                        <li>Provide detailed descriptions for better organization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Preview Card (Initially hidden) -->
+        <div class="card mt-3" id="previewInfoCard" style="display: none;">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0"><i class="fas fa-eye"></i> Preview Ready</h5>
+            </div>
+            <div class="card-body">
+                <p class="small mb-2">Your image is ready for upload. Review the preview to ensure it looks correct.</p>
+                <div class="alert alert-info small mb-0">
+                    <i class="fas fa-lightbulb"></i> <strong>Tip:</strong> You can click "Remove Image" to select a different file.
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        function previewImage(input) {
+            const preview = document.getElementById('imagePreview');
+            const previewSection = document.getElementById('imagePreviewSection');
+            const fileInfo = document.getElementById('fileInfo');
+            const previewInfoCard = document.getElementById('previewInfoCard');
+
+            if (input.files && input.files[0]) {
+                const file = input.files[0];
+
+                // Validate file type
+                const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp'];
+                if (!allowedTypes.includes(file.type)) {
+                    alert('Error: Please select a valid image file (JPG, PNG, GIF, BMP)');
+                    input.value = '';
+                    return;
+                }
+
+                // Validate file size (5MB)
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('Error: File size must be less than 5MB');
+                    input.value = '';
+                    return;
+                }
+
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    previewSection.style.display = 'block';
+                    previewInfoCard.style.display = 'block';
+
+                    // Display file information
+                    const fileSize = (file.size / 1024 / 1024).toFixed(2);
+                    fileInfo.textContent = `File: ${file.name} | Size: ${fileSize} MB | Type: ${file.type}`;
+
+                    // Auto-fill image type if empty
+                    const imageTypeInput = document.getElementById('ImageType');
+                    if (!imageTypeInput.value.trim()) {
+                        const fileName = file.name.replace(/\.[^/.]+$/, ""); // Remove extension
+                        imageTypeInput.value = fileName.charAt(0).toUpperCase() + fileName.slice(1);
+                    }
+                }
+
+                reader.onerror = function() {
+                    alert('Error reading file. Please try again.');
+                    input.value = '';
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                previewSection.style.display = 'none';
+                previewInfoCard.style.display = 'none';
+                preview.src = '';
+                fileInfo.textContent = '';
+            }
+        }
+
+        function removeImage() {
+            const input = document.getElementById('imageFileInput');
+            const previewSection = document.getElementById('imagePreviewSection');
+            const previewInfoCard = document.getElementById('previewInfoCard');
+
+            input.value = '';
+            previewSection.style.display = 'none';
+            previewInfoCard.style.display = 'none';
+            document.getElementById('imagePreview').src = '';
+            document.getElementById('fileInfo').textContent = '';
+        }
+
+        // Form submission validation
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const imageFile = document.getElementById('imageFileInput').files[0];
+
+            if (!imageFile) {
+                e.preventDefault();
+                alert('Please select an image file to upload.');
+                return false;
+            }
+
+            // Validate file type again on submission
+            const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp'];
+            if (!allowedTypes.includes(imageFile.type)) {
+                e.preventDefault();
+                alert('Error: Please select a valid image file (JPG, PNG, GIF, BMP)');
+                return false;
+            }
+
+            // Validate file size again on submission
+            if (imageFile.size > 5 * 1024 * 1024) {
+                e.preventDefault();
+                alert('Error: File size must be less than 5MB');
+                return false;
+            }
+
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Uploading...';
+            submitBtn.disabled = true;
+        });
+
+        // Set max date to today
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('WhenReadAt').max = today;
+
+            // Set default date to today if empty
+            if (!document.getElementById('WhenReadAt').value) {
+                document.getElementById('WhenReadAt').value = today;
+            }
+        });
+
+        // Drag and drop functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileInput = document.getElementById('imageFileInput');
+            const previewSection = document.getElementById('imagePreviewSection');
+
+            // Prevent default drag behaviors
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                previewSection.addEventListener(eventName, preventDefaults, false);
+                document.body.addEventListener(eventName, preventDefaults, false);
+            });
+
+            // Highlight drop area when item is dragged over it
+            ['dragenter', 'dragover'].forEach(eventName => {
+                previewSection.addEventListener(eventName, highlight, false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                previewSection.addEventListener(eventName, unhighlight, false);
+            });
+
+            // Handle dropped files
+            previewSection.addEventListener('drop', handleDrop, false);
+
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            function highlight() {
+                previewSection.classList.add('bg-info', 'bg-opacity-25');
+            }
+
+            function unhighlight() {
+                previewSection.classList.remove('bg-info', 'bg-opacity-25');
+            }
+
+            function handleDrop(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+
+                if (files.length > 0) {
+                    fileInput.files = files;
+                    previewImage(fileInput);
+                }
+            }
+        });
+    </script>
+
+    <style>
+        #imagePreviewSection {
+            transition: all 0.3s ease;
+        }
+
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Drag and drop styling */
+        #imagePreviewSection.drag-over {
+            border: 2px dashed #0d6efd !important;
+            background-color: rgba(13, 110, 253, 0.1) !important;
+        }
+    </style>
+}
