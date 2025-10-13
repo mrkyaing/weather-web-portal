@@ -38,7 +38,7 @@ namespace WeatherPortal.Data.Repositories
 
         public bool IsExistingTownship(string townshipNameInEnglish, string townshipNameInMyanmar)
         {
-           return _dbContext.Townships.Where(t =>t.TownshipNameInEnglish == townshipNameInEnglish &&
+           return _dbContext.Townships.Where(t =>t.TownshipNameInEnglish == townshipNameInEnglish ||
                                                   t.TownshipNameInMyanmar == townshipNameInMyanmar)
                                       .Any();
         }

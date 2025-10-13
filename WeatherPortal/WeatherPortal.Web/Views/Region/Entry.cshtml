@@ -1,11 +1,96 @@
 ﻿@model RegionViewModel
 
-<h1>Region Entry</h1>
+@{
+    ViewData["Title"] = "Region";
+}
+@{
+    var info = ViewData["Info"];
 
-<form action="/entry" method="post">
+}
+@if (info != null)
+{
+    if (Convert.ToBoolean(ViewData["Status"]))
+    {
+        <div class="alert alert-success" role="alert">
+            @info
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            @info
+        </div>
+    }
+}
 
-    <div>
+    <div class="row">
+        <div class="col-md-6">
+            <form action="/region/entry" method="post">
+                <div class="card p-3">
+                    <h1>Region Entry</h1>
+                    <div class="mb-3">
+                        <label class="form-label"> Region Name In English </label>
+                        <input type="text" class="form-control" name="RegionNameInEnglish" placeholder="Enter Region Name in English" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Region Name Myanmar  </label>
+                        <input type="text" class="form-control" name="RegionNameInMyanmar" placeholder="Enter Region Name in Myanmar" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Order Code  </label>
+                        <input type="number" class="form-control" name="OrderCode" placeholder="Enter Region Code" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Region Type  </label>
+                        <input type="text" class="form-control" name="RegionType" placeholder="Enter Division (D) or State (S)" />
+                    </div>
+
+                    <button class="btn btn-success mb-3" type="submit"> Save </button>
+                    <a href="/region/list" class="btn btn-success"> Region Information List </a>
+                </div>
+            </form>
+        </div>
+        <!--
+            <div class="col-md-8">
+                <div class="card p-3">
+                    <h1>Region List</h1>
+                    <table class="table table-bordered">
+                        <thead class="table-dark text-white">
+                            <tr>
+                                <th>No</th>
+                                <th>English Name</th>
+                                <th>Myanmar Name</th>
+                                <th>Code</th>
+                                <th>Type</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-white">
+                           {
+                                int i = 1;
+                            }
+
+                            foreach (var region in Model.RegionList)
+                            {
+                                <tr>
+                                    <td>i</td>
+                                    <td>region.RegionNameInEnglish</td>
+                                    <td>region.RegionNameInMyanmar</td>
+                                    <td>region.Code</td>
+                                    <td>region.RegionType</td>
+                                    <td>
+                                        <!-- <a href="/region/edit/region.Id" class="btn btn-sm btn-primary">Edit</a>
+                                    </td>
+                                </tr>
+                                i++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        -->
 
     </div>
-
-</form>

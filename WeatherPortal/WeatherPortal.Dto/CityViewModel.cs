@@ -6,6 +6,7 @@
         public  string CityNameInEnglish { get; set; }
         public string CityNameInMyanmar { get; set; }
         public string RegionId { get; set; }
-        public DateTime UpdateAt { get; set; } = DateTime.Now;
+        public string RegionNameInEnglish { get; set; }
+        public string RegionNameInMyanmar { get; set; }
     }
 }

@@ -27,12 +27,13 @@ namespace WeatherPortal.Service.Implements
             _unitOfWork.Commit();
         }
 
-        public void Delete(string townshipId)
+        public async Task Delete(string townshipId)
         {
-            var existingTownship = _unitOfWork.Townships.GetBy(t => t.Id == townshipId).Result.FirstOrDefault();
-            if (existingTownship != null) 
+            var existingTownship = await _unitOfWork.Townships.GetBy(t => t.Id == townshipId);
+            var existingTownshipResult = existingTownship.SingleOrDefault();
+            if (existingTownshipResult != null) 
             {
-                _unitOfWork.Townships.Delete(existingTownship);
+                _unitOfWork.Townships.Delete(existingTownshipResult);
                 _unitOfWork.Commit();
             }
         }
@@ -47,7 +48,9 @@ namespace WeatherPortal.Service.Implements
                                 Id = t.Id,
                                 CityId = c.Id,
                                 TownshipNameInEnglish = t.TownshipNameInEnglish,
-                                TownshipNameInMyanmar = t.TownshipNameInMyanmar
+                                TownshipNameInMyanmar = t.TownshipNameInMyanmar,
+                                CityNameInEnglish = c.CityNameInEnglish,
+                                CityNameInMyanmar = c.CityNameInMyanmar
                             }).ToList();
             return township;
         }
@@ -81,19 +84,20 @@ namespace WeatherPortal.Service.Implements
             return _unitOfWork.Townships.IsExistingTownship(townshipViewModel.TownshipNameInEnglish,townshipViewModel.TownshipNameInMyanmar);
         }
 
-        public void Update(TownshipViewModel townshipViewModel)
+        public async Task Update(TownshipViewModel townshipViewModel)
         {
-            var existingTownships = _unitOfWork.Townships.GetBy(t => t.Id ==  townshipViewModel.Id).Result.FirstOrDefault();
-            if(existingTownships == null)
+            var existingTownships = await _unitOfWork.Townships.GetBy(t => t.Id ==  townshipViewModel.Id);
+            var existingTownship = existingTownships.FirstOrDefault();
+            if (existingTownships == null)
             {
                 throw new Exception("Not found Township to update");
             }
-            existingTownships.TownshipNameInEnglish = townshipViewModel.TownshipNameInEnglish;
-            existingTownships.TownshipNameInMyanmar = townshipViewModel.TownshipNameInMyanmar;
-            existingTownships.CityId = townshipViewModel.CityId;
-            existingTownships.IsActive = true;
-            existingTownships.UpdatedAt = DateTime.Now;
-            _unitOfWork.Townships.Update(existingTownships);
+            existingTownship.TownshipNameInEnglish = townshipViewModel.TownshipNameInEnglish;
+            existingTownship.TownshipNameInMyanmar = townshipViewModel.TownshipNameInMyanmar;
+            existingTownship.CityId = townshipViewModel.CityId;
+            existingTownship.IsActive = true;
+            existingTownship.UpdatedAt = DateTime.Now;
+            _unitOfWork.Townships.Update(existingTownship);
             _unitOfWork.Commit();
         }
     }

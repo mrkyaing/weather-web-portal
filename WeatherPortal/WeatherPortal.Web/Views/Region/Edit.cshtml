@@ -1,0 +1,57 @@
+﻿@model RegionViewModel
+
+@{
+    ViewData["Title"] = "Region";
+}
+@{
+    var info = ViewData["Info"];
+
+}
+@if (info != null)
+{
+    if (Convert.ToBoolean(ViewData["Status"]))
+    {
+        <div class="alert alert-success" role="alert">
+            @info
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            @info
+        </div>
+    }
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <form action="/region/update" method="post">
+            <div class="card p-3">
+                <h1>Region Update</h1>
+                <input type="text" class="form-control" value="@Model.Id" name="Id" hidden />
+                <div class="mb-3">
+                    <label class="form-label"> Region Name In English </label>
+                    <input type="text" class="form-control" value="@Model.RegionNameInEnglish" name="RegionNameInEnglish" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Region Name Myanmar  </label>
+                    <input type="text" class="form-control" name="RegionNameInMyanmar" value="@Model.RegionNameInMyanmar" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label"> Order Code </label>
+                    <input type="number" class="form-control" name="Code" value="@Model.OrderCode"/>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Region Type  </label>
+                    <input type="text" class="form-control" name="RegionType" value="@Model.RegionType" />
+                </div>
+
+                <button class="btn btn-success mb-3" type="submit"> Update </button>
+                <a href="/region/Entry" class="btn btn-success"> Entry </a>
+            </div>
+        </form>
+    </div>
+</div>

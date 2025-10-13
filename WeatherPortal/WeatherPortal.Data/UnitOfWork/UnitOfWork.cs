@@ -34,7 +34,6 @@ namespace WeatherPortal.Data.UnitOfWork
             Townships = townshipRepository;
             //WeatherStations = weatherStationRepository;
         }
-         
         public void Commit()
         {
             _dbContext.SaveChanges();
