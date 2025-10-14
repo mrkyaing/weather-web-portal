@@ -14,6 +14,13 @@ namespace WeatherPortal.Data.Repositories
             this._dbContext = dbContext;
         }
 
+        public async Task<WeatherStationEntity> GetCityByStation(string WeatherStationId)
+            {
+             return await _dbContext.WeatherStations
+           .Include(w => w.City) 
+           .FirstOrDefaultAsync(w => w.Id == WeatherStationId);
+        }
+
         public bool IsAlradyExist(string StationName)
         {
             if (string.IsNullOrWhiteSpace(StationName))

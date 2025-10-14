@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace WeatherPortal.Dto
+﻿namespace WeatherPortal.Dto
 {
     public class WeatherStationViewModel
     {
