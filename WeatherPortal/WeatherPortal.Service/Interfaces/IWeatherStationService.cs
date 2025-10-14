@@ -11,8 +11,9 @@ namespace WeatherPortal.Service.Interfaces
         void Delete(string WeatherStationId);
         void Update(WeatherStationViewModel weatherStationViewModel);
         bool IsAlradyExist(WeatherStationViewModel weatherStationViewModel);
-       
-       
+        Task<WeatherStationEntity> GetCityByStation(string weatherStationId);
+
+
 
     }
 }

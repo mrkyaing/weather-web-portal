@@ -1,0 +1,88 @@
+﻿@model IEnumerable<WeatherPortal.Dto.AlertViewModel>
+@{
+    ViewData["Title"] = "Alert List";
+}
+
+<h3 class="text-dark mb-4">Alert List</h3>
+
+@{
+    var info = TempData["Info"];
+}
+
+@if (info != null)
+{
+    if (Convert.ToBoolean(TempData["Status"]))
+    {
+        <div class="alert alert-success" role="alert">@info</div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">@info</div>
+    }
+}
+
+<div class="table-responsive">
+    <table id="alert" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th scope="col">NO.</th>
+                <th scope="col">Alert Type</th>
+                <th scope="col">Message</th>
+                <th scope="col">Weather Station</th>
+                <th scope="col">City</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                int i = 1;
+                foreach (var alert in Model)
+                {
+                    <tr>
+                        <th>@i</th>
+                        <td>@alert.AlertType</td>
+                        <td>@alert.Message</td>
+                        <td>@alert.StationName</td>
+                        <td>@alert.CityNameInEnglish</td>
+                        <td>
+                            <a asp-controller="Alert" asp-action="Edit" asp-route-Id="@alert.Id"
+                               class="btn btn-sm btn-success me-1" title="Edit">
+                                <i class="fas fa-pen"></i>
+                            </a>
+                            <a asp-controller="Alert" asp-action="Delete" asp-route-Id="@alert.Id"
+                               class="btn btn-sm btn-danger" title="Delete"
+                               onclick="return confirm('Are you sure you want to delete?');">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    i++;
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="text-center text-warning">There is no alert station data available!</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<a asp-controller="Alert" asp-action="Entry" class="btn btn-warning mt-3">Add New Alert</a>
+
+@section Scripts {
+    <script>
+        
+        const table = document.querySelector("#alert");
+        const dataTable = new simpleDatatables.DataTable(table, {
+            searchable: true,
+            fixedHeight: false,
+            perPage: 10,
+            sortable: true
+       
+        });
+    </script>
+}
+

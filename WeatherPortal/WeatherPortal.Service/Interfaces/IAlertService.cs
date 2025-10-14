@@ -11,5 +11,6 @@ namespace WeatherPortal.Service.Interfaces
         void Update(AlertViewModel alertViewModel);
         bool IsAlradyExist(AlertViewModel alertViewModel);
 
+
     }
 }

@@ -87,7 +87,10 @@ namespace WeatherPortal.Service.Implements
             }).SingleOrDefault();
         }
 
-       
+        public async Task<WeatherStationEntity> GetCityByStation(string weatherStationId)
+        {
+            return await _unitOfWork.WeatherStations.GetCityByStation(weatherStationId);
+        }
 
         public bool IsAlradyExist(WeatherStationViewModel weatherStationViewModel)
         {
