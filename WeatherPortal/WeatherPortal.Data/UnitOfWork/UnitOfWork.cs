@@ -29,7 +29,14 @@ namespace WeatherPortal.Data.UnitOfWork
                 return _alertRepository=_alertRepository ?? new AlertRepository(_dbContext);
             }
         }
-
+        private IWeatherReadingRepository _weatherReadingRepository;
+        public IWeatherReadingRepository weatherReadings
+        {
+            get
+            {
+                return _weatherReadingRepository=_weatherReadingRepository ?? new WeatherReadingRepository(_dbContext);
+            }
+        }
         public UnitOfWork(ApplicationDbContext dbContext,
                           IRegionRepository regionRepository,
                           ICityRepository cityRepository ,
