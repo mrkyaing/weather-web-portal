@@ -91,5 +91,65 @@ namespace WeatherPortal.Web.Controllers
                 return View(new List<NewsViewModel>());
             }
         }
+        public async Task<IActionResult> Delete(string id)
+        {
+            try
+            {
+                await _newsService.Delete(id);
+                TempData["Info"] = "News deleted successfully";
+                TempData["Status"] = true;
+            }
+            catch (Exception ex)
+            {
+                TempData["Info"] = "Error in deleting News :" + ex.Message;
+                TempData["Status"] = false;
+            }
+
+            return RedirectToAction("List");
+        }
+
+        public async Task<IActionResult> Edit(string id) 
+        {
+            var news = await _newsService.GetById(id);
+            if (news == null) { 
+                TempData["Info"] = "News not found to edit";
+                TempData["Status"] = false;
+                return RedirectToAction("List");
+            }
+            ViewBag.WeatherStation = await _weatherStationService.GetAll();
+            return View(news);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Update(NewsViewModel newsViewModel) 
+        {
+            try
+            {
+                // Clear ModelState errors for non-required fields
+                ModelState.Remove("WeatherStationName");
+                ModelState.Remove("UpdatedAt");
+                if (!ModelState.IsValid)
+                {
+                    var errors = ModelState.Values
+                        .SelectMany(v => v.Errors)
+                        .Select(e => e.ErrorMessage)
+                        .ToList();
+                    TempData["Info"] = "Please fix the validation errors: " + string.Join(", ", errors);
+                    TempData["Status"] = false;
+                    ViewBag.WeatherStation =await _weatherStationService.GetAll();
+                    return View("Edit", newsViewModel);
+                }
+                await _newsService.Update(newsViewModel);
+                TempData["Info"] = "News updated successfully";
+                TempData["Status"] = true;
+                return RedirectToAction("List");
+            }
+            catch (Exception ex)
+            {
+                TempData["Info"] = "Error in updating News :" + ex.Message;
+                TempData["Status"] = false;
+                ViewBag.WeatherStation = _weatherStationService.GetAll().Result;
+                return View("Edit", newsViewModel);
+            }
+        }
     }
 }

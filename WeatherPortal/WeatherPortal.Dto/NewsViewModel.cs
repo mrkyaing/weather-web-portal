@@ -16,6 +16,7 @@ namespace WeatherPortal.Dto
 
         [Required(ErrorMessage = "Type is required")]
         public string Type { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         public DateTime PublishedAt { get; set; } = DateTime.Now;
 
