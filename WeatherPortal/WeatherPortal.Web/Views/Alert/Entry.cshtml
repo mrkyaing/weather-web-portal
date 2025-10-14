@@ -1,0 +1,98 @@
+﻿@{
+    ViewData["Title"] = "Alert";
+}
+<h3 class="card-title text-center mb-4">Create New Alert</h3>
+@if (ViewData["info"] != null)
+{
+    if (Convert.ToBoolean(ViewData["status"]))
+    {
+        <div class="alert alert-success" role="alert">
+            @ViewData["info"]
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewData["info"]
+        </div>
+    }
+}
+<div class="card">
+    <div class="card-body">   
+       <form asp-controller="Alert" asp-action="Entry" method="post">
+
+                <div class="mb-3">
+                    <label class="form-label">Alert Type</label>
+                    <input type="text" class="form-control" placeholder="Fill the Alert Type" name="AlertType" required>
+                </div>
+            <div class="mb-3">
+                <label class="form-label">Message</label>
+                <textarea class="form-control" name="Message"></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Weather Station Name</label>
+                <select class="form-select" id="stationselect" name="WeatherStationId">
+                    <option value="">Select the Weather Station</option>
+                    @foreach (var station in ViewBag.Station)
+                    {
+                        <option value="@station.Id">@station.StationName</option>
+                    }
+                </select>
+            </div>
+                <div class="mb-3">
+                    <label class="form-label">City</label>
+                    <select class="form-select" id="cityselect" name="CityId" required>
+                        <option value="">Select the City</option>
+                        @foreach (var city in ViewBag.City)
+                        {
+                            <option value="@city.Id">@city.CityNameInEnglish</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-warning w-45">Add Alert Type</button>
+                    <a asp-controller="Alert" asp-action="List" class="btn btn-secondary w-45">Go to List</a>
+                </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#stationselect").change(function () {
+                var stationId = $(this).val();
+
+                // Clear city dropdown if no station selected
+                if (!stationId) {
+                    $("#cityselect").val("");
+                    return;
+                }
+
+                $.ajax({
+                    url: '@Url.Action("GetCityByStation", "Alert")',
+                    type: 'GET',
+                    data: { stationId: stationId },
+                    success: function (data) {
+                        if (data && data.cityId) {
+                            // Automatically select the linked city
+                            $("#cityselect").val(data.cityId);
+                        } else {
+                            $("#cityselect").val("");
+                            alert("No city found for this weather station.");
+                        }
+                    },
+                    error: function () {
+                        alert("Error while loading city data. Please try again.");
+                    }
+                });
+            });
+        });
+    </script>
+}
+
+
+

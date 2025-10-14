@@ -1,0 +1,102 @@
+﻿@model IEnumerable<WeatherPortal.Dto.WeatherReadingViewModel>
+@{
+    ViewData["Title"] = "Weather Reading List";
+}
+
+<h3 class="text-dark mb-4">Weather Reading List</h3>
+
+@{
+    var info = TempData["Info"];
+}
+
+@if (info != null)
+{
+    if (Convert.ToBoolean(TempData["Status"]))
+    {
+        <div class="alert alert-success" role="alert">@info</div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">@info</div>
+    }
+}
+
+<div class="table-responsive">
+    <table id="weatherReading" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th scope="col">NO.</th>
+                <th scope="col">Station</th>
+                <th scope="col">Date & Time</th>
+                <th scope="col">Temp Max (°C)</th>
+                <th scope="col">Temp Min (°C)</th>
+                <th scope="col">Pressure (hPa)</th>
+                <th scope="col">Humidity (%)</th>
+                <th scope="col">Wind (Speed/Dir)</th>
+                <th scope="col">Rainfall (mm)</th>
+                <th scope="col">Present Weather</th>
+                <th scope="col">Sea Weather</th>
+                <th scope="col">Actions</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                int i = 1;
+                foreach (var reading in Model)
+                {
+                    <tr>
+                        <th>@i</th>
+                        <td>@reading.StationName</td>
+                        <td>@reading.WhenReadAt?.ToString("yyyy-MM-dd HH:mm")</td>
+                        <td>@reading.TemperatureMax</td>
+                        <td>@reading.TemperatureMin</td>
+                        <td>@reading.Pressure</td>
+                        <td>@reading.Humidity</td>
+                        <td>@reading.WindSpeed @reading.WindDirection</td>
+                        <td>@reading.Rainfall</td>
+                        <td>@reading.PresentWeather</td>
+                        <td>@reading.SeaWeather</td>
+                      
+                        <td>
+                            <a asp-controller="WeatherReading" asp-action="Edit" asp-route-Id="@reading.Id"
+                               class="btn btn-sm btn-success me-1" title="Edit">
+                                <i class="fas fa-pen"></i>
+                            </a>
+                           
+                        </td>
+                        <td>
+                            <a asp-controller="WeatherReading" asp-action="Delete" asp-route-Id="@reading.Id"
+                               class="btn btn-sm btn-danger" title="Delete"
+                               onclick="return confirm('Are you sure you want to delete this reading?');">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    i++;
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="13" class="text-center text-warning">No weather reading data available!</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<a asp-controller="WeatherReading" asp-action="Entry" class="btn btn-warning mt-3">Add New Reading</a>
+
+@section Scripts {
+    <script>
+        const table = document.querySelector("#weatherReading");
+        const dataTable = new simpleDatatables.DataTable(table, {
+            searchable: true,
+            fixedHeight: false,
+            perPage: 10,
+            sortable: true
+        });
+    </script>
+}

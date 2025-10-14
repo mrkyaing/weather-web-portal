@@ -1,0 +1,122 @@
+﻿@model AlertViewModel
+@{
+    ViewData["Title"] = "Station";
+}
+<h3 class="card-title text-center mb-4">Edit Alert </h3>
+@if (TempData["info"] != null)
+    {
+     if (Convert.ToBoolean(TempData["status"]))
+         {
+          <div class="alert alert-success" role="alert">
+                @TempData["info"]
+          </div>
+      }
+     else
+         {
+         <div class="alert alert-danger" role="alert">
+                @TempData["info"]
+         </div>
+         }
+     }
+
+<div class="card">
+    <div class="card-body">
+        <form asp-controller="Alert" asp-action="Update" method="post">
+            <input type="hidden" name="Id" value="@Model.Id" />
+            <div class="mb-3">
+                <label class="form-label">Alert Type</label>
+                <input type="text" class="form-control" placeholder="Fill the Alert Type" name="AlertType" value="@Model.AlertType" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Message</label>
+                <textarea class="form-control" name="Message" >@Model.Message</textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Weather Station Name</label>
+                <select class="form-select" id="stationselect" name="WeatherStationId">
+                    @if (Model.WeatherStationId == null)
+                    {
+                        <option value="" selected>Select the Weather Station</option>
+                    }
+                    else
+                    {
+                        <option value="">Select the Weather Station</option>
+                    }
+
+                    @foreach (var station in ViewBag.Station)
+                    {
+                        if (station.Id == Model.WeatherStationId)
+                        {
+                            <option value="@station.Id" selected>@station.StationName</option>
+                        }
+                        else
+                        {
+                            <option value="@station.Id">@station.StationName</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">City</label>
+                <select class="form-select" id="cityselect" name="CityId" required>
+                    <option value="">Select the City</option>
+                    @foreach (var city in ViewBag.City)
+                    @if(city.Id==Model.CityId)
+                    {
+                            <option value="@city.Id"selected>@city.CityNameInEnglish</option>
+                    }
+                    else
+                    {
+                            <option value="@city.Id">@city.CityNameInEnglish</option>
+                            
+                    }
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-warning w-45">Update Alert Type</button>
+                <a asp-controller="Alert" asp-action="List" class="btn btn-secondary w-45">Go to List</a>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#stationselect").change(function () {
+                var stationId = $(this).val();
+                if (!stationId) {
+                    $("#cityselect").val("");
+                    return;
+                }
+
+                $.ajax({
+                    url: '@Url.Action("GetCityByStation", "Alert")',
+                    type: 'GET',
+                    data: { stationId: stationId },
+                    success: function (data) {
+                        if (data && data.cityId) {
+                            $("#cityselect").val(data.cityId);
+                        } else {
+                            $("#cityselect").val("");
+                            alert("No city found for this weather station.");
+                        }
+                    },
+                    error: function () {
+                        alert("Error while loading city data. Please try again.");
+                    }
+                });
+            });
+        });
+    </script>
+}
+
+
+
+
+
+
+

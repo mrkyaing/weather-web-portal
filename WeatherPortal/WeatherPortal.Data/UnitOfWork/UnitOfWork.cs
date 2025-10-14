@@ -22,7 +22,22 @@ namespace WeatherPortal.Data.UnitOfWork
                 return _weatherStationRepository = _weatherStationRepository ?? new WeatherStationRepository(_dbContext);
             }
         }
-
+        private IAlertRepository _alertRepository;
+        public IAlertRepository Alerts
+        {
+            get
+            {
+                return _alertRepository=_alertRepository ?? new AlertRepository(_dbContext);
+            }
+        }
+        private IWeatherReadingRepository _weatherReadingRepository;
+        public IWeatherReadingRepository weatherReadings
+        {
+            get
+            {
+                return _weatherReadingRepository=_weatherReadingRepository ?? new WeatherReadingRepository(_dbContext);
+            }
+        }
         public UnitOfWork(ApplicationDbContext dbContext,
                           IRegionRepository regionRepository,
                           ICityRepository cityRepository ,

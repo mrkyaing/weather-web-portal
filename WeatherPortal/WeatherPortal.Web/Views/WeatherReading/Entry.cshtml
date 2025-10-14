@@ -1,0 +1,106 @@
+﻿@{
+    ViewData["Title"] = "Weather Reading";
+}
+
+<h3 class="card-title text-center mb-4">Add New Weather Reading</h3>
+
+@if (ViewData["info"] != null)
+{
+    if (Convert.ToBoolean(ViewData["status"]))
+    {
+        <div class="alert alert-success" role="alert">
+            @ViewData["info"]
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewData["info"]
+        </div>
+    }
+}
+
+<div class="card">
+    <div class="card-body">
+        <form asp-controller="WeatherReading" asp-action="Entry" method="post">
+            <!-- Row 1: Station, Date & Time, Max Temp -->
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label class="form-label">Station</label>
+                    <select class="form-select" name="StationId" required>
+                        <option value="">Select Station</option>
+                        @foreach (var station in ViewBag.Station)
+                        {
+                            <option value="@station.Id">@station.StationName</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Reading Date & Time</label>
+                    <input type="date" class="form-control" name="WhenReadAt" >
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Max Temperature (°C)</label>
+                    <input type="number" class="form-control" name="TemperatureMax" step="0.01">
+                </div>
+            </div>
+
+            <!-- Row 2: Min Temp, Pressure, Humidity -->
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label class="form-label">Min Temperature (°C)</label>
+                    <input type="number" class="form-control" name="TemperatureMin" step="0.01">
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Pressure (hPa)</label>
+                    <input type="number" class="form-control" name="Pressure" step="0.01">
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Humidity (%)</label>
+                    <input type="number" class="form-control" name="Humidity" step="0.01">
+                </div>
+            </div>
+
+            <!-- Row 3: Wind Speed, Wind Direction, Rainfall -->
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label class="form-label">Wind Speed (m/s)</label>
+                    <input type="number" class="form-control" name="WindSpeed" step="0.01">
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Wind Direction</label>
+                    <input type="text" class="form-control" name="WindDirection" maxlength="10" placeholder="e.g. N, NE">
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Rainfall (mm)</label>
+                    <input type="number" class="form-control" name="Rainfall" step="0.01">
+                </div>
+            </div>
+
+            <!-- Row 4: Present Weather, Sea Weather, Active -->
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label class="form-label">Present Weather</label>
+                    <input type="text" class="form-control" name="PresentWeather" maxlength="100" placeholder="e.g. Sunny, Cloudy">
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Sea Weather</label>
+                    <input type="text" class="form-control" name="SeaWeather" maxlength="100">
+                </div>
+
+                <div class="col-md-4 d-flex align-items-end">
+                    <button type="submit" class="btn btn-warning me-2">Add Reading</button>
+                    <a asp-controller="WeatherReading" asp-action="List" class="btn btn-secondary">Go to List</a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

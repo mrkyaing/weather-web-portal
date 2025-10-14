@@ -8,6 +8,8 @@
         IWeatherStationRepository WeatherStations { get; }
         ISatelliteRadarImageRepository SatelliteRadarImages { get; }
         INewsRepository News { get; }
+        IAlertRepository Alerts { get; }
+        IWeatherReadingRepository weatherReadings { get; }
         void Commit();
         void RollBack();
     }
