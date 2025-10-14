@@ -19,7 +19,8 @@ namespace WeatherPortal.Service.Implements
                 Id = Guid.NewGuid().ToString(),
                 RegionNameInEnglish = regionVm.RegionNameInEnglish,
                 RegionNameInMyanmar = regionVm.RegionNameInMyanmar,
-                RegionType = regionVm.RegionType,
+                RegionType = regionVm.RegionType == "Division" ? "D" : 
+                             regionVm.RegionType == "State" ? "S" : regionVm.RegionType,
                 IsActive = true,
                 CreatedAt = DateTime.Now,
                 OrderCode = regionVm.OrderCode,               

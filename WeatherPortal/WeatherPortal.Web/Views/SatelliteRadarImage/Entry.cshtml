@@ -57,6 +57,7 @@
                     <span class="text-danger">@Html.ValidationMessage("ImageFile")</span>
                     <div class="form-text">
                         Supported formats: JPG, JPEG, PNG, GIF. Max file size: 50MB
+                        Supported formats: JPG, JPEG, PNG, GIF. Max file size: 50MB
                     </div>
                 </div>
 
@@ -134,7 +135,7 @@
                     return;
                 }
 
-                // Validate file size (50MB)
+                // Validate file size (5MB)
                 if (file.size > 50 * 1024 * 1024) {
                     alert('Error: File size must be less than 50MB');
                     input.value = '';

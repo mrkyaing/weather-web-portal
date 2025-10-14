@@ -13,6 +13,7 @@ namespace WeatherPortal.Data.Data
         public DbSet<TownshipEntity> Townships { get; set; }
         public DbSet<WeatherStationEntity> WeatherStations { get; set; }
         public DbSet<SatelliteRadarImageEntity> SatelliteRadarImages { get; set; }
+        public DbSet<NewsEntity> News { get; set; }
         public DbSet<AlertEntity> Alerts { get; set; }
         public DbSet<WeatherReadingEntity> WeatherReadings { get; set; }
 
