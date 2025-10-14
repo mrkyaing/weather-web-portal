@@ -8,6 +8,7 @@
         IWeatherStationRepository WeatherStations { get; }
         ISatelliteRadarImageRepository SatelliteRadarImages { get; }
         IAlertRepository Alerts { get; }
+        IWeatherReadingRepository weatherReadings { get; }
         void Commit();
         void RollBack();
     }

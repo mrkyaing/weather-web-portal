@@ -26,6 +26,7 @@ builder.Services.AddTransient<ITownshipService, TownshipService>();
 builder.Services.AddTransient<IWeatherStationService, WeatherStationService>();
 builder.Services.AddTransient<ISatelliteRadarImageService, SatelliteRadarImageService>();  
 builder.Services.AddTransient<IAlertService, AlertService>();
+builder.Services.AddTransient<IWeatherReadingService, WeatherReadingService>();
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

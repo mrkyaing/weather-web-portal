@@ -1,0 +1,109 @@
+﻿@model WeatherReadingViewModel
+@{
+    ViewData["Title"] = "Station";
+}
+<h3 class="card-title text-center mb-4">Edit Weather Reading</h3>
+@if (TempData["info"] != null)
+    {
+     if (Convert.ToBoolean(TempData["status"]))
+         {
+          <div class="alert alert-success" role="alert">
+                @TempData["info"]
+          </div>
+      }
+     else
+         {
+         <div class="alert alert-danger" role="alert">
+                @TempData["info"]
+         </div>
+         }
+     }
+<div class="card">
+    <div class="card-body">
+        <form asp-controller="WeatherReading" asp-action="Update" method="post">
+            <input type="hidden" name="Id" value="@Model.Id" />
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label class="form-label">Weather Station Name</label>
+                    <select class="form-select" id="stationselect" name="StationId" required>  
+
+                        @foreach (var station in ViewBag.Station)
+                        {
+                            @if (station.Id == Model.StationId)
+                            {
+                                <option value="@station.Id" selected>@station.StationName</option>
+                            }
+                            else
+                            {
+                                <option value="@station.Id">@station.StationName</option>
+                            }
+                        }
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Reading Date & Time</label>
+                    <input type="datetime" class="form-control" name="WhenReadAt" value="@Model.WhenReadAt?.ToString("yyyy/MM/dd")" >
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Max Temperature (°C)</label>
+                    <input type="number" class="form-control" name="TemperatureMax" step="0.01" value="@Model.TemperatureMax">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label class="form-label">Min Temperature (°C)</label>
+                    <input type="number" class="form-control" name="TemperatureMin" step="0.01" value="@Model.TemperatureMin">
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Pressure (hPa)</label>
+                    <input type="number" class="form-control" name="Pressure" step="0.01" value="@Model.Pressure">
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Humidity (%)</label>
+                    <input type="number" class="form-control" name="Humidity" step="0.01" value="@Model.Humidity">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label class="form-label">Wind Speed (m/s)</label>
+                    <input type="number" class="form-control" name="WindSpeed" step="0.01" value="@Model.WindSpeed">
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Wind Direction</label>
+                    <input type="text" class="form-control" name="WindDirection" maxlength="10" placeholder="e.g. N, NE" value="@Model.WindDirection">
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Rainfall (mm)</label>
+                    <input type="number" class="form-control" name="Rainfall" step="0.01" value="@Model.Rainfall">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label class="form-label">Present Weather</label>
+                    <input type="text" class="form-control" name="PresentWeather" maxlength="100" placeholder="e.g. Sunny, Cloudy" value="@Model.PresentWeather">
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Sea Weather</label>
+                    <input type="text" class="form-control" name="SeaWeather" maxlength="100" value="@Model.SeaWeather">
+                </div>
+
+                <div class="col-md-4 d-flex align-items-end">
+                    <button type="submit" class="btn btn-warning me-2">Update Reading</button>
+                    <a asp-controller="WeatherReading" asp-action="List" class="btn btn-secondary">Go to List</a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
