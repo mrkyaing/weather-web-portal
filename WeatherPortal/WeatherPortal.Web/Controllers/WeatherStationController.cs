@@ -107,9 +107,9 @@ namespace WeatherPortal.Web.Controllers
                     t.CityId,
                     t.TownshipNameInEnglish,
                     t.TownshipNameInMyanmar
-            }).ToList(); // ← important: materialize the result
+            }).ToList();
 
-            return Json(result); // now returns proper JSON
+            return Json(result);
         }
 
         [HttpGet]
@@ -139,9 +139,9 @@ namespace WeatherPortal.Web.Controllers
                 {
                     TempData["Info"] = "This  station is already exist in the system.";
                     TempData["Status"] = false;
-                     BindCityData();
-                     BindTownshipData();
-                    return View("Edit",weatherStationViewModel);
+                    BindCityData();
+                    BindTownshipData();
+                    return View("edit", weatherStationViewModel);
                 }
                 _weatherStationService.Update(weatherStationViewModel);
                 TempData["Info"] = "This station was successfully update in the system.";

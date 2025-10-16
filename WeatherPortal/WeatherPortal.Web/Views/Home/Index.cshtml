@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<WeatherPortal.Dto.AlertViewModel>
+@{
     ViewData["Title"] = "Home";
 }
 @if (User.IsInRole("Admin"))
@@ -959,7 +960,7 @@ else
 
     <!-- Public Notifications -->
     <section id="alerts" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-700">
+       @*  <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-700">
             <div class="p-6">
                 <h2 class="text-2xl font-bold text-white" data-translate="Public Notifications">Public Notifications</h2>
                 <p class="mt-1 text-sm text-gray-300">Real-time alerts and emergency weather warnings</p>
@@ -1005,6 +1006,100 @@ else
                             </div>
                         </div>
                     </div>
+                </div> *@
+        <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-700">
+            <div class="p-6">
+                <h2 class="text-2xl font-bold text-white" data-translate="Public Notifications">Public Notifications</h2>
+                <p class="mt-1 text-sm text-gray-300">Real-time alerts and emergency weather warnings</p>
+
+                <div class="mt-8 space-y-4">
+                    @if (Model != null && Model.Any())
+                    {
+                        @foreach (var alert in Model)
+                        {
+                            // choose colors and icons based on alert type
+                            string borderColor;
+                            string icon;
+                            string iconColor;
+
+                            switch (alert.AlertType.ToLower())
+                            {
+                                case "information":
+                                    borderColor = "border-blue-500";
+                                    icon = "info";
+                                    iconColor = "text-blue-500";
+                                    break;
+
+                                case "advisory":
+                                    borderColor = "border-yellow-500";
+                                    icon = "alert-triangle";
+                                    iconColor = "text-yellow-500";
+                                    break;
+
+                                case "watch":
+                                    borderColor = "border-orange-500";
+                                    icon = "eye"; // or "clock-alert"
+                                    iconColor = "text-orange-500";
+                                    break;
+
+                                case "warning":
+                                    borderColor = "border-red-500";
+                                    icon = "alert-octagon";
+                                    iconColor = "text-red-500";
+                                    break;
+
+                                case "emergency":
+                                    borderColor = "border-purple-600";
+                                    icon = "alert-circle";
+                                    iconColor = "text-purple-600";
+                                    break;
+
+                                default:
+                                    borderColor = "border-gray-500";
+                                    icon = "alert-circle";
+                                    iconColor = "text-gray-400";
+                                    break;
+                            }
+
+                            <div class="bg-gray-700 border-l-4 @borderColor p-4">
+                                <div class="flex">
+                                    <div class="flex-shrink-0">
+                                        <i data-feather="@icon" class="@iconColor w-5 h-5"></i>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm font-semibold text-white">@alert.AlertType</p>
+                                        <p class="text-sm text-white mt-1">
+                                            @if (!string.IsNullOrEmpty(alert.CityNameInEnglish))
+                                            {
+                                                @($" In {alert.CityNameInEnglish}")
+                                            }
+                                            @alert.Message
+                                            
+                                        </p>
+                                        @if (!string.IsNullOrEmpty(alert.StationName))
+                                        {
+                                            <p class="text-xs text-gray-300 mt-2">📍 Announced at: <span class="font-medium">@alert.StationName</span></p>
+                                        }
+                                        <p class="text-xs text-gray-300 mt-2">Updated: @DateTime.Now.ToString("MMMM dd, yyyy HH:mm")</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="bg-gray-700 border-l-4 border-blue-500 p-4">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <i data-feather="info" class="text-blue-500 w-5 h-5"></i>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm font-medium text-white">No Active Alerts</p>
+                                    <p class="text-sm text-white mt-1">Currently, there are no weather alerts available.</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
                 </div>
 
                 <div class="mt-8">
@@ -1087,5 +1182,6 @@ else
 
             input.addEventListener('keydown', (e)=>{ if(e.key === 'Enter') btn.click(); });
         })();
+         feather.replace();
     </script>
 }
