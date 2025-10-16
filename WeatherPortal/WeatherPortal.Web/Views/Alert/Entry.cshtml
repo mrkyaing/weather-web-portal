@@ -21,10 +21,17 @@
     <div class="card-body">   
        <form asp-controller="Alert" asp-action="Entry" method="post">
 
-                <div class="mb-3">
-                    <label class="form-label">Alert Type</label>
-                    <input type="text" class="form-control" placeholder="Fill the Alert Type" name="AlertType" required>
-                </div>
+            <div class="mb-3">
+                <label class="form-label">Alert Type</label>
+                <select class="form-control" name="AlertType" required>
+                    <option value="">-- Select Alert Type --</option>
+                    <option value="Information">Information </option>
+                    <option value="Advisory">Advisory </option>
+                    <option value="Watch">Watch</option>
+                    <option value="Warning">Warning</option>
+                    <option value="Emergency">Emergency</option>
+                </select>
+            </div>
             <div class="mb-3">
                 <label class="form-label">Message</label>
                 <textarea class="form-control" name="Message"></textarea>

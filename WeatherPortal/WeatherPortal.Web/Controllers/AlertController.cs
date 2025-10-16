@@ -54,15 +54,7 @@ namespace WeatherPortal.Web.Controllers
         {
             try
             {
-                var AlreadyExist = _alertService.IsAlradyExist(alertViewModel);
-                if (AlreadyExist)
-                {
-                    ViewData["Info"] = "This  alert type is already exist in the system.";
-                    ViewData["Status"] = false;
-                    await BindWeatherStation();
-                    await BindCityData();  
-                    return View(alertViewModel);
-                }
+               
                 await _alertService.Create(alertViewModel);
                 ViewData["Info"] = "This alerttype was successfully saved in the system.";
                 ViewData["Status"] = true;
